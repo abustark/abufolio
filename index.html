@@ -71,6 +71,11 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+    .light-mode .glass-dark {
+        background: rgba(0, 0, 0, 0.05); /* This is a 5% transparent black, creating a subtle grey glass effect */
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
         
         .skill-card, .project-card, .experience-card {
             transition: all 0.3s ease;
@@ -166,6 +171,21 @@
         .light-mode .gradient-text {
             background-image: linear-gradient(90deg, #10b981, #22543d, #10b981);
         }
+
+            .logo-gradient {
+        background-image: linear-gradient(90deg, #f5a623, #10b981, #f5a623);
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradient-flow 15s ease infinite;
+    }
+
+    @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
         
         .fade-in {
             opacity: 0;
@@ -218,13 +238,71 @@
             background: #10b981;
             transform: translateX(30px);
         }
+
+            /* Custom Scrollbar Styling (WebKit-based browsers) */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    /* Dark Mode Scrollbar */
+    .dark-mode::-webkit-scrollbar-track {
+        background: #0a192f; /* Dark background */
+    }
+    .dark-mode::-webkit-scrollbar-thumb {
+        background-color: #f5a623; /* Dark mode accent (Orange) */
+        border-radius: 20px;
+        border: 3px solid #0a192f;
+    }
+
+    /* Light Mode Scrollbar */
+    .light-mode::-webkit-scrollbar-track {
+        background: #f4f7f5; /* Light background */
+    }
+    .light-mode::-webkit-scrollbar-thumb {
+        background-color: #10b981; /* Light mode accent (Green) */
+        border-radius: 20px;
+        border: 3px solid #f4f7f5;
+    }
+
+      .project-tag {
+        position: absolute;
+        width: 150px;
+        text-align: center;
+        padding: 5px 0;
+        top: 25px;
+        right: -35px;
+        transform: rotate(45deg);
+        font-size: 0.75rem; /* 12px */
+        font-weight: 600;
+        z-index: 10;
+    }
+
+    .tag-flagship {
+        background-color: #f5a623;
+        color: #0a192f;
+        box-shadow: 0 0 10px rgba(245, 166, 35, 0.6);
+    }
+    .tag-serverless {
+        background-color: #3b82f6; /* Blue */
+        color: #e6f1ff;
+    }
+    .tag-academic {
+        background-color: #10b981; /* Green */
+        color: #e6f1ff;
+    }
+    .tag-fullstack {
+        background-color: #6b7280; /* Gray */
+        color: #e6f1ff;
+    }
+
+
     </style>
 </head>
 <body class="bg-darkBg text-darkText dark-mode">
     <!-- Header -->
     <header class="fixed w-full py-4 px-6 z-50 glass-dark">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Portfolio.</a>
+<a href="#" class="text-2xl font-bold logo-gradient">Portfolio.</a>
             
             <nav class="hidden md:flex space-x-8">
                 <a href="#home" class="hover:text-darkAccent transition-colors">Home</a>
@@ -445,13 +523,13 @@
     <div class="container mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Featured Projects</h2>
         
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
             <!-- Project 1: Abot -->
             <div class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in">
+                <div class="project-tag tag-flagship">Flagship</div>
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-                         alt="Abot AI Assistant Project" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Abot AI Assistant Project" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="text-xl font-semibold mb-2">Abot - Multi-modal AI Assistant</h3>
@@ -468,10 +546,10 @@
             </div>
 
             <!-- Project 2: Linkly -->
-                        <div class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in">
+            <div class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in">
+                <div class="project-tag tag-serverless">Serverless</div>
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1611117775350-ac3950927224?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-     alt="Linkly URL Shortener Project" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1611117775350-ac3950927224?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Linkly URL Shortener Project" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="text-xl font-semibold mb-2">Linkly - URL Shortener</h3>
@@ -489,9 +567,9 @@
 
             <!-- Project 3: House Price Prediction -->
             <div class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in">
+                <div class="project-tag tag-academic">Academic</div>
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1673&q=80" 
-                         alt="House Price Prediction Project" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1673&q=80" alt="House Price Prediction Project" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="text-xl font-semibold mb-2">House Price Prediction</h3>
@@ -509,9 +587,9 @@
             
             <!-- Project 4: E-commerce Site -->
             <div class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in">
+                <div class="project-tag tag-fullstack">Full-Stack</div>
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" 
-                         alt="E-commerce Project" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="E-commerce Project" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="text-xl font-semibold mb-2">E-Commerce Site for Digital Products</h3>
