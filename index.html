@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basith AbuSyed | Portfolio</title>
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230a192f'/%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='65' font-family='Arial, sans-serif' fill='%23f5a623' dy='.1em'%3EB%3C/text%3E%3C/svg%3E">
+
+    <!-- Social Media Meta Tags (Open Graph & Twitter) -->
+<!-- Replace 'https://your-live-vercel-url.com' with your actual website URL -->
+<meta property="og:title" content="Basith AbuSyed | Portfolio">
+<meta property="og:description" content="ML Data Associate and aspiring developer. Explore my projects and skills.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://your-live-vercel-url.com">
+<!-- Note: For og:image, you should create a preview image (1200x630px), upload it to your 'images' folder, and use the full live URL here. -->
+<meta property="og:image" content="https://your-live-vercel-url.com/images/social-preview.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://your-live-vercel-url.com">
+<meta name="twitter:title" content="Basith AbuSyed | Portfolio">
+<meta name="twitter:description" content="ML Data Associate and aspiring developer. Explore my projects and skills.">
+<meta name="twitter:image" content="https://your-live-vercel-url.com/images/social-preview.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -263,6 +281,56 @@
         border-radius: 20px;
         border: 3px solid #f4f7f5;
     }
+    /* Heart Preloader Styles */
+    .loader {
+      position: relative;
+      width: 40px;
+      height: 60px;
+      animation: heartBeat 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .loader:before,
+    .loader:after {
+      content: "";
+      width: 40px;
+      height: 60px;
+      border-radius: 50px 50px 0 0;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: rotate(45deg);
+      transform-origin: 50% 68%;
+      box-shadow: 5px 4px 5px #0004 inset;
+    }
+
+    /* Theme-aware heart color */
+    .dark-mode .loader:before,
+    .dark-mode .loader:after {
+        background: #f5a623; /* Dark mode accent (Orange) */
+    }
+    .light-mode .loader:before,
+    .light-mode .loader:after {
+        background: #10b981; /* Light mode accent (Green) */
+    }
+
+    .loader:after {
+      transform: rotate(-45deg);
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(0.95) }
+      5% { transform: scale(1.1) }
+      39% { transform: scale(0.85) }
+      45% { transform: scale(1) }
+      60% { transform: scale(0.95) }
+      100% { transform: scale(0.9) }
+    }
+
+    #preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
 
       .project-tag {
         position: absolute;
@@ -299,6 +367,20 @@
     </style>
 </head>
 <body class="bg-darkBg text-darkText dark-mode">
+
+    <script>
+    // This script runs immediately to prevent a flash of the wrong theme.
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode', 'bg-lightBg', 'text-lightText');
+        document.body.classList.remove('dark-mode', 'bg-darkBg', 'text-darkText');
+    }
+</script>
+
+    <!-- Preloader -->
+<div id="preloader" class="fixed top-0 left-0 w-full h-full bg-darkBg z- flex justify-center items-center">
+        <span class="loader"></span>
+</div>
+
     <!-- Header -->
     <header class="fixed w-full py-4 px-6 z-50 glass-dark">
         <div class="container mx-auto flex justify-between items-center">
@@ -680,6 +762,13 @@
     </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+                // Preloader logic
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+        });
+
         // Typed.js Typewriter Effect
         if (document.getElementById('typed-text')) {
             var typed = new Typed('#typed-text', {
@@ -690,8 +779,8 @@
                 smartBackspace: true,
             });
         }
-    
-        // Theme Toggle
+
+                // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
@@ -700,13 +789,13 @@
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('light-mode')) {
-                body.classList.remove('bg-darkBg');
-                body.classList.add('bg-lightBg');
-                body.style.color = '#2d3748';
+                body.classList.remove('bg-darkBg', 'text-darkText');
+                body.classList.add('bg-lightBg', 'text-lightText');
+                localStorage.setItem('theme', 'light'); // Save the choice
             } else {
-                body.classList.remove('bg-lightBg');
-                body.classList.add('bg-darkBg');
-                body.style.color = '#e6f1ff';
+                body.classList.remove('bg-lightBg', 'text-lightText');
+                body.classList.add('bg-darkBg', 'text-darkText');
+                localStorage.setItem('theme', 'dark'); // Save the choice
             }
         });
         
