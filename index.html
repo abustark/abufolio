@@ -610,29 +610,30 @@
 </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 glass-dark">
+<section id="contact" class="py-16 px-6 glass-dark">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Get In Touch</h2>
+
+            < <div class="max-w-2xl mx-auto">
             
-            <div class="max-w-2xl mx-auto">
-                <form id="contactForm" class="space-y-6">
+        <form id="contactForm" action="https://formspree.io/f/xqaebqgb" method="POST" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block mb-2">Name</label>
-                            <input type="text" id="name" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
+                        <input type="text" id="name" name="name" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
                         </div>
                         <div>
                             <label for="email" class="block mb-2">Email</label>
-                            <input type="email" id="email" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
+                        <input type="email" id="email" name="email" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
                         </div>
                     </div>
                     <div>
                         <label for="subject" class="block mb-2">Subject</label>
-                        <input type="text" id="subject" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
+                        <input type="text" id="subject" name="subject" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required>
                     </div>
                     <div>
                         <label for="message" class="block mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required></textarea>
+                        <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent" required></textarea>
                     </div>
                     <button type="submit" class="w-full py-3 rounded-lg bg-darkAccent text-darkBg font-medium glow-effect">
                         Send Message
@@ -645,7 +646,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 px-6 text-center">
+<footer class="py-8 px-6 text-center">
         <div class="container mx-auto">
             <div class="flex justify-center space-x-6 mb-6">
                 <a href="#" class="text-2xl hover:text-darkAccent transition-colors">
@@ -735,30 +736,42 @@
             });
         });
         
-        // Contact Form Submission
+                // Contact Form Submission
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
         
         if(contactForm) {
-            contactForm.addEventListener('submit', (e) => {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                if (!name || !email || !subject || !message) {
-                    showMessage('Please fill in all fields.', 'error');
-                    return;
-                }
-                if (!isValidEmail(email)) {
-                    showMessage('Please enter a valid email address.', 'error');
-                    return;
-                }
+                
+                const formData = new FormData(this);
+                const formAction = this.getAttribute('action');
+                
                 showMessage('Sending your message...', 'loading');
-                setTimeout(() => {
-                    showMessage('Your message has been sent successfully! I\'ll get back to you soon.', 'success');
-                    contactForm.reset();
-                }, 2000);
+
+                fetch(formAction, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        showMessage('Your message has been sent successfully! I\'ll get back to you soon.', 'success');
+                        contactForm.reset();
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                const errorMsg = data["errors"].map(error => error["message"]).join(", ");
+                                showMessage(`Oops! ${errorMsg}`, 'error');
+                            } else {
+                                showMessage('Oops! There was a problem sending your message.', 'error');
+                            }
+                        })
+                    }
+                }).catch(error => {
+                    showMessage('Oops! There was a network error. Please try again.', 'error');
+                });
             });
         }
         
