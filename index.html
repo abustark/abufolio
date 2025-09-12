@@ -455,7 +455,7 @@
             </p>
             <div class="flex justify-center space-x-4">
                 <a href="#projects" class="px-6 py-3 rounded-lg glass-dark glow-effect font-medium">View My Work</a>
-                <a href="#contact" class="px-6 py-3 rounded-lg bg-darkAccent text-darkBg font-medium glow-effect">Get In Touch</a>
+            <a href="assets/Basith-AbuSyed-Resume.pdf" download="Basith-AbuSyed-Resume.pdf" target="_blank" class="px-6 py-3 rounded-lg bg-darkAccent text-darkBg font-medium glow-effect">Download Resume</a>
             </div>
         </div>
     </section>
@@ -781,6 +781,12 @@
             <p class="opacity-70">© 2025 Basith AbuSyed. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+<a href="#" id="back-to-top" class="fixed bottom-5 right-5 z-50 p-3 rounded-full glass-dark glow-effect opacity-0 invisible transition-all duration-300">
+    <i class="fas fa-arrow-up text-xl"></i>
+</a>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -928,6 +934,25 @@
             });
         });
         
+                    // Back to Top Button Logic
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         function showMessage(text, type) {
             formMessage.textContent = text;
             formMessage.classList.remove('hidden', 'bg-red-500', 'bg-green-500', 'bg-blue-500');
