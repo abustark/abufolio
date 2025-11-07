@@ -519,6 +519,39 @@
 
     <!-- Education Section -->
     <section id="education" class="py-20 px-6">
+
+        <style>
+@media (max-width: 768px) {
+  .timeline-center {
+    margin-left: 1.25rem;
+    border-left: 3px solid var(--accent-color);
+    position: relative;
+  }
+
+  body.dark-mode .timeline-center {
+    --accent-color: #f5a623; /* orange for dark mode */
+  }
+
+  body.light-mode .timeline-center {
+    --accent-color: #10b981; /* green for light mode */
+  }
+
+  .timeline-dot::after {
+    left: -11px !important; /* Align dots with vertical line */
+    top: 0;
+    background-color: var(--accent-color);
+    border: 3px solid transparent;
+  }
+
+  .timeline-dot {
+    margin-bottom: 2rem;
+  }
+
+  .timeline-center > div {
+    margin-left: 1.5rem;
+  }
+}
+</style>
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Education</h2>
             
