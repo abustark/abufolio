@@ -1,0 +1,8 @@
+# Robots.txt for Basith AbuSyed Portfolio
+# https://abufolio.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://abufolio.vercel.app/sitemap.xml
