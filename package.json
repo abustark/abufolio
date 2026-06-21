@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/abustark/abufolio#readme",
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "autoprefixer": "^10.4.21",
+    "playwright": "^1.61.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.13"
   }
