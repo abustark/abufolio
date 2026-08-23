@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileScrim?.classList.remove('open');
         body.classList.remove('menu-open');
         menuToggle?.setAttribute('aria-expanded', 'false');
+        menuToggle?.setAttribute('aria-label', 'Open mobile navigation menu');
     };
 
     menuToggle?.addEventListener('click', () => {
@@ -244,9 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileScrim?.classList.toggle('open', Boolean(isOpen));
         body.classList.toggle('menu-open', Boolean(isOpen));
         menuToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Close mobile navigation menu' : 'Open mobile navigation menu');
     });
 
     mobileScrim?.addEventListener('click', closeMobileMenu);
+    mobileScrim?.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && body.classList.contains('menu-open')) {
+            closeMobileMenu();
+            menuToggle?.focus();
+        }
+    });
 
     // -------------------------------------------------------------
     // 6. Smooth Scroll & Active Nav Pill Sliding Indicator
@@ -254,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navIndicator = document.getElementById('nav-indicator');
 
     const updateNavIndicator = () => {
-        if (!navIndicator || window.innerWidth < 768) {
+        if (!navIndicator || window.innerWidth <= 960) {
             if (navIndicator) navIndicator.style.opacity = '0';
             return;
         }
@@ -292,7 +302,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', updateNavIndicator, { passive: true });
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 960 && body.classList.contains('menu-open')) {
+            closeMobileMenu();
+        }
+        updateNavIndicator();
+    }, { passive: true });
     updateScrollState();
 
     const sectionObserver = new IntersectionObserver((entries) => {
