@@ -167,7 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tick = () => {
             const word = roles[roleIndex];
-            dynamicRole.textContent = word.slice(0, letterIndex);
+            const currentSlice = word.slice(0, letterIndex);
+            dynamicRole.textContent = currentSlice || '\u00A0';
 
             if (deleting) {
                 letterIndex -= 1;
@@ -179,12 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 letterIndex += 1;
                 if (letterIndex >= roles[roleIndex].length) {
                     deleting = true;
-                    window.setTimeout(tick, 1400);
+                    window.setTimeout(tick, 1600);
                     return;
                 }
             }
 
-            window.setTimeout(tick, deleting ? 40 : 75);
+            window.setTimeout(tick, deleting ? 45 : 85);
         };
 
         window.setTimeout(tick, 1000);

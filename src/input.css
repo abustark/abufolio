@@ -679,19 +679,21 @@ button {
 /* -------------------------------------------------------------
    Layout & Sections
 ------------------------------------------------------------- */
-.section {
+.section,
+main > section[id] {
     position: relative;
     width: min(var(--max-width), calc(100% - 2rem));
     margin: 0 auto;
     padding: 6.5rem 0;
-    scroll-margin-top: 6rem;
+    scroll-margin-top: calc(5.8rem + env(safe-area-inset-top, 0px));
 }
 
 .hero {
     min-height: 90vh;
     display: grid;
     align-items: center;
-    padding-top: 7.5rem;
+    padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3.5rem;
 }
 
 .hero-grid {
@@ -732,6 +734,7 @@ h1 {
     max-width: 780px;
     margin-bottom: 1.35rem;
     font-size: clamp(2.8rem, 6.5vw, 5.6rem);
+    line-height: 1.08;
 }
 
 /* Prominent, readable Section Headings */
@@ -765,6 +768,8 @@ h3 {
     display: inline-block;
     color: var(--accent);
     text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 40%, transparent);
+    white-space: nowrap;
+    min-width: 8.5ch;
 }
 
 #dynamic-role::after {
@@ -2113,6 +2118,16 @@ dialog.project-dialog::backdrop {
         grid-template-columns: 1fr;
     }
 
+    .hero {
+        padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+        min-height: auto;
+    }
+
+    .section,
+    main > section[id] {
+        scroll-margin-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+    }
+
     .project-content h3,
     .project-content p,
     .tag-row,
@@ -2189,14 +2204,17 @@ dialog.project-dialog::backdrop {
 }
 
 @media (max-width: 640px) {
-    .section {
+    .section,
+    main > section[id] {
         width: calc(100% - 1.5rem);
         padding: 3.5rem 0;
-        scroll-margin-top: 5rem;
+        scroll-margin-top: calc(5.2rem + env(safe-area-inset-top, 0px));
     }
 
     .hero {
-        padding-top: 5.5rem;
+        padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 2.5rem;
+        min-height: auto;
     }
 
     .nav-shell {
@@ -2214,12 +2232,23 @@ dialog.project-dialog::backdrop {
     }
 
     h1 {
-        font-size: clamp(1.85rem, 8.5vw, 2.6rem);
+        font-size: clamp(1.85rem, 8.2vw, 2.5rem);
         letter-spacing: -0.025em;
+        line-height: 1.15;
+        min-height: 4.8em;
+    }
+
+    #dynamic-role {
+        min-width: 7ch;
     }
 
     h2 {
-        font-size: clamp(1.75rem, 7vw, 2.3rem);
+        font-size: clamp(1.65rem, 6.8vw, 2.2rem);
+    }
+
+    .hero-lede {
+        font-size: 0.98rem;
+        margin-bottom: 1.75rem;
     }
 
     .signal-grid {
@@ -2273,6 +2302,11 @@ dialog.project-dialog::backdrop {
         flex-shrink: 0;
     }
 
+    .preview-browser-bar {
+        min-height: 2.25rem;
+        padding: 0.45rem 0.75rem;
+    }
+
     .browser-dots {
         flex-shrink: 0;
     }
@@ -2288,6 +2322,48 @@ dialog.project-dialog::backdrop {
         flex-shrink: 0;
         font-size: 0.7rem;
         gap: 0.25rem;
+    }
+
+    .shot {
+        height: 190px;
+        max-height: 200px;
+        aspect-ratio: auto;
+    }
+
+    .shot picture,
+    .shot img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: top center;
+    }
+
+    .coming-soon-shot {
+        height: 180px;
+        max-height: 190px;
+        aspect-ratio: auto;
+        padding: 1rem;
+    }
+
+    .coming-soon-badge {
+        padding: 0.45rem 0.95rem;
+        font-size: 0.8rem;
+    }
+
+    .project-content {
+        padding: 1.25rem 1.15rem;
+        gap: 0.6rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .project-content p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+        -webkit-line-clamp: 3;
     }
 
     .skills-card {
@@ -2359,9 +2435,16 @@ dialog.project-dialog::backdrop {
 }
 
 @media (max-width: 480px) {
-    .section {
+    .section,
+    main > section[id] {
         width: calc(100% - 1rem);
         padding: 2.75rem 0;
+        scroll-margin-top: calc(4.8rem + env(safe-area-inset-top, 0px));
+    }
+
+    .hero {
+        padding-top: calc(5.6rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 2rem;
     }
 
     .brand small {
@@ -2383,6 +2466,16 @@ dialog.project-dialog::backdrop {
         transform: translateX(1.1rem);
     }
 
+    h1 {
+        font-size: clamp(1.6rem, 7.5vw, 2.15rem);
+        line-height: 1.18;
+        min-height: 5.2em;
+    }
+
+    #dynamic-role {
+        min-width: 6.5ch;
+    }
+
     .signal-grid {
         gap: 0.35rem;
     }
@@ -2397,6 +2490,33 @@ dialog.project-dialog::backdrop {
 
     .signal-grid dd {
         font-size: 0.68rem;
+    }
+
+    .shot {
+        height: 165px;
+        max-height: 175px;
+    }
+
+    .coming-soon-shot {
+        height: 155px;
+        max-height: 165px;
+    }
+
+    .coming-soon-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.76rem;
+    }
+
+    .project-content {
+        padding: 1.15rem 1rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.12rem;
+    }
+
+    .project-content p {
+        font-size: 0.85rem;
     }
 
     .about-card,
