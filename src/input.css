@@ -689,10 +689,11 @@ main > section[id] {
 }
 
 .hero {
-    min-height: 90vh;
-    display: grid;
-    align-items: center;
-    padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: calc(7.5rem + env(safe-area-inset-top, 0px));
     padding-bottom: 3.5rem;
 }
 
@@ -2111,6 +2112,16 @@ dialog.project-dialog::backdrop {
    Media Queries & Responsive Behavior
 ------------------------------------------------------------- */
 @media (max-width: 960px) {
+    .site-header {
+        padding: 0.65rem 0.85rem;
+        padding-top: max(0.65rem, env(safe-area-inset-top, 0.65rem));
+    }
+
+    .nav-shell {
+        width: 100%;
+        padding: 0.45rem 0.75rem;
+    }
+
     .hero-grid,
     .contact-card,
     .about-grid,
@@ -2119,8 +2130,14 @@ dialog.project-dialog::backdrop {
     }
 
     .hero {
-        padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+        display: block;
         min-height: auto;
+        padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 3rem;
+    }
+
+    .hero-copy {
+        padding-top: 0.5rem;
     }
 
     .section,
@@ -2147,8 +2164,8 @@ dialog.project-dialog::backdrop {
     .nav-links {
         position: fixed;
         top: calc(5rem + env(safe-area-inset-top, 0px));
-        left: 1rem;
-        right: 1rem;
+        left: 0.85rem;
+        right: 0.85rem;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -2204,6 +2221,75 @@ dialog.project-dialog::backdrop {
 }
 
 @media (max-width: 640px) {
+    .site-header {
+        padding: 0.45rem 0.65rem;
+        padding-top: max(0.45rem, env(safe-area-inset-top, 0.45rem));
+    }
+
+    .nav-shell {
+        width: 100%;
+        padding: 0.35rem 0.55rem;
+    }
+
+    .brand {
+        gap: 0.45rem;
+        min-width: 0;
+    }
+
+    .brand strong {
+        font-size: 0.88rem;
+        white-space: nowrap;
+    }
+
+    .brand small {
+        display: none;
+    }
+
+    .brand-mark {
+        width: 2.05rem;
+        height: 2.05rem;
+        font-size: 0.82rem;
+        border-radius: 0.65rem;
+        flex-shrink: 0;
+    }
+
+    .nav-actions {
+        gap: 0.3rem;
+        flex-shrink: 0;
+    }
+
+    .palette-trigger {
+        width: 2.35rem;
+        height: 2.35rem;
+        min-height: 38px;
+        min-width: 38px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .theme-toggle {
+        width: 3.1rem;
+        height: 2.15rem;
+        min-height: 38px;
+    }
+
+    .theme-toggle-dot {
+        width: 1.55rem;
+        height: 1.55rem;
+    }
+
+    .light-mode .theme-toggle-dot {
+        transform: translateX(0.95rem);
+    }
+
+    .menu-toggle {
+        width: 2.35rem;
+        height: 2.35rem;
+        min-height: 38px;
+        min-width: 38px;
+        justify-content: center;
+    }
+
     .section,
     main > section[id] {
         width: calc(100% - 1.5rem);
@@ -2212,23 +2298,20 @@ dialog.project-dialog::backdrop {
     }
 
     .hero {
-        padding-top: calc(6rem + env(safe-area-inset-top, 0px));
-        padding-bottom: 2.5rem;
+        display: block;
         min-height: auto;
+        padding-top: calc(5.8rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 2.5rem;
     }
 
-    .nav-shell {
-        padding: 0.4rem 0.65rem;
+    .hero-copy {
+        padding-top: 0.85rem;
     }
 
-    .brand {
-        gap: 0.6rem;
-    }
-
-    .brand-mark {
-        width: 2.25rem;
-        height: 2.25rem;
-        font-size: 0.86rem;
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 1.15rem;
     }
 
     h1 {
@@ -2435,6 +2518,59 @@ dialog.project-dialog::backdrop {
 }
 
 @media (max-width: 480px) {
+    .site-header {
+        padding: 0.35rem 0.45rem;
+        padding-top: max(0.35rem, env(safe-area-inset-top, 0.35rem));
+    }
+
+    .nav-shell {
+        width: 100%;
+        padding: 0.28rem 0.42rem;
+    }
+
+    .brand strong {
+        font-size: 0.82rem;
+    }
+
+    .brand-mark {
+        width: 1.95rem;
+        height: 1.95rem;
+        font-size: 0.78rem;
+    }
+
+    .nav-actions {
+        gap: 0.25rem;
+    }
+
+    .palette-trigger {
+        width: 2.2rem;
+        height: 2.2rem;
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    .theme-toggle {
+        width: 2.9rem;
+        height: 2.05rem;
+        min-height: 36px;
+    }
+
+    .theme-toggle-dot {
+        width: 1.45rem;
+        height: 1.45rem;
+    }
+
+    .light-mode .theme-toggle-dot {
+        transform: translateX(0.85rem);
+    }
+
+    .menu-toggle {
+        width: 2.2rem;
+        height: 2.2rem;
+        min-width: 36px;
+        min-height: 36px;
+    }
+
     .section,
     main > section[id] {
         width: calc(100% - 1rem);
@@ -2443,27 +2579,12 @@ dialog.project-dialog::backdrop {
     }
 
     .hero {
-        padding-top: calc(5.6rem + env(safe-area-inset-top, 0px));
+        padding-top: calc(5.4rem + env(safe-area-inset-top, 0px));
         padding-bottom: 2rem;
     }
 
-    .brand small {
-        display: none;
-    }
-
-    .theme-toggle {
-        width: 3.4rem;
-        height: 2.3rem;
-        min-height: 44px;
-    }
-
-    .theme-toggle-dot {
-        width: 1.7rem;
-        height: 1.7rem;
-    }
-
-    .light-mode .theme-toggle-dot {
-        transform: translateX(1.1rem);
+    .hero-copy {
+        padding-top: 1rem;
     }
 
     h1 {
