@@ -689,4 +689,72 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton?.removeAttribute('disabled');
         }
     });
+
+    // -------------------------------------------------------------
+    // 15. Dynamic Theme Follower Cursor (Desktop)
+    // -------------------------------------------------------------
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (cursorDot && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        let mouseX = -100;
+        let mouseY = -100;
+        let ringX = -100;
+        let ringY = -100;
+        let isVisible = false;
+
+        const updatePosition = (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (!isVisible) {
+                isVisible = true;
+                cursorDot.style.opacity = '1';
+                cursorRing.style.opacity = '1';
+                ringX = mouseX;
+                ringY = mouseY;
+            }
+        };
+
+        window.addEventListener('mousemove', updatePosition, { passive: true });
+
+        document.addEventListener('mouseleave', () => {
+            isVisible = false;
+            cursorDot.style.opacity = '0';
+            cursorRing.style.opacity = '0';
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.add('cursor-active');
+        });
+
+        document.addEventListener('mouseup', () => {
+            document.body.classList.remove('cursor-active');
+        });
+
+        // Interactive hover scale
+        const interactiveSelector = 'a, button, input, textarea, summary, [role="button"], [role="tab"], .project-card, .skills-card, .signal-grid div';
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(interactiveSelector)) {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest(interactiveSelector)) {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+
+        const renderCursor = () => {
+            ringX += (mouseX - ringX) * 0.22;
+            ringY += (mouseY - ringY) * 0.22;
+
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
+
+            requestAnimationFrame(renderCursor);
+        };
+
+        requestAnimationFrame(renderCursor);
+    }
 });

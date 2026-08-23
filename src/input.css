@@ -626,13 +626,15 @@ button {
 .theme-toggle {
     position: relative;
     width: 3.8rem;
-    height: 2.4rem;
+    height: 2.35rem;
+    min-height: 2.35rem;
     padding: 0;
+    overflow: hidden;
 }
 
 .theme-toggle-track {
     position: absolute;
-    inset: 0.28rem;
+    inset: 0.22rem;
     border-radius: inherit;
     background:
         radial-gradient(circle at 22% 50%, var(--accent) 0 0.28rem, transparent 0.32rem),
@@ -641,17 +643,19 @@ button {
 
 .theme-toggle-dot {
     position: absolute;
-    left: 0.28rem;
-    width: 1.84rem;
-    height: 1.84rem;
+    top: 50%;
+    left: 0.24rem;
+    width: 1.68rem;
+    height: 1.68rem;
     border-radius: 50%;
     background: var(--text);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    transform: translateY(-50%);
     transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .light-mode .theme-toggle-dot {
-    transform: translateX(1.4rem);
+    transform: translateY(-50%) translateX(1.58rem);
 }
 
 .theme-icon-moon,
@@ -2719,5 +2723,80 @@ dialog.project-dialog::backdrop {
     dialog.command-dialog {
         width: calc(100% - 1rem);
         padding: 1.25rem 1rem;
+    }
+}
+
+/* -------------------------------------------------------------
+   Dynamic Theme Follower Cursor (Desktop)
+------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+    .cursor-dot,
+    .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0;
+        will-change: transform, width, height, border-color;
+    }
+
+    .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        z-index: 99999;
+        box-shadow: 0 0 10px var(--accent-glow);
+        transform: translate(-50%, -50%);
+        transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background 200ms ease, opacity 200ms ease;
+    }
+
+    .cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid color-mix(in srgb, var(--accent) 70%, transparent);
+        background: color-mix(in srgb, var(--accent) 6%, transparent);
+        z-index: 99998;
+        box-shadow: 0 0 16px var(--accent-glow);
+        transform: translate(-50%, -50%);
+        transition: width 200ms cubic-bezier(0.16, 1, 0.3, 1),
+                    height 200ms cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 200ms ease,
+                    background 200ms ease,
+                    box-shadow 200ms ease,
+                    opacity 200ms ease;
+    }
+
+    /* Hover interactive elements */
+    body.cursor-hover .cursor-ring {
+        width: 54px;
+        height: 54px;
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 15%, transparent);
+        box-shadow: 0 0 24px var(--accent-glow);
+    }
+
+    body.cursor-hover .cursor-dot {
+        transform: translate(-50%, -50%) scale(1.6);
+        background: var(--accent-cool);
+    }
+
+    /* Active click state */
+    body.cursor-active .cursor-ring {
+        width: 28px;
+        height: 28px;
+        background: color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+
+    body.cursor-active .cursor-dot {
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+}
+
+@media (hover: none) or (pointer: coarse) {
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
     }
 }
