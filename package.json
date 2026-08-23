@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./src/input.css -o ./css/styles.css --minify",
-    "watch:css": "npx tailwindcss -i ./src/input.css -o ./css/styles.css --watch",
-    "build": "npm run build:css",
+    "build:css": "tailwindcss -i ./src/input.css -o ./css/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./css/styles.css --watch",
+    "build:assets": "node scripts/build-assets.mjs",
+    "build": "npm run build:css && npm run build:assets",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,10 +23,12 @@
   },
   "homepage": "https://github.com/abustark/abufolio#readme",
   "devDependencies": {
-    "@playwright/test": "^1.61.0",
+    "@fontsource/geist-mono": "^5.3.0",
+    "@fontsource/geist-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
     "autoprefixer": "^10.4.21",
-    "playwright": "^1.61.0",
     "postcss": "^8.5.6",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.13"
   }
 }

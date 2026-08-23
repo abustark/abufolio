@@ -1,1 +1,10 @@
 /node_modules
+/pics/abu.webp
+/pics/og.png
+.DS_Store
+.env
+.freebuff/
+.opencode.json
+start-ai.bat
+old_portfolio_backup/
+.agents/

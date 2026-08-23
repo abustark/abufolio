@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="House Price Prediction ML Model Preview">
+  <defs>
+    <linearGradient id="hp-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1117"/>
+      <stop offset="100%" stop-color="#111a24"/>
+    </linearGradient>
+    <linearGradient id="hp-spark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="hp-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="400" fill="url(#hp-bg)"/>
+
+  <!-- Left Feature Input Dashboard -->
+  <rect x="24" y="24" width="220" height="352" rx="14" fill="#132232" stroke="rgba(240,244,247,0.12)" stroke-width="1"/>
+  <text x="42" y="52" font-family="'Geist Mono',monospace" font-size="10" font-weight="700" letter-spacing="1" fill="#34d399">MODEL FEATURES</text>
+
+  <!-- Sliders / Inputs -->
+  <g transform="translate(42, 70)">
+    <text font-family="'Geist Sans',sans-serif" font-size="10" font-weight="600" fill="#f0f4f7">Living Area (sqft)</text>
+    <rect y="10" width="184" height="6" rx="3" fill="#1e2f42"/>
+    <rect y="10" width="120" height="6" rx="3" fill="url(#hp-accent)"/>
+    <circle cx="120" cy="13" r="6" fill="#f0f4f7"/>
+    <text x="140" y="30" font-family="'Geist Mono',monospace" font-size="9" fill="#34d399">2,450 sqft</text>
+  </g>
+
+  <g transform="translate(42, 125)">
+    <text font-family="'Geist Sans',sans-serif" font-size="10" font-weight="600" fill="#f0f4f7">Bedrooms &amp; Bathrooms</text>
+    <rect y="10" width="184" height="6" rx="3" fill="#1e2f42"/>
+    <rect y="10" width="95" height="6" rx="3" fill="url(#hp-accent)"/>
+    <circle cx="95" cy="13" r="6" fill="#f0f4f7"/>
+    <text x="140" y="30" font-family="'Geist Mono',monospace" font-size="9" fill="#34d399">4 Bed · 3 Bath</text>
+  </g>
+
+  <g transform="translate(42, 180)">
+    <text font-family="'Geist Sans',sans-serif" font-size="10" font-weight="600" fill="#f0f4f7">Location Grade / Distance</text>
+    <rect y="10" width="184" height="6" rx="3" fill="#1e2f42"/>
+    <rect y="10" width="145" height="6" rx="3" fill="url(#hp-accent)"/>
+    <circle cx="145" cy="13" r="6" fill="#f0f4f7"/>
+    <text x="140" y="30" font-family="'Geist Mono',monospace" font-size="9" fill="#34d399">Tier 1 · Urban</text>
+  </g>
+
+  <rect x="42" y="240" width="184" height="34" rx="8" fill="url(#hp-accent)"/>
+  <text x="90" y="261" font-family="'Geist Sans',sans-serif" font-size="11" font-weight="700" fill="#0b1117">Predict Price</text>
+
+  <!-- Right Regression Curve & Metric Screen -->
+  <rect x="260" y="24" width="356" height="352" rx="14" fill="#132232" stroke="rgba(240,244,247,0.12)" stroke-width="1"/>
+  <text x="282" y="52" font-family="'Geist Mono',monospace" font-size="10" font-weight="700" letter-spacing="1" fill="#34d399">PREDICTION OUTPUT</text>
+
+  <!-- Predicted Price Hero Card -->
+  <g transform="translate(282, 68)">
+    <rect width="312" height="74" rx="10" fill="#0b1117" stroke="rgba(52,211,153,0.35)"/>
+    <text x="16" y="26" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">ESTIMATED VALUATION</text>
+    <text x="16" y="56" font-family="'Space Grotesk',sans-serif" font-size="28" font-weight="700" fill="#34d399">$ 485,200</text>
+    <text x="180" y="54" font-family="'Geist Mono',monospace" font-size="10" fill="#6ee7b7">± 2.8% error</text>
+  </g>
+
+  <!-- Regression Chart -->
+  <g transform="translate(282, 160)">
+    <rect width="312" height="150" rx="10" fill="#0b1117" stroke="rgba(240,244,247,0.1)"/>
+    <!-- Grid lines -->
+    <line x1="20" y1="30" x2="292" y2="30" stroke="rgba(240,244,247,0.08)"/>
+    <line x1="20" y1="70" x2="292" y2="70" stroke="rgba(240,244,247,0.08)"/>
+    <line x1="20" y1="110" x2="292" y2="110" stroke="rgba(240,244,247,0.08)"/>
+
+    <!-- Area & Line -->
+    <polygon points="20,130 60,110 100,105 150,75 200,60 250,35 292,20 292,130" fill="url(#hp-spark)"/>
+    <polyline points="20,130 60,110 100,105 150,75 200,60 250,35 292,20" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="200" cy="60" r="5" fill="#f0f4f7" stroke="#10b981" stroke-width="2"/>
+    <text x="200" y="50" font-family="'Geist Mono',monospace" font-size="9" fill="#34d399">Selected: $485k</text>
+  </g>
+
+  <text x="282" y="340" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">Scikit-learn · Random Forest · Streamlit</text>
+</svg>

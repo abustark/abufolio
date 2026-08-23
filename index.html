@@ -1,1397 +1,733 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode" data-palette="emerald">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basith AbuSyed | Portfolio</title>
+    <title>Basith AbuSyed · Data &amp; AI Portfolio</title>
 
     <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230a192f'/%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='65' font-family='Arial, sans-serif' fill='%23f5a623' dy='.1em'%3EB%3C/text%3E%3C/svg%3E">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23090e14'/%3E%3Cpath d='M23 67L48 18l29 49H64l-6-11H39l-5 11H23zm22-24h8l-4-8-4 8z' fill='%232dd4bf'/%3E%3C/svg%3E">
 
-    <!-- Social Media Meta Tags (Open Graph & Twitter) -->
-    <!-- Replace 'https://your-live-vercel-url.com' with your actual website URL -->
-    <meta property="og:title" content="Basith AbuSyed | Portfolio">
-    <meta property="og:description" content="ML Data Associate and aspiring developer. Explore my projects and skills.">
+    <meta name="description"
+        content="Portfolio of Basith AbuSyed, Data &amp; AI Specialist with enterprise experience at Amazon validating multi-modal datasets, training predictive ML models, and building intelligent data applications.">
+    <link rel="canonical" href="https://abufolio.vercel.app/">
+    <meta name="theme-color" content="#090e14">
+    <meta property="og:title" content="Basith AbuSyed · Data &amp; AI Portfolio">
+    <meta property="og:description" content="Multi-modal data validation, predictive ML models, and practical AI applications.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abufolio.vercel.app">
-    <!-- Note: For og:image, you should create a preview image (1200x630px), upload it to your 'images' folder, and use the full live URL here. -->
-    <meta property="og:image" content="https://abufolio.vercel.app/images/social-preview.jpg">
-
+    <meta property="og:url" content="https://abufolio.vercel.app/">
+    <meta property="og:site_name" content="Basith AbuSyed">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://abufolio.vercel.app/pics/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Basith AbuSyed — Data &amp; AI Portfolio">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://abufolio.vercel.app">
-    <meta name="twitter:title" content="Basith AbuSyed | Portfolio">
-    <meta name="twitter:description"
-        content="ML Data Associate and aspiring developer. Explore my projects and skills.">
-    <meta name="twitter:image" content="https://abufolio.vercel.app/images/social-preview.jpg">
+    <meta name="twitter:title" content="Basith AbuSyed · Data &amp; AI Portfolio">
+    <meta name="twitter:description" content="Multi-modal data validation, predictive ML models, and practical AI applications.">
+    <meta name="twitter:image" content="https://abufolio.vercel.app/pics/og.png">
+    <meta name="twitter:image:alt" content="Basith AbuSyed — Data &amp; AI Portfolio">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0a192f',
-                        lightBg: '#f4f7f5',
-                        darkText: '#e6f1ff',
-                        lightText: '#2d3748',
-                        accent: 'var(--accent-color)',
-                        resume: 'var(--resume-btn-color)',
-                    },
-                    animation: {
-                        'gradient': 'gradient 5s ease infinite',
-                        'fadeInUp': 'fadeInUp 0.6s ease-out forwards',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        gradient: {
-                            '0%, 100%': { 'background-position': '0% 50%' },
-                            '50%': { 'background-position': '100% 50%' },
-                        },
-                        fadeInUp: {
-                            '0%': {
-                                opacity: '0',
-                                transform: 'translateY(30px)'
-                            },
-                            '100%': {
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            },
-                        }
-                    }
-                }
-            }
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "@id": "https://abufolio.vercel.app/#person",
+            "name": "Basith AbuSyed",
+            "url": "https://abufolio.vercel.app/",
+            "image": "https://abufolio.vercel.app/pics/abu.webp",
+            "jobTitle": "Data & AI Specialist",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Amazon"
+            },
+            "description": "Data & AI Specialist with enterprise experience at Amazon validating multi-modal datasets, training predictive ML models, and building intelligent data applications.",
+            "email": "bas.abu0802@gmail.com",
+            "sameAs": [
+                "https://github.com/abustark",
+                "https://www.linkedin.com/in/bas-abu/"
+            ]
         }
     </script>
 
-    <!-- Google Fonts - Playfair Display for premium stylized logo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap"
-        rel="stylesheet">
-
-    <!-- Font Awesome with SRI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Typed.js -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
-    <style>
-        :root {
-            /* ... existing variables ... */
-            --accent-color: #f5a623;
-            /* Yellow for Dark Mode */
-            --accent-glow: rgba(245, 166, 35, 0.3);
-            /* Reduced opacity */
-            --resume-btn-color: #10b981;
-            /* Green for Dark Mode */
-        }
-
-        .light-mode {
-            --accent-color: #10b981;
-            /* Green for Light Mode */
-            --accent-glow: rgba(16, 185, 129, 0.3);
-            /* Reduced opacity */
-            --resume-btn-color: #f5a623;
-            /* Yellow for Light Mode */
-        }
-
-        /* ... existing styles ... */
-
-        /* Logo - Standard Bold (Matching Vercel) */
-        .logo-stylized {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-
-        /* ... existing styles ... */
-
-        /* Header - True Edge to Edge */
-        header {
-            position: fixed;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-            margin: 0 !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        header .container {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        /* Scrollbar - Explicit Settings */
-        html {
-            overflow-y: scroll !important;
-            /* Force scrollbar on html */
-        }
-
-        body {
-            overflow-x: hidden;
-            overflow-y: visible;
-        }
-
-        /* Custom Scrollbar - Yellow/Orange Accent */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        /* Dark Mode Scrollbar (default) */
-        ::-webkit-scrollbar-track {
-            background: #0a192f;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #f5a623;
-            border-radius: 6px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ffd700;
-        }
-
-        /* Firefox - Dark Mode */
-        html {
-            scrollbar-width: thin;
-            scrollbar-color: #f5a623 #0a192f;
-        }
-
-        /* Light Mode Scrollbar */
-        body.light-mode ::-webkit-scrollbar-track,
-        .light-mode::-webkit-scrollbar-track {
-            background: #e5e7eb !important;
-        }
-
-        body.light-mode ::-webkit-scrollbar-thumb,
-        .light-mode::-webkit-scrollbar-thumb {
-            background: #10b981 !important;
-        }
-
-        body.light-mode ::-webkit-scrollbar-thumb:hover,
-        .light-mode::-webkit-scrollbar-thumb:hover {
-            background: #059669 !important;
-        }
-
-        /* Firefox - Light Mode */
-        body.light-mode {
-            scrollbar-color: #10b981 #e5e7eb;
-        }
-
-        /* ========== UI/UX ENHANCEMENTS ========== */
-
-        /* 1. Section Heading Styling */
-        .section-heading {
-            position: relative;
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding-bottom: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), #ffd700);
-            border-radius: 2px;
-        }
-
-        .light-mode .section-heading::after {
-            background: linear-gradient(90deg, var(--accent-color), #22543d);
-        }
-
-        /* 2. Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), #ffd700);
-            z-index: 9999;
-            transition: width 0.1s ease-out;
-        }
-
-        .light-mode .scroll-progress {
-            background: linear-gradient(90deg, var(--accent-color), #22543d);
-        }
-
-        /* 3. Gradient Borders on Cards */
-        .gradient-border {
-            position: relative;
-            background: rgba(10, 25, 47, 0.8);
-            border-radius: 12px;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, var(--accent-color), transparent, var(--accent-color));
-            border-radius: 14px;
-            z-index: -1;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .gradient-border:hover::before {
-            opacity: 1;
-        }
-
-        .light-mode .gradient-border {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* 4. Active Nav Indicator */
-        .nav-link.active {
-            color: var(--accent-color) !important;
-        }
-
-        .nav-link.active::after {
-            width: 100% !important;
-            background-color: var(--accent-color) !important;
-        }
-
-        /* 5. Theme Toggle Sun/Moon Icons */
-        .theme-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 14px;
-            transition: opacity 0.3s ease;
-        }
-
-        .theme-icon.sun {
-            left: 8px;
-            color: #ffd700;
-            opacity: 0;
-        }
-
-        .theme-icon.moon {
-            right: 8px;
-            color: #a0aec0;
-            opacity: 1;
-        }
-
-        .light-mode .theme-icon.sun {
-            opacity: 1;
-        }
-
-        .light-mode .theme-icon.moon {
-            opacity: 0;
-        }
-
-        /* Preloader Font Update */
-        .preloader-logo {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 3rem;
-            color: var(--accent-color);
-            text-shadow: 0 0 15px var(--accent-glow),
-                0 0 30px var(--accent-glow);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Focus Visible - Keyboard Accessibility */
-        :focus-visible {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-
-        :focus:not(:focus-visible) {
-            outline: none;
-        }
-
-        /* Reduced Motion Support */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .glass-dark {
-            background: rgba(10, 25, 47, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .light-mode .glass-dark {
-            background: rgba(0, 0, 0, 0.05);
-            /* This is a 5% transparent black, creating a subtle grey glass effect */
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .skill-card,
-        .project-card,
-        .experience-card {
-            transition: all 0.3s ease;
-        }
-
-        .glow-effect:hover {
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(600px circle at var(--x) var(--y),
-                    rgba(255, 255, 255, 0.1),
-                    transparent 40%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-size: 300% 300%;
-            animation: gradient 5s ease infinite;
-        }
-
-        .dark-mode .gradient-text {
-            background-image: linear-gradient(90deg, var(--accent-color), #ffd700, var(--accent-color));
-        }
-
-        .light-mode .gradient-text {
-            background-image: linear-gradient(90deg, var(--accent-color), #22543d, var(--accent-color));
-        }
-
-        .logo-gradient {
-            background-image: linear-gradient(90deg, #f5a623, #10b981, #f5a623);
-            background-size: 200% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gradient-flow 15s ease infinite;
-        }
-
-        @keyframes gradient-flow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .theme-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            border-radius: 25px;
-            background: #0a192f;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .theme-toggle::after {
-            content: '';
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s ease;
-        }
-
-        .light-mode .theme-toggle {
-            background: #f4f7f5;
-        }
-
-        .light-mode .theme-toggle::after {
-            transform: translateX(30px);
-        }
-
-        /* Custom Scrollbar Styling (WebKit-based browsers) */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        /* Dark Mode Scrollbar */
-        .dark-mode::-webkit-scrollbar-track {
-            background: #0a192f;
-        }
-
-        .dark-mode::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-            border-radius: 20px;
-            border: 3px solid #0a192f;
-        }
-
-        /* Light Mode Scrollbar */
-        .light-mode::-webkit-scrollbar-track {
-            background: #f4f7f5;
-        }
-
-        .light-mode::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-            border-radius: 20px;
-            border: 3px solid #f4f7f5;
-        }
-
-        /* Nav Hover Color Fix */
-        nav a:hover,
-        footer a:hover,
-        .mobile-link:hover {
-            color: var(--accent-color) !important;
-        }
-
-        /* Skill Icon Theme Contast Fixes */
-        .light-mode .bg-blue-500\/20 {
-            background-color: #dbeafe;
-        }
-
-        .light-mode .bg-blue-500\/20>i {
-            color: #2563eb;
-        }
-
-        .light-mode .bg-purple-500\/20 {
-            background-color: #e9d5ff;
-        }
-
-        .light-mode .bg-purple-500\/20>i {
-            color: #7e22ce;
-        }
-
-        .light-mode .bg-green-500\/20 {
-            background-color: #d1fae5;
-        }
-
-        .light-mode .bg-green-500\/20>i {
-            color: #059669;
-        }
-
-        .light-mode .bg-red-500\/20 {
-            background-color: #fee2e2;
-        }
-
-        .light-mode .bg-red-500\/20>i {
-            color: #dc2626;
-        }
-
-        .light-mode .bg-yellow-500\/20 {
-            background-color: #fef9c3;
-        }
-
-        .light-mode .bg-yellow-500\/20>i {
-            color: #ca8a04;
-        }
-
-        /* Heart Preloader Styles */
-        .loader {
-            position: relative;
-            width: 40px;
-            height: 60px;
-            animation: heartBeat 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        .loader:before,
-        .loader:after {
-            content: "";
-            width: 40px;
-            height: 60px;
-            border-radius: 50px 50px 0 0;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            transform: rotate(45deg);
-            transform-origin: 50% 68%;
-            box-shadow: 5px 4px 5px #0004 inset;
-            background: var(--accent-color);
-        }
-
-        .loader:after {
-            transform: rotate(-45deg);
-        }
-
-        @keyframes heartBeat {
-            0% {
-                transform: scale(0.95)
-            }
-
-            5% {
-                transform: scale(1.1)
-            }
-
-            39% {
-                transform: scale(0.85)
-            }
-
-            45% {
-                transform: scale(1)
-            }
-
-            60% {
-                transform: scale(0.95)
-            }
-
-            100% {
-                transform: scale(0.9)
-            }
-        }
-
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        }
-
-        .project-tag {
-            position: absolute;
-            width: 150px;
-            text-align: center;
-            padding: 5px 0;
-            top: 25px;
-            right: -35px;
-            transform: rotate(45deg);
-            font-size: 0.75rem;
-            /* 12px */
-            font-weight: 600;
-            z-index: 10;
-        }
-
-        .tag-flagship {
-            background-color: var(--accent-color);
-            color: #0a192f;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .tag-serverless {
-            background-color: #3b82f6;
-            /* Blue */
-            color: #e6f1ff;
-        }
-
-        .tag-academic {
-            background-color: #10b981;
-            /* Green */
-            color: #e6f1ff;
-        }
-
-        .tag-fullstack {
-            background-color: #6b7280;
-            /* Gray */
-            color: #e6f1ff;
-        }
-
-        /* Stylized Logo with Neon Glow */
-        .logo-stylized {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.75rem;
-            text-shadow: 0 0 10px var(--accent-glow),
-                0 0 20px var(--accent-glow),
-                0 0 30px var(--accent-glow);
-            transition: text-shadow 0.3s ease;
-        }
-
-        .logo-stylized:hover {
-            text-shadow: 0 0 15px var(--accent-glow),
-                0 0 30px var(--accent-glow),
-                0 0 45px var(--accent-glow);
-        }
-
-        /* Nav Link Underlines */
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Header Full Width */
-        header {
-            left: 0;
-            right: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .light-mode header {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        /* Scrollbar Fade In/Out */
-        body {
-            scrollbar-width: thin;
-            scrollbar-color: transparent transparent;
-        }
-
-        body.scrolling {
-            scrollbar-color: var(--accent-color) transparent;
-        }
-
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            border-radius: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        body.scrolling::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-        }
-
-        /* New Preloader: Abu + Loading Bar */
-        .preloader-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .preloader-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--accent-color);
-            text-shadow: 0 0 15px var(--accent-glow),
-                0 0 30px var(--accent-glow);
-        }
-
-        .loading-bar {
-            width: 120px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .light-mode .loading-bar {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .loading-bar::after {
-            content: '';
-            display: block;
-            width: 40%;
-            height: 100%;
-            background: var(--accent-color);
-            border-radius: 2px;
-            animation: loading 1.2s ease-in-out infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            50% {
-                transform: translateX(200%);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-    </style>
+    <link rel="preload" href="pics/abu.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="bg-darkBg text-darkText dark-mode">
+<body class="dark-mode">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="mobile-nav-scrim" id="mobile-scrim" aria-hidden="true"></div>
 
-    <script>
-        // This script runs immediately to prevent a flash of the wrong theme.
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode', 'bg-lightBg', 'text-lightText');
-            document.body.classList.remove('dark-mode', 'bg-darkBg', 'text-darkText');
-        }
-    </script>
+    <header class="site-header" id="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="#home" aria-label="Basith AbuSyed home">
+                <span class="brand-mark">BA</span>
+                <span>
+                    <strong>Basith AbuSyed</strong>
+                    <small>Data &amp; AI Portfolio</small>
+                </span>
+            </a>
 
-    <!-- Skip to Content Link (Accessibility) -->
-    <a href="#main-content"
-        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-darkBg focus:rounded-lg focus:outline-none">
-        Skip to main content
-    </a>
+            <div class="nav-links" id="nav-links">
+                <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#work">Work</a>
+                <a class="nav-link" href="#skills">Skills</a>
+                <a class="nav-link" href="#experience">Experience</a>
+                <a class="nav-link" href="#contact">Contact</a>
+            </div>
 
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress" class="scroll-progress"></div>
+            <div class="nav-actions">
+                <button class="ghost-button command-trigger" type="button" data-open-command
+                    aria-label="Open command palette (Ctrl+K or Cmd+K)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span class="keycap" id="cmd-keycap">Ctrl K</span>
+                </button>
 
-    <!-- Preloader -->
-    <div id="preloader" class="fixed top-0 left-0 w-full h-full bg-darkBg z-[9999] flex justify-center items-center">
-        <div class="preloader-content">
-            <span class="preloader-logo">Abu</span>
-            <div class="loading-bar"></div>
-        </div>
-    </div>
+                <!-- Interactive Color Palette Switcher (Instant Cycle) -->
+                <button class="palette-trigger" type="button" id="palette-trigger" title="Switch Color Palette (Emerald / Violet / Blue / Amber)" aria-label="Switch Color Palette">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+                    </svg>
+                    <span class="active-palette-badge" aria-hidden="true">
+                        <span class="active-dot-a"></span>
+                        <span class="active-dot-b"></span>
+                    </span>
+                </button>
 
-    <!-- Header -->
-    <header class="fixed w-full py-4 px-6 z-50 glass-dark">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold logo-gradient">Portfolio.</a>
-
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link hover:text-accent transition-colors">Home</a>
-                <a href="#about" class="nav-link hover:text-accent transition-colors">About</a>
-                <a href="#experience" class="nav-link hover:text-accent transition-colors">Experience</a>
-                <a href="#education" class="nav-link hover:text-accent transition-colors">Education</a>
-                <a href="#skills" class="nav-link hover:text-accent transition-colors">Skills</a>
-                <a href="#projects" class="nav-link hover:text-accent transition-colors">Projects</a>
-                <a href="#blog" class="nav-link hover:text-accent transition-colors">Blog</a>
-                <a href="#contact" class="nav-link hover:text-accent transition-colors">Contact</a>
-            </nav>
-
-            <div class="flex items-center space-x-4">
-                <div class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-sun theme-icon sun"></i>
-                    <i class="fas fa-moon theme-icon moon"></i>
-                </div>
-
-                <button class="md:hidden" id="menu-btn" aria-label="Toggle menu">
-                    <i class="fas fa-bars text-xl" id="menu-icon"></i>
+                <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Toggle dark and light theme" aria-pressed="false">
+                    <span class="theme-toggle-track"></span>
+                    <span class="theme-toggle-dot"></span>
+                </button>
+                <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open mobile navigation menu"
+                    aria-controls="nav-links" aria-expanded="false">
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="fixed top-0 right-[-100%] w-2/3 h-screen z-40 glass-dark transition-all duration-300 ease-in-out md:hidden">
-        <nav class="flex flex-col items-center justify-center space-y-8 pt-24 text-lg">
-            <a href="#home" class="mobile-link hover:text-darkAccent transition-colors">Home</a>
-            <a href="#about" class="mobile-link hover:text-darkAccent transition-colors">About</a>
-            <a href="#experience" class="mobile-link hover:text-darkAccent transition-colors">Experience</a>
-            <a href="#education" class="mobile-link hover:text-darkAccent transition-colors">Education</a>
-            <a href="#skills" class="mobile-link hover:text-darkAccent transition-colors">Skills</a>
-            <a href="#projects" class="mobile-link hover:text-darkAccent transition-colors">Projects</a>
-            <a href="#blog" class="mobile-link hover:text-darkAccent transition-colors">Blog</a>
-            <a href="#contact" class="mobile-link hover:text-darkAccent transition-colors">Contact</a>
-        </nav>
-    </div>
+    <main id="main" tabindex="-1">
+        <section class="hero section" id="home">
+            <div class="hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Data &amp; AI Specialist</p>
+                    <h1>
+                        <span class="sr-only">Turning raw data into analyst insights, predictive models, clean datasets, and AI workflows</span>
+                        <span aria-hidden="true">Turning raw data into <span id="dynamic-role"
+                            data-roles="analyst insights,predictive models,clean datasets,AI workflows">analyst insights</span></span>
+                    </h1>
+                    <p class="hero-lede">
+                        Data professional with <strong>3 years of enterprise experience</strong> analyzing large-scale datasets, driving data quality validation, training predictive ML models, and deploying practical AI applications.
+                    </p>
 
-    <!-- Main Content -->
-    <main id="main-content">
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
-            <div class="container mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hello, I'm <span class="gradient-text">Basith
-                        AbuSyed</span>
-                </h1>
-                <h2 class="text-2xl md:text-4xl font-semibold mb-8">
-                    I am a <span id="typed-text" class="gradient-text"></span>
-                </h2>
-                <p class="max-w-2xl mx-auto text-lg md:text-xl mb-10 opacity-80">
-                    Crafting elegant solutions to complex problems with modern technologies
-                </p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#projects" class="px-6 py-3 rounded-lg glass-dark glow-effect font-medium">View My Work</a>
-                    <a href="assets/Basith_Abusyed_Resume.pdf" download="Basith-AbuSyed-Resume.pdf" target="_blank"
-                        class="px-6 py-3 rounded-lg bg-resume text-darkBg font-medium glow-effect">Download Resume</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">About Me</h2>
-
-                <div class="flex flex-col md:flex-row items-center gap-10 max-w-5xl mx-auto">
-                    <div class="w-full md:w-1/3 flex justify-center">
-                        <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-accent">
-                            <img src="pics/abu.png" alt="Basith AbuSyed" class="w-full h-full object-cover object-top">
-                        </div>
-                    </div>
-
-                    <div class="w-full md:w-2/3">
-                        <h3 class="text-2xl font-semibold mb-4">ML Data Associate & Aspiring Developer</h3>
-                        <p class="mb-4 opacity-90">
-                            Hello! I'm a detail-oriented Master of Computer Applications (MCA) graduate, currently
-                            working
-                            as an ML-Data Associate at Amazon. I thrive on enhancing data quality and improving
-                            processing
-                            workflows—in one instance, my UI/UX suggestions for an internal tool led to a 16% increase
-                            in
-                            team efficiency.
-                        </p>
-                        <p class="mb-4 opacity-90">
-                            With a strong foundation in Python, Java, and Machine Learning, I enjoy building effective
-                            solutions to complex problems. My goal is to leverage my technical expertise and
-                            problem-solving
-                            skills to create impactful web applications.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-6">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Data Training</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Machine Learning</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Analytic Tools</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Coding</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-20 px-6 bg-opacity-50 glass-dark">
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Work Experience</h2>
-
-                <div class="max-w-4xl mx-auto space-y-8">
-                    <div class="experience-card p-6 rounded-xl glass glow-effect fade-in">
-                        <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-semibold">ML-Data Associate</h3>
-                                <p class="text-accent font-medium">Amazon</p>
-                            </div>
-                            <span class="px-3 py-1 glass-dark text-sm rounded-full mt-2 sm:mt-0">Aug 2023 -
-                                Present</span>
-                        </div>
-                        <ul class="list-disc pl-5 space-y-2 opacity-90">
-                            <li>Analyze and meticulously annotate diverse datasets (text, image, audio, video),
-                                maintaining
-                                a consistent data accuracy rate of over 98%.</li>
-                            <li>Proposed UI/UX enhancements for data processing workflows, leading to implemented
-                                changes
-                                that increased team efficiency by 16%.</li>
-                            <li>Enhance overall data quality by identifying and correcting errors within previously
-                                processed datasets, ensuring more reliable inputs for machine learning processes.</li>
-                            <li>Evaluate new internal tools and products, providing detailed feedback on functionality
-                                that
-                                directly informs development improvements.</li>
-                            <li>Frequently recognized through official appreciation certificates for high performance,
-                                quality focus, and proactive contributions.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="py-20 px-6">
-
-            <style>
-                /* Hierarchy Map Design */
-                .hierarchy-tree {
-                    position: relative;
-                    padding-left: 2rem;
-                    border-left: 2px solid var(--accent-color);
-                }
-
-                .hierarchy-item {
-                    position: relative;
-                    margin-bottom: 3rem;
-                    padding-left: 1.5rem;
-                }
-
-                .hierarchy-item:last-child {
-                    margin-bottom: 0;
-                }
-
-                /* The Branch Connector */
-                .hierarchy-item::before {
-                    content: '';
-                    position: absolute;
-                    top: 2rem;
-                    left: 0;
-                    width: 1.5rem;
-                    height: 2px;
-                    background-color: var(--accent-color);
-                }
-
-                /* The Node Dot */
-                .hierarchy-item::after {
-                    content: '';
-                    position: absolute;
-                    top: calc(2rem - 5px);
-                    left: -6px;
-                    /* -2px line width - 4px center adjustment */
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: #0a192f;
-                    border: 2px solid var(--accent-color);
-                    z-index: 1;
-                    transition: transform 0.3s ease, background-color 0.3s ease;
-                }
-
-                .light-mode .hierarchy-item::after {
-                    background-color: #f4f7f5;
-                }
-
-                /* Hover Effect on Item Highlight Node */
-                .hierarchy-item:hover::after {
-                    background-color: var(--accent-color);
-                    transform: scale(1.2);
-                }
-            </style>
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Education</h2>
-
-                <div class="hierarchy-tree max-w-3xl mx-auto">
-
-                    <!-- Master's -->
-                    <div class="hierarchy-item fade-in">
-                        <div
-                            class="p-6 glass rounded-xl relative hover:translate-x-2 transition-transform duration-300">
-                            <span
-                                class="absolute -top-3 right-4 px-3 py-1 text-xs font-bold rounded-full bg-accent text-darkBg">2021
-                                - 2023</span>
-                            <h3 class="text-xl font-bold">Master of Computer Applications (MCA)</h3>
-                            <p class="text-lg opacity-90 mt-1">The American College, Madurai</p>
-                            <p class="text-sm opacity-70 mt-4 leading-relaxed">
-                                Specialized in Advanced Algorithms, Machine Learning, and Cloud Computing.
-                                Completed capstone project on "Predictive Analysis using Big Data".
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bachelor's -->
-                    <div class="hierarchy-item fade-in">
-                        <div
-                            class="p-6 glass rounded-xl relative hover:translate-x-2 transition-transform duration-300">
-                            <span
-                                class="absolute -top-3 right-4 px-3 py-1 text-xs font-bold rounded-full bg-accent text-darkBg">2018
-                                - 2021</span>
-                            <h3 class="text-xl font-bold">Bachelor of Computer Applications (BCA)</h3>
-                            <p class="text-lg opacity-90 mt-1">Thiagarajar College, Madurai</p>
-                            <p class="text-sm opacity-70 mt-4 leading-relaxed">
-                                Foundation in Computer Science, Database Management Systems, and Web Development.
-                                Active member of the Coding Club.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Schooling -->
-                    <div class="hierarchy-item fade-in">
-                        <div
-                            class="p-6 glass rounded-xl relative hover:translate-x-2 transition-transform duration-300">
-                            <span
-                                class="absolute -top-3 right-4 px-3 py-1 text-xs font-bold rounded-full bg-accent text-darkBg">2011
-                                - 2018</span>
-                            <h3 class="text-xl font-bold">Higher Secondary Education</h3>
-                            <p class="text-lg opacity-90 mt-1">Thiagarajar School, Madurai</p>
-                            <p class="text-sm opacity-70 mt-4 leading-relaxed">
-                                Major in Computer Science and Mathematics.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 px-6 glass-dark">
-            <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold section-heading">Skills & Expertise</h2>
-                    <p class="text-lg md:text-xl mt-4 opacity-80 max-w-2xl mx-auto">The tools and technologies I use to
-                        bring ideas to life.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-                    <!-- Frontend Development Card -->
-                    <div
-                        class="skill-card p-6 glass rounded-3xl glow-effect flex flex-col items-center text-center fade-in">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-accent/20 mb-4">
-                            <i class="fas fa-code text-3xl text-accent"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Frontend Development</h3>
-                        <p class="opacity-90 mb-4 flex-grow">Building responsive and interactive user interfaces.</p>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Vue.js</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">JavaScript</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">HTML & CSS</span>
-                        </div>
-                    </div>
-
-                    <!-- Backend Development Card -->
-                    <div
-                        class="skill-card p-6 glass rounded-3xl glow-effect flex flex-col items-center text-center fade-in">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-accent/20 mb-4">
-                            <i class="fas fa-server text-3xl text-accent"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Backend Development</h3>
-                        <p class="opacity-90 mb-4 flex-grow">Creating robust server-side applications and managing APIs.
-                        </p>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Node.js</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Python</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">RESTful APIs</span>
-                        </div>
-                    </div>
-
-                    <!-- Machine Learning & Data Card -->
-                    <div
-                        class="skill-card p-6 glass rounded-3xl glow-effect flex flex-col items-center text-center fade-in">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-accent/20 mb-4">
-                            <i class="fas fa-brain text-3xl text-accent"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Machine Learning & Data</h3>
-                        <p class="opacity-90 mb-4 flex-grow">Analyzing data and building models to extract valuable
-                            insights.</p>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Scikit-learn</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Pandas</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Data Annotation</span>
-                        </div>
-                    </div>
-
-                    <!-- Database Management Card -->
-                    <div
-                        class="skill-card p-6 glass rounded-3xl glow-effect flex flex-col items-center text-center fade-in">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-accent/20 mb-4">
-                            <i class="fas fa-database text-3xl text-accent"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Database Management</h3>
-                        <p class="opacity-90 mb-4 flex-grow">Designing and managing databases for efficient data
-                            storage.
-                        </p>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">PostgreSQL</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">SQL</span>
-                        </div>
-                    </div>
-
-                    <!-- Tools & Version Control Card -->
-                    <div
-                        class="skill-card p-6 glass rounded-3xl glow-effect flex flex-col items-center text-center fade-in">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-accent/20 mb-4">
-                            <i class="fas fa-tools text-3xl text-accent"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Tools & Version Control</h3>
-                        <p class="opacity-90 mb-4 flex-grow">Utilizing modern tools for development, analysis, and
-                            collaboration.</p>
-                        <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Git</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Jupyter</span>
-                            <span class="px-3 py-1 rounded-full glass-dark text-sm">Power BI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-20 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Featured Projects</h2>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-                    <!-- Project 1: Abot -->
-                    <div data-project-id="abot"
-                        class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in cursor-pointer">
-                        <div class="project-tag tag-flagship">Flagship</div>
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-                                alt="Abot AI Assistant Project" class="w-full h-full object-cover" loading="lazy">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2">Abot - Multi-modal AI Assistant</h3>
-                            <p class="mb-4 opacity-90 flex-grow">A multi-provider AI chat interface with cloud-based
-                                storage
-                                and a polished, brand-aware UI.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Firebase</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Node.js</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Gemini API</span>
-                            </div>
-                            <div class="mt-auto flex gap-4">
-                                <a href="https://abot-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
-                                    class="px-4 py-2 rounded-lg text-sm glass-dark glow-effect font-medium w-full text-center">Live
-                                    Site</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Linkly -->
-                    <div data-project-id="linkly"
-                        class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in cursor-pointer">
-                        <div class="project-tag tag-serverless">Serverless</div>
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1611117775350-ac3950927224?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-                                alt="Linkly URL Shortener Project" class="w-full h-full object-cover" loading="lazy">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2">Linkly - URL Shortener</h3>
-                            <p class="mb-4 opacity-90 flex-grow">A modern, high-performance, serverless URL shortening
-                                service with QR code generation.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Vercel</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Node.js</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">MongoDB</span>
-                            </div>
-                            <div class="mt-auto flex gap-4">
-                                <a href="https://linkly-iota-blush.vercel.app/" target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="px-4 py-2 rounded-lg text-sm glass-dark glow-effect font-medium w-full text-center">Live
-                                    Site</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: House Price Prediction -->
-                    <div data-project-id="house-price"
-                        class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in cursor-pointer">
-                        <div class="project-tag tag-academic">Academic</div>
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1673&q=80"
-                                alt="House Price Prediction Project" class="w-full h-full object-cover" loading="lazy">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2">House Price Prediction</h3>
-                            <p class="mb-4 opacity-90 flex-grow">A predictive model to estimate house prices based on
-                                location-specific and historical data.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Python</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Scikit-learn</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Streamlit</span>
-                            </div>
-                            <div class="mt-auto flex gap-4">
-                                <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/"
-                                    target="_blank" rel="noopener noreferrer"
-                                    class="px-4 py-2 rounded-lg text-sm glass-dark glow-effect font-medium w-full text-center">Live
-                                    Site</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: E-commerce Site -->
-                    <div data-project-id="ecommerce"
-                        class="project-card rounded-xl overflow-hidden glass glow-effect flex flex-col fade-in cursor-pointer">
-                        <div class="project-tag tag-fullstack">Full-Stack</div>
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-                                alt="E-commerce Project" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2">E-Commerce Site for Digital Products</h3>
-                            <p class="mb-4 opacity-90 flex-grow">A full-stack e-commerce platform for the secure buying
-                                and
-                                selling of digital assets.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Vue.js</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">Node.js</span>
-                                <span class="px-2 py-1 text-xs rounded-full glass-dark">PostgreSQL</span>
-                            </div>
-                            <div class="mt-auto flex gap-4">
-                                <a href="https://github.com/abustark/project_bmw" target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="px-4 py-2 rounded-lg text-sm glass-dark glow-effect font-medium w-full text-center">View
-                                    on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section (Coming Soon) -->
-        <section id="blog" class="py-20 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">Blog</h2>
-                <p class="text-center opacity-70 mb-16">Thoughts on technology, development, and career growth.</p>
-
-                <div class="max-w-4xl mx-auto text-center">
-                    <div class="p-12 glass rounded-2xl">
-                        <i class="fas fa-pen-nib text-5xl text-accent mb-6"></i>
-                        <h3 class="text-2xl font-semibold mb-4">Coming Soon</h3>
-                        <p class="opacity-80 max-w-md mx-auto">I'm working on sharing my experiences and insights. Stay
-                            tuned for articles on web development, machine learning, and more!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 px-6 glass-dark">
-            <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Get In Touch</h2>
-
-                <div class="max-w-2xl mx-auto">
-
-                    <form id="contactForm" action="https://formspree.io/f/xqaebqgb" method="POST" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block mb-2">Name</label>
-                                <input type="text" id="name" name="name"
-                                    class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent"
-                                    required>
-                            </div>
-                            <div>
-                                <label for="email" class="block mb-2">Email</label>
-                                <input type="email" id="email" name="email"
-                                    class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent"
-                                    required>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject"
-                                class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent"
-                                required>
-                        </div>
-                        <div>
-                            <label for="message" class="block mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5"
-                                class="w-full p-3 rounded-lg glass border border-opacity-20 focus:border-darkAccent"
-                                required></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full py-3 rounded-lg bg-accent text-darkBg font-medium glow-effect">
-                            Send Message
+                    <div class="hero-actions">
+                        <a class="primary-button" href="#work">
+                            <span>View projects</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <a class="secondary-button" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank"
+                            rel="noopener noreferrer">
+                            <span>Resume</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                        <button class="secondary-button" type="button" data-copy-email>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>Copy email</span>
                         </button>
-                        <p class="text-xs text-center mt-3 opacity-60">Note: This form uses Formspree.io for submission.
-                        </p>
-                    </form>
+                    </div>
 
-                    <div id="formMessage" class="mt-6 p-4 rounded-lg hidden text-center"></div>
+                    <dl class="signal-grid" aria-label="Professional highlights">
+                        <div>
+                            <dt>3+</dt>
+                            <dd>Years enterprise</dd>
+                        </div>
+                        <div>
+                            <dt>98%+</dt>
+                            <dd>Data accuracy</dd>
+                        </div>
+                        <div>
+                            <dt>4</dt>
+                            <dd>Deployed projects</dd>
+                        </div>
+                    </dl>
                 </div>
+
+                <aside class="hero-panel reveal" aria-label="Profile summary">
+                    <div class="profile-card">
+                        <div class="profile-visual">
+                            <picture>
+                                <source srcset="pics/abu.webp" type="image/webp">
+                                <img src="pics/abu.png" alt="Basith AbuSyed" width="800" height="840"
+                                    fetchpriority="high" decoding="async">
+                            </picture>
+                            <div class="status-pill">
+                                <span class="status-dot"></span>
+                                <span>Open to Data Analyst &amp; AI roles</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-card" aria-label="Engineer profile code">
+                            <div class="terminal-bar">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <pre><code>const engineer = {
+  role: "ML Data Associate II",
+  company: "Amazon (Chennai)",
+  specialties: ["Data Validation", "Predictive ML", "AI Tools"],
+  impact: "98%+ data accuracy · +16% efficiency"
+};</code></pre>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="tech-strip" aria-label="Core technologies">
+                <span>Python</span>
+                <span>SQL</span>
+                <span>Pandas</span>
+                <span>Scikit-learn</span>
+                <span>Power BI</span>
+                <span>Feature Engineering</span>
+                <span>Node.js</span>
+                <span>MongoDB Atlas</span>
+                <span>Firebase Firestore</span>
+                <span>Streamlit</span>
+                <span>Vercel</span>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="py-8 px-6 text-center">
-            <div class="container mx-auto">
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="https://github.com/abustark" target="_blank" aria-label="GitHub"
-                        class="text-2xl hover:text-accent transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/bas-abu/" target="_blank" aria-label="LinkedIn"
-                        class="text-2xl hover:text-accent transition-colors">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://abot-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
-                        aria-label="Abot Chat" class="text-2xl hover:text-accent transition-colors">
-                        <i class="fas fa-robot"></i>
-                    </a>
-                </div>
-                <p class="opacity-70">© 2025 Basith AbuSyed. All rights reserved.</p>
+        <!-- Section 01: Role Fit & Focus -->
+        <section class="section about-section" id="about" aria-labelledby="about-title">
+            <div class="section-head">
+                <p class="section-index">01 / role fit</p>
+                <h2 id="about-title">Role Fit &amp; Focus</h2>
+                <p class="section-lead">
+                    Targeting <strong>Software Development</strong>, <strong>Machine Learning</strong>, and <strong>Data Engineering</strong> roles.
+                    Combining rigorous enterprise data validation experience at Amazon with advanced full-stack AI application development and predictive modeling.
+                </p>
             </div>
-        </footer>
 
-    </main> <!-- End of main content -->
+            <div class="about-grid">
+                <article class="about-card spotlight-card reveal">
+                    <p class="mono-label">Target roles</p>
+                    <div class="role-chips">
+                        <span class="role-chip">Software Developer</span>
+                        <span class="role-chip">ML-Data Associate</span>
+                        <span class="role-chip">Full-Stack AI Developer</span>
+                        <span class="role-chip">Data &amp; ML Engineer</span>
+                    </div>
+                    <ul class="strength-list">
+                        <li>
+                            <span>01</span>
+                            <div>
+                                <strong>Enterprise Data Quality:</strong> Meticulously annotated diverse multi-modal datasets (text, image, audio, video) at Amazon, maintaining a 98%+ accuracy rate and ensuring pristine inputs for downstream ML pipelines.
+                            </div>
+                        </li>
+                        <li>
+                            <span>02</span>
+                            <div>
+                                <strong>Predictive Analytics &amp; ML:</strong> Executed complex feature engineering, advanced regression modeling, and insightful correlation analysis, translating raw data into actionable intelligence.
+                            </div>
+                        </li>
+                        <li>
+                            <span>03</span>
+                            <div>
+                                <strong>Full-Stack &amp; Cloud Engineering:</strong> Architected and deployed multi-provider AI chat platforms and high-performance serverless APIs utilizing Node.js, Express, Firebase, and modern cloud infrastructure.
+                            </div>
+                        </li>
+                    </ul>
+                </article>
 
-    <!-- Project Details Modal -->
-    <div id="project-modal"
-        class="fixed top-0 left-0 w-full h-full z-[100] flex justify-center items-center p-4 glass-dark opacity-0 invisible transition-opacity duration-300">
-        <!-- Modal Content -->
-        <div id="modal-content"
-            class="w-full max-w-3xl bg-darkBg text-darkText rounded-2xl shadow-lg relative max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300">
-            <!-- Close Button -->
-            <button id="modal-close-btn" class="absolute top-4 right-4 text-2xl hover:text-accent transition-colors">
-                <i class="fas fa-times"></i>
+                <article class="about-card about-resume spotlight-card reveal">
+                    <p class="mono-label">Summary &amp; Contact</p>
+                    <h3>Basith AbuSyed</h3>
+                    <p>Based in Madurai, Tamil Nadu, India · Open to remote &amp; on-site opportunities.</p>
+                    <p style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); margin-top: 0.5rem;">
+                        ✉ bas.abu0802@gmail.com
+                    </p>
+                    <a class="primary-button" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank"
+                        rel="noopener noreferrer">
+                        <span>Open resume (PDF)</span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 02: Featured Projects -->
+        <section class="section work-section" id="work" aria-labelledby="work-title">
+            <div class="section-head">
+                <p class="section-index">02 / projects</p>
+                <h2 id="work-title">Featured Projects</h2>
+                <p class="section-lead">
+                    Live production builds and machine learning applications showcasing predictive analytics, full-stack AI integrations, and serverless backend services.
+                </p>
+            </div>
+
+            <div class="filter-bar" role="group" aria-label="Project filters">
+                <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-chip" type="button" data-filter="ai" aria-pressed="false">AI Applications</button>
+                <button class="filter-chip" type="button" data-filter="web" aria-pressed="false">Cloud &amp; Backend</button>
+                <button class="filter-chip" type="button" data-filter="data" aria-pressed="false">Data &amp; ML</button>
+            </div>
+
+            <div class="project-grid" id="project-grid">
+                <!-- 1. ABot (Multi-Provider AI Chat) -->
+                <article class="project-card spotlight-card reveal" data-category="ai web" data-project="abot">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>abot-eta.vercel.app</span>
+                            </div>
+                            <span class="live-badge">Live · Vercel</span>
+                        </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/abot.webp" type="image/webp">
+                                <img src="pics/projects/abot.png" alt="ABot multi-provider AI chat application screenshot" width="900" height="560" loading="lazy">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">Full-Stack AI Application · 2025</p>
+                        <h3>ABot — Multi-Provider AI Chat</h3>
+                        <p>Architected a full-stack AI platform utilizing a secure Node.js proxy to route requests across four distinct AI providers. Engineered seamless guest-to-user migration protocols preserving chat history via Firebase Auth and Firestore.</p>
+                        <div class="tag-row">
+                            <span>Node.js</span>
+                            <span>Express.js</span>
+                            <span>Firebase Firestore</span>
+                            <span>REST APIs</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://abot-eta.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <span>Live site</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="abot" aria-label="Open case notes: ABot">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Linkly (Serverless URL Shortener) -->
+                <article class="project-card spotlight-card reveal" data-category="web" data-project="linkly">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>linkly-link.vercel.app</span>
+                            </div>
+                            <span class="live-badge">Live · Serverless</span>
+                        </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/linkly.webp" type="image/webp">
+                                <img src="pics/projects/linkly.png" alt="Linkly serverless URL shortener screenshot" width="900" height="560" loading="lazy">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">Serverless Cloud Service · 2025</p>
+                        <h3>Linkly — Serverless URL Shortener</h3>
+                        <p>Engineered a high-performance serverless URL shortener utilizing Vercel Functions and MongoDB Atlas. Implemented advanced cached connection utilities to drastically reduce query latency, alongside secure API endpoints and dynamic QR code generation.</p>
+                        <div class="tag-row">
+                            <span>Vercel Functions</span>
+                            <span>Node.js</span>
+                            <span>MongoDB Atlas</span>
+                            <span>Firebase Auth</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://linkly-link.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <span>Live site</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="linkly" aria-label="Open case notes: Linkly">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. House Price Prediction (ML & Data Analysis) -->
+                <article class="project-card spotlight-card reveal" data-category="data" data-project="house-price">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>streamlit.app/house-price</span>
+                            </div>
+                            <span class="live-badge">Live · Streamlit</span>
+                        </div>
+                        <div class="coming-soon-shot">
+                            <div class="coming-soon-backdrop">
+                                <div class="coming-soon-badge">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    <span>Preview Image Coming Soon</span>
+                                </div>
+                                <p class="coming-soon-sub">Interactive Streamlit ML application interface</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">Machine Learning &amp; Data · 2023</p>
+                        <h3>House Price Prediction</h3>
+                        <p>Developed a robust predictive machine learning model for housing markets. Conducted rigorous correlation analysis, data preprocessing, and feature engineering utilizing Scikit-learn, Pandas, and NumPy. Deployed live on Streamlit.</p>
+                        <div class="tag-row">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>Pandas</span>
+                            <span>Streamlit</span>
+                            <span>NumPy</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/"
+                                target="_blank" rel="noopener noreferrer">
+                                <span>Live site</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="house-price" aria-label="Open case notes: House Price Prediction">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. Digital Products Marketplace (Project BMW) -->
+                <article class="project-card spotlight-card reveal" data-category="web" data-project="ecommerce">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                <span>github.com/abustark/project_bmw</span>
+                            </div>
+                            <span class="live-badge" style="color: var(--accent);"><span style="background: var(--accent);"></span>GitHub Repo</span>
+                        </div>
+                        <div class="coming-soon-shot">
+                            <div class="coming-soon-backdrop">
+                                <div class="coming-soon-badge">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    <span>Preview Image Coming Soon</span>
+                                </div>
+                                <p class="coming-soon-sub">Full-stack digital assets commerce interface</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">Full-Stack Commerce · Concept</p>
+                        <h3>Digital Products Marketplace</h3>
+                        <p>Designed a comprehensive full-stack commerce concept for digital assets, integrating a responsive Vue.js frontend with a robust Node.js backend and a strictly normalized PostgreSQL relational schema.</p>
+                        <div class="tag-row">
+                            <span>Vue.js</span>
+                            <span>Node.js</span>
+                            <span>PostgreSQL</span>
+                            <span>Full-stack</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/abustark/project_bmw" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub repo</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="ecommerce" aria-label="Open case notes: Digital Products Marketplace">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 03: Technical Capabilities -->
+        <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+            <div class="section-head">
+                <p class="section-index">03 / skills</p>
+                <h2 id="skills-title">Technical Capabilities</h2>
+                <p class="section-lead">
+                    Core technical competencies across enterprise data analysis, predictive machine learning, and full-stack AI integrations.
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Card 1: Data Analysis & SQL Intelligence -->
+                <article class="skills-card spotlight-card reveal" data-skill-type="analytics">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </div>
+                        <div>
+                            <p class="mono-label">01 / Analytics</p>
+                            <h3>Data Analysis &amp; SQL Querying</h3>
+                        </div>
+                    </div>
+                    <div class="skills-metric-pill">
+                        <span class="status-dot"></span>
+                        <span>Structured Querying &amp; Business Intelligence</span>
+                    </div>
+                    <p>Extracting operational trends from multi-modal datasets, authoring optimized relational queries, and delivering recurring executive dashboards.</p>
+                    <div class="tool-group">
+                        <span>Python</span>
+                        <span>SQL (MySQL &amp; Postgres)</span>
+                        <span>Pandas</span>
+                        <span>Power BI</span>
+                        <span>MS Excel</span>
+                        <span>Feature Engineering</span>
+                        <span>ETL Pipelines</span>
+                    </div>
+                </article>
+
+                <!-- Card 2: Predictive Machine Learning -->
+                <article class="skills-card spotlight-card reveal" data-skill-type="ml">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="mono-label">02 / Modeling</p>
+                            <h3>Predictive ML &amp; Modeling</h3>
+                        </div>
+                    </div>
+                    <div class="skills-metric-pill">
+                        <span class="status-dot"></span>
+                        <span>Supervised Learning &amp; Benchmarking</span>
+                    </div>
+                    <p>End-to-end model workflows: exploratory data analysis, data transformations, Random Forest / Regression training, and deployment on Streamlit.</p>
+                    <div class="tool-group">
+                        <span>Scikit-learn</span>
+                        <span>NumPy</span>
+                        <span>Random Forest</span>
+                        <span>Regression Baselines</span>
+                        <span>Jupyter Notebooks</span>
+                        <span>Streamlit</span>
+                        <span>Model Evaluation</span>
+                    </div>
+                </article>
+
+                <!-- Card 3: AI Applications & Cloud Services -->
+                <article class="skills-card spotlight-card reveal" data-skill-type="ai">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="mono-label">03 / AI &amp; Cloud</p>
+                            <h3>Full-Stack AI &amp; Microservices</h3>
+                        </div>
+                    </div>
+                    <div class="skills-metric-pill">
+                        <span class="status-dot"></span>
+                        <span>Multi-Provider AI &amp; Serverless APIs</span>
+                    </div>
+                    <p>Developing full-stack applications with multi-provider AI chat routing, guest-to-registered Firestore context migration, and serverless backends.</p>
+                    <div class="tool-group">
+                        <span>AI API Integration</span>
+                        <span>Node.js &amp; Express</span>
+                        <span>Firebase Firestore</span>
+                        <span>MongoDB Atlas</span>
+                        <span>Vercel Functions</span>
+                        <span>REST APIs</span>
+                        <span>Git &amp; GitHub</span>
+                    </div>
+                </article>
+
+                <!-- Card 4: Enterprise Validation & Data Rigor -->
+                <article class="skills-card spotlight-card reveal" data-skill-type="quality">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                        </div>
+                        <div>
+                            <p class="mono-label">04 / Enterprise Rigor</p>
+                            <h3>Data Quality &amp; Accuracy</h3>
+                        </div>
+                    </div>
+                    <div class="skills-metric-pill">
+                        <span class="status-dot"></span>
+                        <span>Amazon Enterprise Impact · 98%+ Accuracy</span>
+                    </div>
+                    <p>Auditing large-scale multi-modal training datasets, root cause analysis for anomalies, and workflow UX improvements driving +16% team efficiency.</p>
+                    <div class="tool-group">
+                        <span>98%+ Data Accuracy</span>
+                        <span>Dataset Reliability</span>
+                        <span>Multimodal Validation</span>
+                        <span>Error Inconsistency Correction</span>
+                        <span>Process Optimization</span>
+                        <span>Test-Data Evaluation</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 04: Experience & Education -->
+        <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+            <div class="section-head">
+                <p class="section-index">04 / experience</p>
+                <h2 id="experience-title">Experience &amp; Education</h2>
+                <p class="section-lead">
+                    Enterprise data quality evaluation at Amazon and Master's degree in Computer Applications.
+                </p>
+            </div>
+
+            <ol class="timeline">
+                <li class="timeline-item reveal">
+                    <time><span class="status-dot"></span> Aug 2023 — Present</time>
+                    <div>
+                        <h3>ML-Data Associate · Amazon</h3>
+                        <p style="color: var(--accent); font-weight: 700; font-size: 0.88rem; margin-top: 0.2rem;">Chennai, Tamil Nadu, India</p>
+                        <p>
+                            Validated multi-modal datasets maintaining 98%+ accuracy with peak performance reaching 240% of targets. Proposed workflow UI/UX enhancements that improved team efficiency by 16%.
+                        </p>
+                    </div>
+                </li>
+                <li class="timeline-item reveal">
+                    <time>2021 — 2023</time>
+                    <div>
+                        <h3>Master of Computer Applications (MCA)</h3>
+                        <p style="color: var(--accent); font-weight: 700; font-size: 0.88rem; margin-top: 0.2rem;">The American College · Madurai, Tamil Nadu, India</p>
+                        <p>Specialized in Machine Learning, Cloud Computing, Advanced Algorithms, and Relational Database Systems.</p>
+                    </div>
+                </li>
+                <li class="timeline-item reveal">
+                    <time>2018 — 2021</time>
+                    <div>
+                        <h3>Bachelor of Computer Applications (BCA)</h3>
+                        <p style="color: var(--accent); font-weight: 700; font-size: 0.88rem; margin-top: 0.2rem;">Thiagarajar College · Madurai, Tamil Nadu, India</p>
+                        <p>Foundations in Core Computer Science, Database Management Systems, Data Structures, and Modern Web Development.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Section 05: Get In Touch -->
+        <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+            <div class="contact-card spotlight-card reveal">
+                <div>
+                    <p class="section-index">05 / contact</p>
+                    <h2 id="contact-title">Get In Touch</h2>
+                    <p>
+                        Open to <strong>Software Developer</strong>, <strong>ML-Data Associate</strong>, and <strong>Full-Stack AI Application</strong> roles — remote or on-site. Feel free to connect directly via email or LinkedIn.
+                    </p>
+                    <div class="contact-links">
+                        <button class="secondary-button" type="button" data-copy-email>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>bas.abu0802@gmail.com</span>
+                        </button>
+                        <a href="https://www.linkedin.com/in/bas-abu/" target="_blank" rel="noopener noreferrer">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/abustark" target="_blank" rel="noopener noreferrer">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="contact-form" action="https://formspree.io/f/xqaebqgb" method="POST">
+                    <label for="contact-name">
+                        <span>Name</span>
+                        <input id="contact-name" type="text" name="name" autocomplete="name" maxlength="80" placeholder="Your name" required>
+                    </label>
+                    <label for="contact-email">
+                        <span>Email</span>
+                        <input id="contact-email" type="email" name="email" autocomplete="email" maxlength="120" placeholder="you@company.com" required>
+                    </label>
+                    <label for="contact-message">
+                        <span>Message</span>
+                        <textarea id="contact-message" name="message" rows="4" maxlength="2000" placeholder="Describe the role, project, or data challenge..." required aria-describedby="form-note"></textarea>
+                    </label>
+                    <input type="text" name="_gotcha" class="hidden-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button class="primary-button" type="submit" id="contact-submit">
+                        <span>Send message</span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                    <p class="form-note" id="form-note">Form delivery is instant via Formspree. Direct email: bas.abu0802@gmail.com</p>
+                    <div class="form-message" id="form-message" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand-wrap">
+            <p class="footer-copy">&copy; 2026 ABu. All rights reserved.</p>
+            <p class="footer-tagline">Crafted for data precision, high performance, and real-world impact.</p>
+        </div>
+        <div class="footer-actions">
+            <button type="button" data-copy-link>Copy portfolio link</button>
+            <a href="#home">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <!-- Interactive Spotlight Command Palette Modal -->
+    <dialog class="command-dialog" id="command-menu" aria-modal="true" aria-label="Command Palette">
+        <div class="command-search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="command-search-input" class="command-search-input" placeholder="Search projects, skills, themes (e.g. emerald, violet, amber)..." autocomplete="off" spellcheck="false">
+            <button type="button" class="dialog-close" data-close-command aria-label="Close command palette">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
+        </div>
+        <div class="command-results" id="command-results" role="listbox">
+        </div>
+        <div class="command-footer">
+            <div class="command-shortcuts">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> select</span>
+                <span><kbd>Esc</kbd> close</span>
+            </div>
+            <span>Spotlight</span>
+        </div>
+    </dialog>
 
-            <!-- Content will be populated by JavaScript -->
-            <img id="modal-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Project Image" class="w-full h-64 object-cover rounded-t-2xl">
-            <div class="p-8">
-                <h3 id="modal-title" class="text-3xl font-bold mb-4"></h3>
-                <p id="modal-description" class="mb-6 opacity-90"></p>
-                <div id="modal-tags" class="flex flex-wrap gap-2 mb-6">
-                    <!-- Tech tags will be added here -->
-                </div>
-                <div id="modal-links" class="flex gap-4">
-                    <!-- Live Site / GitHub links will be added here -->
-                </div>
+    <!-- Case Notes Modal -->
+    <dialog class="project-dialog" id="project-dialog" aria-modal="true" aria-labelledby="dialog-title">
+        <div class="dialog-header">
+            <div>
+                <p class="project-label" id="dialog-label"></p>
+                <h2 id="dialog-title"></h2>
+            </div>
+            <button class="dialog-close" type="button" data-close-dialog aria-label="Close project details">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <p id="dialog-description"></p>
+        <div class="dialog-grid">
+            <div>
+                <h4>Focus &amp; Problem Solved</h4>
+                <p id="dialog-focus"></p>
+            </div>
+            <div>
+                <h4>Technology &amp; Architecture</h4>
+                <div class="tag-row" id="dialog-tags"></div>
             </div>
         </div>
+        <div class="project-actions" style="margin-top: 1.5rem;">
+            <a class="primary-button" id="dialog-link" href="#" target="_blank" rel="noopener noreferrer">
+                <span>Open project</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+        </div>
+    </dialog>
+
+    <!-- Toast Component -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span id="toast-text">Notification</span>
     </div>
 
-
-    <!-- Back to Top Button -->
-    <a href="#" id="back-to-top"
-        class="fixed bottom-5 right-5 z-50 p-3 rounded-full glass-dark glow-effect opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up text-xl"></i>
-    </a>
-
-    <!-- Main JavaScript -->
     <script src="js/main.js"></script>
 </body>
 

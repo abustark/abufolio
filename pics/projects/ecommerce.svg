@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Digital Products Marketplace Preview">
+  <defs>
+    <linearGradient id="ecom-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1117"/>
+      <stop offset="100%" stop-color="#111a24"/>
+    </linearGradient>
+    <linearGradient id="ecom-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="400" fill="url(#ecom-bg)"/>
+
+  <!-- Marketplace Header -->
+  <rect x="36" y="24" width="568" height="352" rx="14" fill="#132232" stroke="rgba(240,244,247,0.12)" stroke-width="1"/>
+
+  <text x="60" y="58" font-family="'Space Grotesk',sans-serif" font-size="18" font-weight="700" fill="#f0f4f7">Digital Storefront <tspan fill="#34d399">Catalogue</tspan></text>
+  <text x="60" y="76" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">PostgreSQL · Node.js API · Vue.js Storefront</text>
+
+  <!-- 3 Product Cards -->
+  <!-- Card 1 -->
+  <g transform="translate(60, 96)">
+    <rect width="156" height="190" rx="10" fill="#0b1117" stroke="rgba(240,244,247,0.14)"/>
+    <rect x="12" y="12" width="132" height="74" rx="6" fill="#1c2d3f"/>
+    <circle cx="78" cy="49" r="16" fill="url(#ecom-accent)"/>
+    <text x="72" y="54" font-family="'Geist Sans',sans-serif" font-size="12" font-weight="900" fill="#0b1117">UI</text>
+
+    <text x="14" y="108" font-family="'Geist Sans',sans-serif" font-size="11" font-weight="700" fill="#f0f4f7">Analytics UI Kit</text>
+    <text x="14" y="124" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">Figma · 240 sales</text>
+    <text x="14" y="152" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="700" fill="#34d399">$49</text>
+    <rect x="90" y="136" width="54" height="24" rx="6" fill="url(#ecom-accent)"/>
+    <text x="102" y="152" font-family="'Geist Sans',sans-serif" font-size="9" font-weight="700" fill="#0b1117">Buy</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(242, 96)">
+    <rect width="156" height="190" rx="10" fill="#0b1117" stroke="rgba(52,211,153,0.35)"/>
+    <rect x="12" y="12" width="132" height="74" rx="6" fill="#1c2d3f"/>
+    <circle cx="78" cy="49" r="16" fill="url(#ecom-accent)"/>
+    <text x="70" y="54" font-family="'Geist Sans',sans-serif" font-size="12" font-weight="900" fill="#0b1117">ML</text>
+
+    <text x="14" y="108" font-family="'Geist Sans',sans-serif" font-size="11" font-weight="700" fill="#f0f4f7">ML Model Starter</text>
+    <text x="14" y="124" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">Python · 185 sales</text>
+    <text x="14" y="152" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="700" fill="#34d399">$79</text>
+    <rect x="90" y="136" width="54" height="24" rx="6" fill="url(#ecom-accent)"/>
+    <text x="102" y="152" font-family="'Geist Sans',sans-serif" font-size="9" font-weight="700" fill="#0b1117">Buy</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g transform="translate(424, 96)">
+    <rect width="156" height="190" rx="10" fill="#0b1117" stroke="rgba(240,244,247,0.14)"/>
+    <rect x="12" y="12" width="132" height="74" rx="6" fill="#1c2d3f"/>
+    <circle cx="78" cy="49" r="16" fill="url(#ecom-accent)"/>
+    <text x="71" y="54" font-family="'Geist Sans',sans-serif" font-size="12" font-weight="900" fill="#0b1117">DB</text>
+
+    <text x="14" y="108" font-family="'Geist Sans',sans-serif" font-size="11" font-weight="700" fill="#f0f4f7">SQL Query Bundle</text>
+    <text x="14" y="124" font-family="'Geist Mono',monospace" font-size="9" fill="#94a3b8">SQL · 310 sales</text>
+    <text x="14" y="152" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="700" fill="#34d399">$29</text>
+    <rect x="90" y="136" width="54" height="24" rx="6" fill="url(#ecom-accent)"/>
+    <text x="102" y="152" font-family="'Geist Sans',sans-serif" font-size="9" font-weight="700" fill="#0b1117">Buy</text>
+  </g>
+
+  <!-- Transaction State Banner -->
+  <rect x="60" y="306" width="520" height="46" rx="8" fill="#0b1117" stroke="rgba(52,211,153,0.3)"/>
+  <text x="76" y="334" font-family="'Geist Mono',monospace" font-size="10" fill="#34d399">✓ SECURE FLOW: Product → Cart → Stripe Webhook → Instant Download</text>
+</svg>
