@@ -938,18 +938,23 @@ h3 {
 
 .signal-grid dt {
     color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 2.15rem;
-    font-weight: 700;
-    line-height: 1.1;
+    font-family: var(--font-display);
+    font-size: 2.35rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
     font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 20px var(--accent-glow);
 }
 
 .signal-grid dd {
-    margin: 0.35rem 0 0;
+    margin: 0.4rem 0 0;
     color: var(--muted);
+    font-family: var(--font-body);
     font-size: 0.88rem;
     font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
 }
 
 .profile-card {
@@ -2194,9 +2199,8 @@ dialog.project-dialog::backdrop {
         min-height: auto;
     }
 
-    .profile-card {
-        max-width: 340px;
-        margin: 0 auto;
+    .hero-panel {
+        display: none !important;
     }
 
     .nav-indicator {
@@ -2416,11 +2420,18 @@ dialog.project-dialog::backdrop {
     }
 
     .signal-grid dt {
-        font-size: clamp(1.25rem, 5vw, 1.65rem);
+        font-family: var(--font-display);
+        font-size: clamp(1.45rem, 5.8vw, 1.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
     }
 
     .signal-grid dd {
-        font-size: 0.72rem;
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        font-weight: 600;
+        line-height: 1.25;
     }
 
     .about-card {
@@ -2664,11 +2675,18 @@ dialog.project-dialog::backdrop {
     }
 
     .signal-grid dt {
-        font-size: 1.3rem;
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.05;
     }
 
     .signal-grid dd {
-        font-size: 0.68rem;
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 600;
+        line-height: 1.2;
     }
 
     .shot {
