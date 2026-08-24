@@ -108,7 +108,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // -------------------------------------------------------------
-    // 2. Interactive Dual-Tone Color Palette Switcher
+    // 2. Dynamic Theme Mouse Cursor (Desktop)
+    // -------------------------------------------------------------
+    function updateDynamicCursor() {
+        try {
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+            const computed = getComputedStyle(document.documentElement);
+            const accent = computed.getPropertyValue('--accent').trim() || '#10b981';
+            const cool = computed.getPropertyValue('--accent-cool').trim() || '#34d399';
+            const isLight = document.body.classList.contains('light-mode');
+            const strokeColor = isLight ? '%23ffffff' : '%2305080c';
+
+            const encAccent = encodeURIComponent(accent);
+            const encCool = encodeURIComponent(cool);
+
+            const defaultCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/></svg>`;
+
+            const pointerCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encCool}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/><circle cx='18' cy='18' r='3.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1'/></svg>`;
+
+            let styleEl = document.getElementById('dynamic-cursor-style');
+            if (!styleEl) {
+                styleEl = document.createElement('style');
+                styleEl.id = 'dynamic-cursor-style';
+                document.head.appendChild(styleEl);
+            }
+
+            styleEl.textContent = `
+                @media (hover: hover) and (pointer: fine) {
+                    html, body {
+                        cursor: url("${defaultCursor}") 3 2, auto !important;
+                    }
+                    a, button, input[type="submit"], input[type="button"], select, [role="button"], [role="tab"], .filter-chip, .palette-option, .command-item, .project-card, .skills-card, .status-pill, summary {
+                        cursor: url("${pointerCursor}") 3 2, pointer !important;
+                    }
+                }
+            `;
+        } catch (e) {
+            console.warn('Cursor styling error:', e);
+        }
+    }
+
+    // -------------------------------------------------------------
+    // 3. Interactive Dual-Tone Color Palette Switcher
     // -------------------------------------------------------------
     const paletteTrigger = document.getElementById('palette-trigger');
     let currentPaletteIndex = 0;
@@ -692,46 +734,4 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton?.removeAttribute('disabled');
         }
     });
-
-    // -------------------------------------------------------------
-    // 15. Dynamic Theme Mouse Cursor (Desktop)
-    // -------------------------------------------------------------
-    const updateDynamicCursor = () => {
-        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-        const computed = getComputedStyle(document.documentElement);
-        const accent = computed.getPropertyValue('--accent').trim() || '#10b981';
-        const cool = computed.getPropertyValue('--accent-cool').trim() || '#34d399';
-        const isLight = document.body.classList.contains('light-mode');
-        const strokeColor = isLight ? '%23ffffff' : '%2305080c';
-
-        const encAccent = encodeURIComponent(accent);
-        const encCool = encodeURIComponent(cool);
-
-        // Modern precision arrow cursor filled with active theme accent color
-        const defaultCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/></svg>`;
-
-        // Pointer cursor for clickable links & interactive elements
-        const pointerCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encCool}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/><circle cx='18' cy='18' r='3.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1'/></svg>`;
-
-        let styleEl = document.getElementById('dynamic-cursor-style');
-        if (!styleEl) {
-            styleEl = document.createElement('style');
-            styleEl.id = 'dynamic-cursor-style';
-            document.head.appendChild(styleEl);
-        }
-
-        styleEl.textContent = `
-            @media (hover: hover) and (pointer: fine) {
-                html, body {
-                    cursor: url("${defaultCursor}") 3 2, auto !important;
-                }
-                a, button, input[type="submit"], input[type="button"], select, [role="button"], [role="tab"], .filter-chip, .palette-option, .command-item, .project-card, .skills-card, .status-pill, summary {
-                    cursor: url("${pointerCursor}") 3 2, pointer !important;
-                }
-            }
-        `;
-    };
-
-    updateDynamicCursor();
 });
