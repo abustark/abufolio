@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('portfolio-palette', activePal.id);
         } catch {}
 
+        updateDynamicCursor();
+
         if (notify) {
             if (activePal.isDefault) {
                 showToast(`Theme: ${activePal.name} · ${activePal.desc} <span class="toast-default-badge">DEFAULT</span>`, true);
@@ -204,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         root.classList.toggle('dark-mode', !light);
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', light ? '#f8fafc' : '#090e14');
         themeToggle?.setAttribute('aria-pressed', String(light));
+        updateDynamicCursor();
     };
 
     try {
@@ -691,70 +694,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // 15. Dynamic Theme Follower Cursor (Desktop)
+    // 15. Dynamic Theme Mouse Cursor (Desktop)
     // -------------------------------------------------------------
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorRing = document.getElementById('cursor-ring');
+    const updateDynamicCursor = () => {
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-    if (cursorDot && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        let mouseX = -100;
-        let mouseY = -100;
-        let ringX = -100;
-        let ringY = -100;
-        let isVisible = false;
+        const computed = getComputedStyle(document.documentElement);
+        const accent = computed.getPropertyValue('--accent').trim() || '#10b981';
+        const cool = computed.getPropertyValue('--accent-cool').trim() || '#34d399';
+        const isLight = document.body.classList.contains('light-mode');
+        const strokeColor = isLight ? '%23ffffff' : '%2305080c';
 
-        const updatePosition = (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (!isVisible) {
-                isVisible = true;
-                cursorDot.style.opacity = '1';
-                cursorRing.style.opacity = '1';
-                ringX = mouseX;
-                ringY = mouseY;
+        const encAccent = encodeURIComponent(accent);
+        const encCool = encodeURIComponent(cool);
+
+        // Modern precision arrow cursor filled with active theme accent color
+        const defaultCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/></svg>`;
+
+        // Pointer cursor for clickable links & interactive elements
+        const pointerCursor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><polygon points='3,2 3,21 8.5,16.5 13.5,23 16.5,21 11.5,14.5 19,14.5' fill='${encCool}' stroke='${strokeColor}' stroke-width='1.5' stroke-linejoin='round'/><circle cx='18' cy='18' r='3.5' fill='${encAccent}' stroke='${strokeColor}' stroke-width='1'/></svg>`;
+
+        let styleEl = document.getElementById('dynamic-cursor-style');
+        if (!styleEl) {
+            styleEl = document.createElement('style');
+            styleEl.id = 'dynamic-cursor-style';
+            document.head.appendChild(styleEl);
+        }
+
+        styleEl.textContent = `
+            @media (hover: hover) and (pointer: fine) {
+                html, body {
+                    cursor: url("${defaultCursor}") 3 2, auto !important;
+                }
+                a, button, input[type="submit"], input[type="button"], select, [role="button"], [role="tab"], .filter-chip, .palette-option, .command-item, .project-card, .skills-card, .status-pill, summary {
+                    cursor: url("${pointerCursor}") 3 2, pointer !important;
+                }
             }
-        };
+        `;
+    };
 
-        window.addEventListener('mousemove', updatePosition, { passive: true });
-
-        document.addEventListener('mouseleave', () => {
-            isVisible = false;
-            cursorDot.style.opacity = '0';
-            cursorRing.style.opacity = '0';
-        });
-
-        document.addEventListener('mousedown', () => {
-            document.body.classList.add('cursor-active');
-        });
-
-        document.addEventListener('mouseup', () => {
-            document.body.classList.remove('cursor-active');
-        });
-
-        // Interactive hover scale
-        const interactiveSelector = 'a, button, input, textarea, summary, [role="button"], [role="tab"], .project-card, .skills-card, .signal-grid div';
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                document.body.classList.add('cursor-hover');
-            }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                document.body.classList.remove('cursor-hover');
-            }
-        });
-
-        const renderCursor = () => {
-            ringX += (mouseX - ringX) * 0.22;
-            ringY += (mouseY - ringY) * 0.22;
-
-            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
-
-            requestAnimationFrame(renderCursor);
-        };
-
-        requestAnimationFrame(renderCursor);
-    }
+    updateDynamicCursor();
 });
