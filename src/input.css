@@ -2200,7 +2200,12 @@ dialog.project-dialog::backdrop {
     }
 
     .hero-panel {
-        display: none !important;
+        margin-top: 4.5rem;
+    }
+
+    .profile-card {
+        max-width: 360px;
+        margin: 0 auto;
     }
 
     .nav-indicator {
@@ -2432,6 +2437,15 @@ dialog.project-dialog::backdrop {
         font-size: 0.74rem;
         font-weight: 600;
         line-height: 1.25;
+    }
+
+    .hero-panel {
+        margin-top: 4rem;
+    }
+
+    .profile-card {
+        max-width: 320px;
+        margin: 0 auto;
     }
 
     .about-card {
@@ -2687,6 +2701,15 @@ dialog.project-dialog::backdrop {
         font-size: 0.72rem;
         font-weight: 600;
         line-height: 1.2;
+    }
+
+    .hero-panel {
+        margin-top: 3.5rem;
+    }
+
+    .profile-card {
+        max-width: 290px;
+        margin: 0 auto;
     }
 
     .shot {
