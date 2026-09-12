@@ -2,33 +2,33 @@ const projectDetails = {
     abot: {
         label: 'Full-Stack AI Application · Jul 2025 – Aug 2025',
         title: 'ABot — Multi-Provider AI Chat Application',
-        description: 'A full-stack AI application with a Node.js/Express backend that integrates and routes requests across four different AI providers.',
-        focus: 'Implemented Firebase Authentication and Firestore-backed data storage, with a seamless guest-to-registered-user migration flow that preserves conversation history across provider switches.',
-        tags: ['Node.js', 'Express.js', 'Firebase (Auth & Firestore)', 'REST APIs', 'CI/CD', 'Vercel'],
+        description: 'A full-stack AI application with a Node.js/Express backend proxy that integrates and routes requests across four different AI providers, deployed via CI/CD.',
+        focus: 'Implemented Firebase Authentication and Firestore-backed chat history storage, including a guest-to-registered-user migration flow that preserves conversation history across provider switches.',
+        tags: ['Node.js', 'Express.js', 'Firebase (Auth & Firestore)', 'REST APIs', 'CI/CD', 'Tailwind CSS'],
         link: 'https://abot-eta.vercel.app/'
     },
     linkly: {
-        label: 'Serverless Cloud Service · Aug 2025',
+        label: 'Database & Serverless Service · Aug 2025',
         title: 'Linkly — Serverless URL Shortener',
-        description: 'A serverless backend service on Vercel Functions with a MongoDB Atlas database, including a cached connection utility to reduce query latency.',
-        focus: 'Engineered REST API endpoints for secure data creation, retrieval, and redirects, with Firebase-based authentication and client-side QR generation.',
-        tags: ['Vercel Serverless Functions', 'Node.js', 'MongoDB Atlas', 'Mongoose', 'Firebase Auth', 'QR API'],
+        description: 'A high-performance serverless backend service on Vercel Functions with MongoDB Atlas, featuring an on-demand cached connection pooling utility to eliminate cold-start query latency.',
+        focus: 'Engineered secure REST API endpoints for user-specific URL generation, dynamic redirects, and real-time click redirection with Firebase authentication.',
+        tags: ['MongoDB Atlas', 'Mongoose', 'Vercel Functions', 'Node.js', 'Firebase Auth', 'REST APIs'],
         link: 'https://linkly-link.vercel.app/'
     },
     'house-price': {
-        label: 'Machine Learning & Data Analysis Project · 2023',
-        title: 'House Price Prediction',
-        description: 'Built a house price prediction model using Random Forest Regression, benchmarked against Linear and Ridge Regression baselines, with label-encoded categorical features across location, area type, and availability.',
-        focus: 'Deployed the model as an interactive Streamlit web app for real-time price predictions, with robust preprocessing and handling for unseen category inputs.',
-        tags: ['Python', 'Pandas', 'Scikit-learn', 'Streamlit', 'joblib', 'NumPy', 'Jupyter Notebook'],
+        label: 'Machine Learning & Data Analysis · 2023',
+        title: 'House Price Prediction — ML & Analytics',
+        description: 'Trained a Random Forest Regression model on structured housing data, benchmarking against Linear and Ridge regression baselines with label-encoded categorical features across location, area type, and availability.',
+        focus: 'Deployed as an interactive Streamlit web app for real-time price predictions, with robust preprocessing and handling for unseen category inputs.',
+        tags: ['Python', 'Pandas', 'Scikit-learn', 'Streamlit', 'NumPy', 'Jupyter Notebook'],
         link: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/'
     },
     ecommerce: {
-        label: 'Full-Stack Commerce Concept',
+        label: 'Relational Database & Full-Stack · Concept',
         title: 'Digital Products Marketplace (Project BMW)',
-        description: 'A full-stack commerce concept for digital assets with structured product data, shopping cart sessions, and transaction flows.',
-        focus: 'Explores digital asset distribution, secure checkout models, structured relational PostgreSQL data schema, and a Vue.js frontend.',
-        tags: ['Vue.js', 'Node.js', 'PostgreSQL', 'Full-stack', 'REST APIs'],
+        description: 'A full-stack digital commerce concept featuring a strictly normalized PostgreSQL relational schema for product cataloging and transaction workflows.',
+        focus: 'Explores digital asset distribution, relational data integrity, normalized checkout models, and a Vue.js frontend backed by Node.js.',
+        tags: ['PostgreSQL', 'Database Design', 'Node.js', 'Vue.js', 'REST APIs'],
         link: 'https://github.com/abustark/project_bmw'
     }
 };
@@ -43,12 +43,12 @@ const PALETTES = [
 ];
 
 const COMMAND_ACTIONS = [
-    { type: 'nav', title: 'Home / Hero', subtitle: 'Data & AI Specialist Portfolio', target: '#home', badge: 'Section' },
-    { type: 'nav', title: 'About / Role Fit', subtitle: 'Target roles & core strengths', target: '#about', badge: 'Section' },
-    { type: 'nav', title: 'Projects & Work', subtitle: 'ABot, Linkly, House Price ML, Marketplace', target: '#work', badge: 'Section' },
-    { type: 'nav', title: 'Technical Skills', subtitle: 'Python, SQL, Scikit-learn, Power BI', target: '#skills', badge: 'Section' },
-    { type: 'nav', title: 'Experience (Amazon)', subtitle: 'Amazon (Aug 2023 – Present)', target: '#experience', badge: 'Section' },
-    { type: 'nav', title: 'Contact', subtitle: 'Send a message or connect', target: '#contact', badge: 'Section' },
+    { type: 'nav', title: 'Home / Hero', subtitle: 'Data & Analytics Engineer Portfolio', target: '#home', badge: 'Section' },
+    { type: 'nav', title: 'About / Role Fit', subtitle: 'Target roles: Data & Analytics, SQL, Applied AI', target: '#about', badge: 'Section' },
+    { type: 'nav', title: 'Projects & Work', subtitle: 'House Price ML, Linkly, ABot, Marketplace', target: '#work', badge: 'Section' },
+    { type: 'nav', title: 'Technical Skills', subtitle: 'SQL, Python, Scikit-learn, Power BI, MongoDB', target: '#skills', badge: 'Section' },
+    { type: 'nav', title: 'Experience (Amazon)', subtitle: 'Amazon ML Data Associate II (Aug 2023 – Present)', target: '#experience', badge: 'Section' },
+    { type: 'nav', title: 'Contact', subtitle: 'Open to Remote & Hybrid (Madurai, Coimbatore, Chennai)', target: '#contact', badge: 'Section' },
     
     // Palettes
     { type: 'palette', title: 'Theme: Cyber Emerald [Default]', subtitle: 'Mint & Emerald dual-tone', palette: 'emerald', badge: 'Default' },
