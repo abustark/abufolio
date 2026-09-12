@@ -347,12 +347,31 @@ document.addEventListener('DOMContentLoaded', () => {
         header?.classList.toggle('is-scrolled', window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 960 && body.classList.contains('menu-open')) {
-            closeMobileMenu();
+    let scrollTicking = false;
+    const onScroll = () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                updateScrollState();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
-        updateNavIndicator();
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    let resizeTicking = false;
+    window.addEventListener('resize', () => {
+        if (!resizeTicking) {
+            window.requestAnimationFrame(() => {
+                if (window.innerWidth > 960 && body.classList.contains('menu-open')) {
+                    closeMobileMenu();
+                }
+                updateNavIndicator();
+                resizeTicking = false;
+            });
+            resizeTicking = true;
+        }
     }, { passive: true });
     updateScrollState();
 

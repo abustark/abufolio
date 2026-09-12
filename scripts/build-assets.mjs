@@ -13,10 +13,16 @@ mkdirSync(projectPics, { recursive: true });
 async function heroWebp() {
     const src = join(pics, 'abu.png');
     const out = join(pics, 'abu.webp');
+    const out400 = join(pics, 'abu-400.webp');
     await sharp(src).resize({ width: 800 }).webp({ quality: 85 }).toFile(out);
     const meta = await sharp(out).metadata();
     const size = statSync(out).size;
     console.log(`abu.webp ${meta.width}x${meta.height} ${Math.round(size / 1024)} KB`);
+
+    await sharp(src).resize({ width: 400 }).webp({ quality: 80 }).toFile(out400);
+    const meta400 = await sharp(out400).metadata();
+    const size400 = statSync(out400).size;
+    console.log(`abu-400.webp ${meta400.width}x${meta400.height} ${Math.round(size400 / 1024)} KB`);
 }
 
 async function heroPngFallback() {
