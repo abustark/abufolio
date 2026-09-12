@@ -153,6 +153,7 @@
 }
 
 html {
+    overflow-x: hidden;
     scroll-behavior: smooth;
     scrollbar-color: var(--accent) var(--bg);
     scrollbar-width: thin;
@@ -812,7 +813,7 @@ h3 {
 
 .role-rotator-slot {
     display: inline-block;
-    min-width: 21.5ch;
+    min-width: 17.5ch;
     text-align: left;
     vertical-align: bottom;
 }
@@ -2249,6 +2250,16 @@ dialog.project-dialog::backdrop {
         padding-top: 0.5rem;
         min-height: calc(100svh - 7.5rem);
         min-height: calc(100dvh - 7.5rem);
+        min-width: 0;
+    }
+
+    .role-rotator-slot {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        min-height: 1.25em;
+        margin-top: 0.15rem;
     }
 
     .signal-grid {
@@ -2493,6 +2504,7 @@ dialog.project-dialog::backdrop {
         padding-top: 0.85rem;
         min-height: calc(100svh - 7.5rem);
         min-height: calc(100dvh - 7.5rem);
+        min-width: 0;
     }
 
     .eyebrow {
@@ -2510,6 +2522,8 @@ dialog.project-dialog::backdrop {
     .role-rotator-slot {
         display: block;
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         min-height: 1.25em;
         margin-top: 0.15rem;
     }
@@ -2816,6 +2830,7 @@ dialog.project-dialog::backdrop {
         padding-top: 0.85rem;
         min-height: calc(100svh - 6.8rem);
         min-height: calc(100dvh - 6.8rem);
+        min-width: 0;
     }
 
     .eyebrow {
@@ -2830,6 +2845,8 @@ dialog.project-dialog::backdrop {
     .role-rotator-slot {
         display: block;
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         min-height: 1.25em;
     }
 
