@@ -2238,12 +2238,22 @@ dialog.project-dialog::backdrop {
     .hero {
         display: block;
         min-height: auto;
-        padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
-        padding-bottom: 3rem;
+        padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 3.5rem;
     }
 
     .hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         padding-top: 0.5rem;
+        min-height: calc(100svh - 7.5rem);
+        min-height: calc(100dvh - 7.5rem);
+    }
+
+    .signal-grid {
+        margin-top: auto;
+        padding-top: 2rem;
     }
 
     .section,
@@ -2259,7 +2269,7 @@ dialog.project-dialog::backdrop {
     }
 
     .hero-panel {
-        margin-top: 2rem;
+        margin-top: 5rem;
     }
 
     .profile-card {
@@ -2469,8 +2479,20 @@ dialog.project-dialog::backdrop {
         padding-bottom: 2.5rem;
     }
 
+    .hero {
+        display: block;
+        min-height: auto;
+        padding-top: calc(5.8rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 3.5rem;
+    }
+
     .hero-copy {
-        padding-top: 1.35rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 0.85rem;
+        min-height: calc(100svh - 7.5rem);
+        min-height: calc(100dvh - 7.5rem);
     }
 
     .eyebrow {
@@ -2509,6 +2531,8 @@ dialog.project-dialog::backdrop {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 0.5rem;
         padding: 0;
+        margin-top: auto;
+        padding-top: 1.5rem;
     }
 
     .signal-grid div {
@@ -2532,11 +2556,7 @@ dialog.project-dialog::backdrop {
     }
 
     .hero-panel {
-        margin-top: 1.75rem;
-    }
-
-    .terminal-card {
-        display: none;
+        margin-top: 5rem;
     }
 
     .profile-card {
@@ -2788,12 +2808,14 @@ dialog.project-dialog::backdrop {
     }
 
     .hero {
-        padding-top: calc(6.2rem + env(safe-area-inset-top, 0px));
-        padding-bottom: 2rem;
+        padding-top: calc(5.2rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 2.5rem;
     }
 
     .hero-copy {
-        padding-top: 1.35rem;
+        padding-top: 0.85rem;
+        min-height: calc(100svh - 6.8rem);
+        min-height: calc(100dvh - 6.8rem);
     }
 
     .eyebrow {
@@ -2817,6 +2839,8 @@ dialog.project-dialog::backdrop {
 
     .signal-grid {
         gap: 0.35rem;
+        margin-top: auto;
+        padding-top: 1.25rem;
     }
 
     .signal-grid div {
@@ -2839,7 +2863,7 @@ dialog.project-dialog::backdrop {
     }
 
     .hero-panel {
-        margin-top: 1.5rem;
+        margin-top: 4.5rem;
     }
 
     .profile-card {
