@@ -7,6 +7,14 @@ const projectDetails = {
         tags: ['Node.js', 'Express.js', 'Firebase (Auth & Firestore)', 'REST APIs', 'CI/CD', 'Tailwind CSS'],
         link: 'https://abot-eta.vercel.app/'
     },
+    'price-trail': {
+        label: 'Full-Stack Next.js App · Dec 2025 – Jan 2026',
+        title: 'PriceTrail — Smart Amazon Price Tracker',
+        description: 'A full-stack price tracking and alert platform built with Next.js 14 App Router, MongoDB Atlas, and Tailwind CSS. Monitors Amazon product prices and delivers automated email alerts when products reach target prices.',
+        focus: 'Engineered periodic automated web scraping routines using Cheerio, scheduled via Vercel Cron jobs, coupled with Nodemailer email delivery, Google OAuth 2.0 authentication, and responsive product dashboard analytics.',
+        tags: ['Next.js 14', 'MongoDB Atlas', 'Cheerio Web Scraping', 'Vercel Cron', 'Google OAuth', 'Tailwind CSS'],
+        link: 'https://price-trail-ruddy.vercel.app/'
+    },
     linkly: {
         label: 'Database & Serverless Service · Aug 2025',
         title: 'Linkly — Serverless URL Shortener',
@@ -16,20 +24,36 @@ const projectDetails = {
         link: 'https://linkly-link.vercel.app/'
     },
     'house-price': {
-        label: 'Machine Learning & Data Analysis · 2023',
+        label: 'Machine Learning & Data Analysis · MCA Thesis 2023',
         title: 'House Price Prediction — ML & Analytics',
-        description: 'Trained a Random Forest Regression model on structured housing data, benchmarking against Linear and Ridge regression baselines with label-encoded categorical features across location, area type, and availability.',
-        focus: 'Deployed as an interactive Streamlit web app for real-time price predictions, with robust preprocessing and handling for unseen category inputs.',
-        tags: ['Python', 'Pandas', 'Scikit-learn', 'Streamlit', 'NumPy', 'Jupyter Notebook'],
+        description: 'Final Year MCA research project at The American College. Conducted extensive exploratory data analysis and predictive modeling on 13,320 Bangalore real estate listings from Kaggle.',
+        focus: 'Engineered custom preprocessing pipelines in src/encoding.py with area-unit normalization, outlier trimming, and categorical encoding. Benchmarked Linear Regression and Ridge baselines (R² = 0.644) against an optimized Random Forest Regressor (R² = 0.787). Deployed a 4-page interactive Streamlit dashboard and containerized FastAPI REST prediction API with Docker.',
+        tags: ['Python', 'Pandas', 'Scikit-learn', 'Streamlit', 'FastAPI', 'Docker', 'NumPy'],
         link: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/'
     },
+    ngelo: {
+        label: 'E-Commerce Storefront · Vue.js & Vite',
+        title: 'N-Gelo — Modern E-Commerce Storefront',
+        description: 'A responsive digital commerce storefront and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
+        focus: 'Implemented reactive state management for dynamic cart calculations, instant item quantity adjustments, and modular catalogue display with mobile-first CSS styling.',
+        tags: ['Vue.js 3', 'Vite', 'JavaScript', 'CSS3 / Flexbox', 'State Management'],
+        link: 'https://ecom-seven-sand.vercel.app'
+    },
     ecommerce: {
-        label: 'Relational Database & Full-Stack · Concept',
-        title: 'Digital Products Marketplace (Project BMW)',
-        description: 'A full-stack digital commerce concept featuring a strictly normalized PostgreSQL relational schema for product cataloging and transaction workflows.',
-        focus: 'Explores digital asset distribution, relational data integrity, normalized checkout models, and a Vue.js frontend backed by Node.js.',
-        tags: ['PostgreSQL', 'Database Design', 'Node.js', 'Vue.js', 'REST APIs'],
-        link: 'https://github.com/abustark/project_bmw'
+        label: 'E-Commerce Storefront · Vue.js & Vite',
+        title: 'N-Gelo — Modern E-Commerce Storefront',
+        description: 'A responsive digital commerce storefront and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
+        focus: 'Implemented reactive state management for dynamic cart calculations, instant item quantity adjustments, and modular catalogue display with mobile-first CSS styling.',
+        tags: ['Vue.js 3', 'Vite', 'JavaScript', 'CSS3 / Flexbox', 'State Management'],
+        link: 'https://ecom-seven-sand.vercel.app'
+    },
+    covercraft: {
+        label: 'AI Document Generator · React & TypeScript',
+        title: 'CoverCraft — AI Cover Letter Builder',
+        description: 'An AI-powered cover letter builder engineered with React, TypeScript, and OpenRouter AI. Bridges applicant resume bullet points with target job descriptions or posting URLs to produce custom, high-converting cover letters.',
+        focus: 'Architected Vercel serverless proxy functions to secure API keys, implemented server-side URL scrapers to bypass CORS restrictions on job boards, and integrated Google OAuth 2.0 authentication.',
+        tags: ['React', 'TypeScript', 'OpenRouter AI', 'Vercel Serverless', 'Google OAuth'],
+        link: 'https://github.com/abustark/cover_letter_gen'
     }
 };
 
@@ -45,7 +69,7 @@ const PALETTES = [
 const COMMAND_ACTIONS = [
     { type: 'nav', title: 'Home / Hero', subtitle: 'Data & Analytics Engineer Portfolio', target: '#home', badge: 'Section' },
     { type: 'nav', title: 'About / Role Fit', subtitle: 'Target roles: Data & Analytics, SQL, Applied AI', target: '#about', badge: 'Section' },
-    { type: 'nav', title: 'Projects & Work', subtitle: 'House Price ML, Linkly, ABot, Marketplace', target: '#work', badge: 'Section' },
+    { type: 'nav', title: 'Projects & Work', subtitle: 'PriceTrail, House Price ML, ABot, Linkly, N-Gelo, CoverCraft', target: '#work', badge: 'Section' },
     { type: 'nav', title: 'Technical Skills', subtitle: 'SQL, Python, Scikit-learn, Power BI, MongoDB', target: '#skills', badge: 'Section' },
     { type: 'nav', title: 'Experience (Amazon)', subtitle: 'Amazon ML Data Associate II (Aug 2023 – Present)', target: '#experience', badge: 'Section' },
     { type: 'nav', title: 'Contact', subtitle: 'Open to Remote & Hybrid (Madurai, Coimbatore, Chennai)', target: '#contact', badge: 'Section' },
@@ -64,9 +88,11 @@ const COMMAND_ACTIONS = [
 
     // Projects
     { type: 'project', title: 'ABot — AI Chat Application', subtitle: 'Multi-Provider AI Assistant', target: 'https://abot-eta.vercel.app/', badge: 'Live App' },
+    { type: 'project', title: 'PriceTrail — Smart Price Tracker', subtitle: 'Next.js 14, MongoDB Atlas & Vercel Cron', target: 'https://price-trail-ruddy.vercel.app/', badge: 'Live App' },
     { type: 'project', title: 'Linkly — URL Shortener', subtitle: 'Serverless Vercel & MongoDB Atlas', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
-    { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
-    { type: 'project', title: 'Digital Products Marketplace', subtitle: 'GitHub Repository (Vue + Postgres)', target: 'https://github.com/abustark/project_bmw', badge: 'GitHub' }
+    { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
+    { type: 'project', title: 'N-Gelo — Modern Storefront', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app', badge: 'Live App' },
+    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -55,6 +55,8 @@
 
     <link rel="preconnect" href="https://formspree.io" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/geist-sans-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="pics/abu.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="pics/abu-400.webp 400w, pics/abu.webp 800w" imagesizes="(max-width: 640px) 320px, 400px">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -170,7 +172,7 @@
                             <dd>Data accuracy</dd>
                         </div>
                         <div>
-                            <dt>4</dt>
+                            <dt>5</dt>
                             <dd>Deployed projects</dd>
                         </div>
                     </dl>
@@ -338,7 +340,52 @@
                     </div>
                 </article>
 
-                <!-- 2. Linkly (Database & Serverless Cloud) -->
+                <!-- 2. PriceTrail (Smart Amazon Price Tracker) -->
+                <article class="project-card spotlight-card reveal" data-category="ai db web" data-project="price-trail">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>price-trail-ruddy.vercel.app</span>
+                            </div>
+                            <span class="live-badge">Live · Next.js</span>
+                        </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/price-trail.webp" type="image/webp">
+                                <img src="pics/projects/price-trail.png" alt="PriceTrail Amazon price tracker application screenshot" width="900" height="560" loading="lazy">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">Full-Stack Next.js App · Dec 2025 – Jan 2026</p>
+                        <h3>PriceTrail — Smart Amazon Price Tracker</h3>
+                        <p>Engineered an automated price-tracking application using Next.js 14 App Router, MongoDB Atlas, and Vercel Cron. Features automated periodic scraping with Cheerio, instant price-drop email alerts via Nodemailer, and Google OAuth 2.0 authentication.</p>
+                        <div class="tag-row">
+                            <span>Next.js 14</span>
+                            <span>MongoDB Atlas</span>
+                            <span>Cheerio Web Scraping</span>
+                            <span>Vercel Cron</span>
+                            <span>Google OAuth</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://price-trail-ruddy.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <span>Live site</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <a href="https://github.com/abustark/price-trail" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub repo</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="price-trail" aria-label="Open case notes: PriceTrail">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Linkly (Database & Serverless Cloud) -->
                 <article class="project-card spotlight-card reveal" data-category="db web" data-project="linkly">
                     <div class="preview-browser-frame">
                         <div class="preview-browser-bar">
@@ -374,12 +421,16 @@
                                 <span>Live site</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                             </a>
+                            <a href="https://github.com/abustark/linkly" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub repo</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                             <button type="button" data-open-project="linkly" aria-label="Open case notes: Linkly">Case notes</button>
                         </div>
                     </div>
                 </article>
 
-                <!-- 3. House Price Prediction (Machine Learning & Data Analysis) -->
+                <!-- 4. House Price Prediction (Machine Learning & Data Analysis) -->
                 <article class="project-card spotlight-card reveal" data-category="data" data-project="house-price">
                     <div class="preview-browser-frame">
                         <div class="preview-browser-bar">
@@ -388,31 +439,28 @@
                             </div>
                             <div class="browser-url-pill">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                <span>streamlit.app/house-price</span>
+                                <span>house-price-prediction.streamlit.app</span>
                             </div>
                             <span class="live-badge">Live · Streamlit</span>
                         </div>
-                        <div class="coming-soon-shot">
-                            <div class="coming-soon-backdrop">
-                                <div class="coming-soon-badge">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                                    <span>Preview Image Coming Soon</span>
-                                </div>
-                                <p class="coming-soon-sub">Interactive Streamlit ML application interface</p>
-                            </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/house-price.webp" type="image/webp">
+                                <img src="pics/projects/house-price.webp" alt="House Price Prediction ML dashboard screenshot" width="900" height="560" loading="lazy">
+                            </picture>
                         </div>
                     </div>
                     <div class="project-content">
-                        <p class="project-label">Machine Learning &amp; Data Analysis · 2023</p>
-                        <h3>House Price Prediction</h3>
-                        <p>Trained a Random Forest Regression model on structured housing data, engineering label-encoded categorical features across location, area type, and availability. Benchmarked against Linear and Ridge baselines and deployed as an interactive Streamlit web app with real-time inference and unseen category validation.</p>
+                        <p class="project-label">Machine Learning &amp; Data Analysis · MCA Thesis 2023</p>
+                        <h3>House Price Prediction — ML &amp; Analytics</h3>
+                        <p>Final Year MCA project at The American College. Analyzed 13,320 Bangalore housing records, engineered custom units and outlier filtering (src/encoding.py), and benchmarked Linear &amp; Ridge models (R² = 0.644) against Random Forest (R² = 0.787). Deployed as an interactive 4-page Streamlit app with containerized FastAPI &amp; Docker.</p>
                         <div class="tag-row">
                             <span>Python</span>
                             <span>Pandas</span>
                             <span>Scikit-learn</span>
                             <span>Streamlit</span>
-                            <span>NumPy</span>
-                            <span>Jupyter</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
                         </div>
                         <div class="project-actions">
                             <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/"
@@ -420,13 +468,18 @@
                                 <span>Live site</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                             </a>
+                            <a href="https://github.com/abustark/HOUSE-PRICE-PREDICTION-USING-MACHINE-LEARNING-ALGORITHMS"
+                                target="_blank" rel="noopener noreferrer">
+                                <span>GitHub repo</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                             <button type="button" data-open-project="house-price" aria-label="Open case notes: House Price Prediction">Case notes</button>
                         </div>
                     </div>
                 </article>
 
-                <!-- 4. Digital Products Marketplace (Project BMW) -->
-                <article class="project-card spotlight-card reveal" data-category="db web" data-project="ecommerce">
+                <!-- 5. N-Gelo (Modern E-Commerce Storefront) -->
+                <article class="project-card spotlight-card reveal" data-category="db web" data-project="ngelo">
                     <div class="preview-browser-frame">
                         <div class="preview-browser-bar">
                             <div class="browser-dots">
@@ -434,37 +487,79 @@
                             </div>
                             <div class="browser-url-pill">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                <span>github.com/abustark/project_bmw</span>
+                                <span>ecom-seven-sand.vercel.app</span>
                             </div>
-                            <span class="live-badge" style="color: var(--accent);"><span style="background: var(--accent);"></span>GitHub Repo</span>
+                            <span class="live-badge">Live · Storefront</span>
                         </div>
-                        <div class="coming-soon-shot">
-                            <div class="coming-soon-backdrop">
-                                <div class="coming-soon-badge">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                                    <span>Preview Image Coming Soon</span>
-                                </div>
-                                <p class="coming-soon-sub">Full-stack digital assets commerce interface</p>
-                            </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/ngelo.webp" type="image/webp">
+                                <img src="pics/projects/ngelo.png" alt="N-Gelo E-Commerce Storefront screenshot" width="900" height="560" loading="lazy">
+                            </picture>
                         </div>
                     </div>
                     <div class="project-content">
-                        <p class="project-label">Relational Database &amp; Full-Stack · Concept</p>
-                        <h3>Digital Products Marketplace</h3>
-                        <p>Designed a comprehensive full-stack digital commerce architecture featuring a strictly normalized PostgreSQL relational schema for product cataloging and transaction workflows, integrated with Vue.js and Node.js.</p>
+                        <p class="project-label">E-Commerce Storefront · Vue.js 3 &amp; Vite</p>
+                        <h3>N-Gelo — Modern E-Commerce Storefront</h3>
+                        <p>Designed a responsive shopping experience with Vue.js 3, Vite, and reactive state management. Features modular component architecture, dynamic shopping cart management with live pricing, and clean data flows for retail storefronts.</p>
                         <div class="tag-row">
-                            <span>PostgreSQL</span>
-                            <span>Database Design</span>
-                            <span>Node.js</span>
-                            <span>Vue.js</span>
-                            <span>Full-stack</span>
+                            <span>Vue.js 3</span>
+                            <span>Vite</span>
+                            <span>JavaScript</span>
+                            <span>CSS3 / Flexbox</span>
+                            <span>State Management</span>
                         </div>
                         <div class="project-actions">
+                            <a href="https://ecom-seven-sand.vercel.app" target="_blank" rel="noopener noreferrer">
+                                <span>Live site</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                             <a href="https://github.com/abustark/project_bmw" target="_blank" rel="noopener noreferrer">
                                 <span>GitHub repo</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                             </a>
-                            <button type="button" data-open-project="ecommerce" aria-label="Open case notes: Digital Products Marketplace">Case notes</button>
+                            <button type="button" data-open-project="ngelo" aria-label="Open case notes: N-Gelo">Case notes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. CoverCraft (AI Cover Letter Builder - Internal Dev Tool) -->
+                <article class="project-card spotlight-card reveal" data-category="ai web" data-project="covercraft">
+                    <div class="preview-browser-frame">
+                        <div class="preview-browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url-pill">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                <span>github.com/abustark/cover_letter_gen</span>
+                            </div>
+                            <span class="live-badge" style="color: var(--accent);"><span style="background: var(--accent);"></span>Internal Tool</span>
+                        </div>
+                        <div class="shot">
+                            <picture>
+                                <source srcset="pics/projects/covercraft.webp" type="image/webp">
+                                <img src="pics/projects/covercraft.png" alt="CoverCraft AI cover letter builder preview" width="900" height="560" loading="lazy">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-label">AI Document Generator · React &amp; TypeScript</p>
+                        <h3>CoverCraft — AI Cover Letter Builder</h3>
+                        <p>An AI-powered cover letter builder engineered with React, TypeScript, and OpenRouter AI. Features Google OAuth authentication, server-side URL job fetching to bypass CORS, and automated context alignment between resume qualifications and job specifications.</p>
+                        <div class="tag-row">
+                            <span>React</span>
+                            <span>TypeScript</span>
+                            <span>OpenRouter AI</span>
+                            <span>Vercel Serverless</span>
+                            <span>Google OAuth</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/abustark/cover_letter_gen" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub repo</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <button type="button" data-open-project="covercraft" aria-label="Open case notes: CoverCraft">Case notes</button>
                         </div>
                     </div>
                 </article>

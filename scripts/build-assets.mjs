@@ -82,7 +82,7 @@ async function ogCard() {
 }
 
 async function projectScreenshots() {
-    const projects = ['abot', 'house-price', 'linkly', 'ecommerce'];
+    const projects = ['abot', 'house-price', 'linkly', 'ecommerce', 'price-trail', 'ngelo', 'covercraft'];
     for (const p of projects) {
         const srcPng = join(projectPics, `${p}.png`);
         const outWebp = join(projectPics, `${p}.webp`);
