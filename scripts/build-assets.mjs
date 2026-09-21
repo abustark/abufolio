@@ -1,4 +1,4 @@
-import { mkdirSync, statSync, existsSync } from 'node:fs';
+import { mkdirSync, statSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
@@ -14,12 +14,12 @@ async function heroWebp() {
     const src = join(pics, 'abu.png');
     const out = join(pics, 'abu.webp');
     const out400 = join(pics, 'abu-400.webp');
-    await sharp(src).resize({ width: 800 }).webp({ quality: 85 }).toFile(out);
+    await sharp(src).resize({ width: 800 }).webp({ quality: 80, effort: 6 }).toFile(out);
     const meta = await sharp(out).metadata();
     const size = statSync(out).size;
     console.log(`abu.webp ${meta.width}x${meta.height} ${Math.round(size / 1024)} KB`);
 
-    await sharp(src).resize({ width: 400 }).webp({ quality: 80 }).toFile(out400);
+    await sharp(src).resize({ width: 400 }).webp({ quality: 80, effort: 6 }).toFile(out400);
     const meta400 = await sharp(out400).metadata();
     const size400 = statSync(out400).size;
     console.log(`abu-400.webp ${meta400.width}x${meta400.height} ${Math.round(size400 / 1024)} KB`);
@@ -27,17 +27,18 @@ async function heroWebp() {
 
 async function heroPngFallback() {
     const src = join(pics, 'abu.png');
-    const tmp = join(pics, 'abu.tmp.png');
-    await sharp(src).resize({ width: 800 }).png({ compressionLevel: 9, palette: true }).toFile(tmp);
-    const { size } = statSync(tmp);
-    const origSize = statSync(src).size;
-    if (size < origSize * 0.8) {
-        await sharp(tmp).toFile(join(pics, 'abu.png'));
-        console.log(`abu.png optimized ${Math.round(origSize / 1024)} KB -> ${Math.round(size / 1024)} KB`);
+    const inputBuf = readFileSync(src);
+    const origSize = inputBuf.length;
+    const optBuf = await sharp(inputBuf)
+        .resize({ width: 800 })
+        .png({ compressionLevel: 9, palette: true, quality: 85 })
+        .toBuffer();
+    if (optBuf.length < origSize * 0.95) {
+        writeFileSync(src, optBuf);
+        console.log(`abu.png optimized ${Math.round(origSize / 1024)} KB -> ${Math.round(optBuf.length / 1024)} KB`);
     } else {
         console.log(`abu.png kept original ${Math.round(origSize / 1024)} KB`);
     }
-    try { (await import('node:fs')).unlinkSync(tmp); } catch {}
 }
 
 const OG_SVG = `<?xml version="1.0" encoding="UTF-8"?>
