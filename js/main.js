@@ -32,17 +32,17 @@ const projectDetails = {
         link: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/'
     },
     ngelo: {
-        label: 'E-Commerce Storefront · Vue.js & Vite',
-        title: 'N-Gelo — Modern E-Commerce Storefront',
-        description: 'A responsive digital commerce storefront and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
+        label: 'Digital Marketplace · Vue.js & Vite',
+        title: 'N-Gelo — Digital Marketplace',
+        description: 'A responsive digital marketplace and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
         focus: 'Implemented reactive state management for dynamic cart calculations, instant item quantity adjustments, and modular catalogue display with mobile-first CSS styling.',
         tags: ['Vue.js 3', 'Vite', 'JavaScript', 'CSS3 / Flexbox', 'State Management'],
         link: 'https://ecom-seven-sand.vercel.app'
     },
     ecommerce: {
-        label: 'E-Commerce Storefront · Vue.js & Vite',
-        title: 'N-Gelo — Modern E-Commerce Storefront',
-        description: 'A responsive digital commerce storefront and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
+        label: 'Digital Marketplace · Vue.js & Vite',
+        title: 'N-Gelo — Digital Marketplace',
+        description: 'A responsive digital marketplace and shopping cart application engineered with Vue.js 3, Vite, and component-driven architecture.',
         focus: 'Implemented reactive state management for dynamic cart calculations, instant item quantity adjustments, and modular catalogue display with mobile-first CSS styling.',
         tags: ['Vue.js 3', 'Vite', 'JavaScript', 'CSS3 / Flexbox', 'State Management'],
         link: 'https://ecom-seven-sand.vercel.app'
@@ -91,7 +91,7 @@ const COMMAND_ACTIONS = [
     { type: 'project', title: 'PriceTrail — Smart Price Tracker', subtitle: 'Next.js 14, MongoDB Atlas & Vercel Cron', target: 'https://price-trail-ruddy.vercel.app/', badge: 'Live App' },
     { type: 'project', title: 'Linkly — URL Shortener', subtitle: 'Serverless Vercel & MongoDB Atlas', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
     { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
-    { type: 'project', title: 'N-Gelo — Modern Storefront', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app', badge: 'Live App' },
+    { type: 'project', title: 'N-Gelo — Digital Marketplace', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app', badge: 'Live App' },
     { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' }
 ];
 
