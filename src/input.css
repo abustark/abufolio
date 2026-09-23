@@ -1426,6 +1426,19 @@ pre {
     transform: scale(1.03);
 }
 
+/* Whole screenshot is a link to the live project */
+.shot>a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.shot>a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
 /* Elegant Preview Coming Soon Mockup Frame */
 .coming-soon-shot {
     position: relative;
