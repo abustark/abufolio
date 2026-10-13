@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.3`** (current head is `1.1.2` — see below)
+> - **`main` → `1.1.4`** (current head is `1.1.3` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.3 - full-bleed sticky number tiles that pin for the whole section
+- **Date**: 2026-10-13
+- **Owner directive**: the number-tile box should span edge-to-edge (no rounded-rect gap on the sides), and it must stay pinned for the entire section, not disappear after a slight scroll.
+- **Changes**:
+  - Moved `.section-index` out of `.section-head` to be a direct child of each `<section>` (01–04) so sticky holds for the full section height, not just the head block.
+  - Full-bleed breakout: `width: 100vw` + `margin-left/right: calc(50% - 50vw)`, square corners, top/bottom hairline borders only, frosted bg, text padded back to the 1120px column. Compact mobile variant kept.
+  - Contact label left static inside its card (not a section child).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.4`.
 
 ### 1.1.2 - sticky number tiles only + mobile left-cut fixes
 - **Date**: 2026-10-13

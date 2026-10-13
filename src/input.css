@@ -1309,22 +1309,27 @@ pre {
     margin-bottom: 2.75rem;
 }
 
-/* Sticky number tile: the small label pins as a full-width box while its
-   section scrolls; the h2 + lead scroll away normally. Scoped so card
-   labels (about/skills) never stick. */
-.section-head > .section-index,
-.contact-card .section-index {
+/* Full-bleed sticky number tile: direct child of .section so it pins for
+   the entire section, not just while the head is on screen. Breaks out of
+   the centered 1120px column to span the viewport edge-to-edge. */
+.section > .section-index {
     position: sticky;
     top: calc(5.4rem + env(safe-area-inset-top, 0px));
     z-index: 60;
     display: block;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 1.75rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    padding: 0.6rem 1rem;
+    padding: 0.65rem max(1rem, calc((100vw - var(--max-width)) / 2));
 }
 
 .section-index,
@@ -3199,16 +3204,14 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-head {
-        top: auto;
         margin-bottom: 2rem;
         padding: 0;
     }
 
-    .section-head > .section-index,
-    .contact-card .section-index {
+    .section > .section-index {
         top: calc(4.4rem + env(safe-area-inset-top, 0px));
-        margin-bottom: 1.25rem;
-        padding: 0.5rem 0.8rem;
+        margin-bottom: 1.4rem;
+        padding: 0.55rem 1rem;
     }
 
     .sim-2col {
