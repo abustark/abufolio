@@ -2355,6 +2355,241 @@ dialog.resume-dialog::backdrop {
 }
 
 /* -------------------------------------------------------------
+   Interactive Simulators (A1 validation + A2 price estimator)
+------------------------------------------------------------- */
+.simulator,
+.estimator {
+    margin-top: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg) 45%, transparent);
+    padding: 1.15rem 1.2rem;
+}
+
+.simulator-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.6rem;
+    margin: 0 0 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.simulator-note {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+}
+
+.sim-field {
+    margin-bottom: 1rem;
+}
+
+.sim-field:last-child {
+    margin-bottom: 0;
+}
+
+.sim-field label,
+.sim-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-bottom: 0.55rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.sim-field output {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+}
+
+.sim-field input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.sim-check {
+    display: flex !important;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-weight: 600 !important;
+    color: var(--muted) !important;
+}
+
+.sim-check input[type="checkbox"] {
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.sim-segment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sim-segment button {
+    flex: 1 1 auto;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.sim-segment button:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+}
+
+.sim-segment button[aria-pressed="true"] {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: var(--ink);
+}
+
+.sim-field select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface-strong);
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    cursor: pointer;
+}
+
+.sim-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.sim-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+}
+
+.sim-metrics > div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface-strong) 70%, transparent);
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+}
+
+.sim-metrics dt {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+}
+
+.sim-metrics dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+}
+
+.sim-matrix {
+    width: 100%;
+    margin-top: 0.85rem;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.sim-matrix caption {
+    margin-bottom: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+}
+
+.sim-matrix th,
+.sim-matrix td {
+    border: 1px solid var(--line);
+    padding: 0.4rem 0.3rem;
+    text-align: center;
+}
+
+.sim-matrix th {
+    color: var(--muted);
+    font-weight: 700;
+    background: color-mix(in srgb, var(--surface-strong) 60%, transparent);
+}
+
+.sim-matrix td {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.estimator-output {
+    margin: 1.1rem 0 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+}
+
+.estimator-ci {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.simulator-foot {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+.simulator-foot a {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------
    Toast Notification
 ------------------------------------------------------------- */
 .toast {
@@ -2943,6 +3178,14 @@ dialog.resume-dialog::backdrop {
     .skills-grid {
         grid-template-columns: 1fr;
         gap: 0.75rem;
+    }
+
+    .sim-2col {
+        grid-template-columns: 1fr;
+    }
+
+    .sim-metrics {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .timeline-item time {

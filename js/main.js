@@ -96,7 +96,8 @@ const COMMAND_ACTIONS = [
 
     // Shortcut queries (/amazon, /skills)
     { type: 'nav', title: '/amazon — Amazon Experience', subtitle: 'ML Data Associate II, validation highlights', target: '#experience', badge: 'Shortcut', keywords: '/amazon amazon' },
-    { type: 'nav', title: '/skills — Technical Skills', subtitle: 'Python, Scikit-learn, SQL, Power BI', target: '#skills', badge: 'Shortcut', keywords: '/skills skills' }
+    { type: 'nav', title: '/skills — Technical Skills', subtitle: 'Python, Scikit-learn, SQL, Power BI', target: '#skills', badge: 'Shortcut', keywords: '/skills skills' },
+    { type: 'nav', title: '/model — Price estimator', subtitle: 'Try the in-page ML estimate', target: '#price-estimator', badge: 'Shortcut', keywords: '/model model estimator' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -541,20 +542,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
     const projectCards = Array.from(document.querySelectorAll('.project-card[data-category]'));
 
+    const applyProjectFilter = (filter) => {
+        filterButtons.forEach((item) => {
+            const isActive = (item.dataset.filter || 'all') === filter;
+            item.classList.toggle('active', isActive);
+            item.setAttribute('aria-pressed', String(isActive));
+        });
+
+        projectCards.forEach((card) => {
+            const categories = card.dataset.category?.split(' ') || [];
+            const match = filter === 'all' || categories.includes(filter);
+            card.classList.toggle('is-hidden', !match);
+        });
+    };
+
     filterButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            const filter = button.dataset.filter || 'all';
-            filterButtons.forEach((item) => {
-                const isActive = item === button;
-                item.classList.toggle('active', isActive);
-                item.setAttribute('aria-pressed', String(isActive));
-            });
-
-            projectCards.forEach((card) => {
-                const categories = card.dataset.category?.split(' ') || [];
-                const match = filter === 'all' || categories.includes(filter);
-                card.classList.toggle('is-hidden', !match);
-            });
+            applyProjectFilter(button.dataset.filter || 'all');
         });
     });
 
@@ -750,6 +754,8 @@ document.addEventListener('DOMContentLoaded', () => {
         closeCommandPalette();
 
         if (item.type === 'nav' && item.target) {
+            // The estimator lives inside a filterable card — reveal it first.
+            if (item.target === '#price-estimator') applyProjectFilter('all');
             const el = document.querySelector(item.target);
             el?.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
         } else if (item.type === 'palette' && item.palette) {
@@ -857,6 +863,104 @@ document.addEventListener('DOMContentLoaded', () => {
             if (resumeDialog?.open) closeResumeDialog();
         }
     });
+
+    // -------------------------------------------------------------
+    // 13b. Interactive Simulators (A1 validation + A2 price estimate)
+    // -------------------------------------------------------------
+    const formatInt = (n) => Math.round(n).toLocaleString('en-IN');
+
+    // --- A1: Amazon validation simulator (illustrative curves) ---
+    const dqVolume = document.getElementById('dq-volume');
+    const dqVolumeVal = document.getElementById('dq-volume-val');
+    const dqStrict = document.getElementById('dq-strict');
+    const DQ_TASKS = {
+        multiclass: { dp: 0.004, dr: 0.006, tput: 1 },
+        bbox: { dp: 0.009, dr: 0.013, tput: 0.62 },
+        crossmodal: { dp: 0.014, dr: 0.019, tput: 0.45 }
+    };
+    let dqTask = 'multiclass';
+
+    const renderDQ = () => {
+        if (!dqVolume) return;
+        const task = DQ_TASKS[dqTask];
+        const strict = dqStrict?.checked !== false;
+        const precision = 0.987 - task.dp + (strict ? 0.003 : 0);
+        const recall = 0.981 - task.dr + (strict ? 0.003 : 0);
+        const f1 = (2 * precision * recall) / (precision + recall);
+        const tput = 4200 * task.tput * (strict ? 0.82 : 1);
+
+        const setText = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        };
+        setText('dq-precision', `${(precision * 100).toFixed(1)}%`);
+        setText('dq-recall', `${(recall * 100).toFixed(1)}%`);
+        setText('dq-f1', `${(f1 * 100).toFixed(1)}%`);
+        setText('dq-tput', `${formatInt(tput)}/hr`);
+        if (dqVolumeVal) {
+            const n = Number(dqVolume.value);
+            dqVolumeVal.textContent = `${formatInt(n)} records`;
+        }
+
+        // Confusion matrix per 10k sampled, 8% defect prevalence.
+        const actualPos = 800;
+        const tp = recall * actualPos;
+        const fn = actualPos - tp;
+        const fp = tp / precision - tp;
+        const tn = 9200 - fp;
+        setText('dq-tp', formatInt(tp));
+        setText('dq-fn', formatInt(fn));
+        setText('dq-fp', formatInt(fp));
+        setText('dq-tn', formatInt(tn));
+    };
+
+    dqVolume?.addEventListener('input', renderDQ);
+    dqStrict?.addEventListener('change', renderDQ);
+    document.querySelectorAll('[data-dq-task]').forEach((button) => {
+        button.addEventListener('click', () => {
+            dqTask = button.dataset.dqTask;
+            document.querySelectorAll('[data-dq-task]').forEach((b) =>
+                b.setAttribute('aria-pressed', String(b === button)));
+            renderDQ();
+        });
+    });
+    renderDQ();
+
+    // --- A2: house price estimator (simplified in-browser model) ---
+    const estSqft = document.getElementById('est-sqft');
+    const estSqftVal = document.getElementById('est-sqft-val');
+    const estTier = document.getElementById('est-tier');
+    const estAmen = document.getElementById('est-amen');
+    const EST_RATES = { metro: 7500, suburban: 5200, developing: 3400 };
+    const EST_AMEN = { basic: 1, standard: 1.06, luxury: 1.15 };
+    let estBhk = 2;
+
+    const renderEst = () => {
+        if (!estSqft) return;
+        const sqft = Number(estSqft.value);
+        const rate = EST_RATES[estTier?.value] || EST_RATES.metro;
+        const amen = EST_AMEN[estAmen?.value] || 1;
+        const price = sqft * rate * (1 + 0.05 * (estBhk - 2)) * amen;
+        const lakh = price / 100000;
+        if (estSqftVal) estSqftVal.textContent = `${formatInt(sqft)} sq ft`;
+        const priceEl = document.getElementById('est-price');
+        const ciEl = document.getElementById('est-ci');
+        if (priceEl) priceEl.textContent = `₹${lakh.toFixed(1)} L`;
+        if (ciEl) ciEl.textContent = '±4.2%';
+    };
+
+    estSqft?.addEventListener('input', renderEst);
+    estTier?.addEventListener('change', renderEst);
+    estAmen?.addEventListener('change', renderEst);
+    document.querySelectorAll('[data-est-bhk]').forEach((button) => {
+        button.addEventListener('click', () => {
+            estBhk = Number(button.dataset.estBhk);
+            document.querySelectorAll('[data-est-bhk]').forEach((b) =>
+                b.setAttribute('aria-pressed', String(b === button)));
+            renderEst();
+        });
+    });
+    renderEst();
 
     // -------------------------------------------------------------
     // 14. Contact Form Submission

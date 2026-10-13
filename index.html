@@ -500,6 +500,43 @@
                             </a>
                             <button type="button" data-open-project="house-price" aria-label="Open case notes: House Price Prediction">Case notes</button>
                         </div>
+                        <div class="estimator" id="price-estimator">
+                            <p class="simulator-title">Instant estimator <span class="simulator-note">Simplified model</span></p>
+                            <div class="sim-field">
+                                <label for="est-sqft">Area <output id="est-sqft-val" for="est-sqft">1,200 sq ft</output></label>
+                                <input type="range" id="est-sqft" min="500" max="5000" step="50" value="1200">
+                            </div>
+                            <div class="sim-field">
+                                <span class="sim-label" id="est-bhk-label">Bedrooms</span>
+                                <div class="sim-segment" role="group" aria-labelledby="est-bhk-label">
+                                    <button type="button" data-est-bhk="1" aria-pressed="false">1</button>
+                                    <button type="button" data-est-bhk="2" aria-pressed="true">2</button>
+                                    <button type="button" data-est-bhk="3" aria-pressed="false">3</button>
+                                    <button type="button" data-est-bhk="4" aria-pressed="false">4</button>
+                                    <button type="button" data-est-bhk="5" aria-pressed="false">5+</button>
+                                </div>
+                            </div>
+                            <div class="sim-2col">
+                                <div class="sim-field">
+                                    <label for="est-tier">Location tier</label>
+                                    <select id="est-tier">
+                                        <option value="metro" selected>Tier 1 Metro</option>
+                                        <option value="suburban">Suburban</option>
+                                        <option value="developing">Developing Hub</option>
+                                    </select>
+                                </div>
+                                <div class="sim-field">
+                                    <label for="est-amen">Amenities</label>
+                                    <select id="est-amen">
+                                        <option value="basic">Basic</option>
+                                        <option value="standard" selected>Standard</option>
+                                        <option value="luxury">Luxury</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="estimator-output" aria-live="polite"><span id="est-price">—</span> <span class="estimator-ci" id="est-ci"></span></p>
+                            <p class="simulator-foot">Simplified in-browser estimate (±4.2%). The full Random Forest model runs in the <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/" target="_blank" rel="noopener noreferrer">Streamlit app</a>.</p>
+                        </div>
                     </div>
                 </article>
 
@@ -711,6 +748,36 @@
                         <span>SQL &amp; Python Scripts</span>
                         <span>Throughput Escalation</span>
                         <span>+16% Team Efficiency</span>
+                    </div>
+                    <div class="simulator" id="dq-simulator">
+                        <p class="simulator-title">Validation simulator <span class="simulator-note">Illustrative</span></p>
+                        <div class="sim-field">
+                            <label for="dq-volume">Dataset batch <output id="dq-volume-val" for="dq-volume">100k records</output></label>
+                            <input type="range" id="dq-volume" min="10000" max="500000" step="10000" value="100000">
+                        </div>
+                        <div class="sim-field">
+                            <span class="sim-label" id="dq-task-label">Annotation task</span>
+                            <div class="sim-segment" role="group" aria-labelledby="dq-task-label">
+                                <button type="button" data-dq-task="multiclass" aria-pressed="true">Multi-class</button>
+                                <button type="button" data-dq-task="bbox" aria-pressed="false">Bounding boxes</button>
+                                <button type="button" data-dq-task="crossmodal" aria-pressed="false">Cross-modal</button>
+                            </div>
+                        </div>
+                        <div class="sim-field">
+                            <label class="sim-check" for="dq-strict"><input type="checkbox" id="dq-strict" checked> Strict enterprise SLA</label>
+                        </div>
+                        <dl class="sim-metrics">
+                            <div><dt>Precision</dt><dd id="dq-precision">—</dd></div>
+                            <div><dt>Recall</dt><dd id="dq-recall">—</dd></div>
+                            <div><dt>F1-score</dt><dd id="dq-f1">—</dd></div>
+                            <div><dt>Throughput</dt><dd id="dq-tput">—</dd></div>
+                        </dl>
+                        <table class="sim-matrix">
+                            <caption>Confusion matrix · per 10k sampled</caption>
+                            <tr><td></td><th scope="col">Predicted +</th><th scope="col">Predicted −</th></tr>
+                            <tr><th scope="row">Actual +</th><td id="dq-tp">—</td><td id="dq-fn">—</td></tr>
+                            <tr><th scope="row">Actual −</th><td id="dq-fp">—</td><td id="dq-tn">—</td></tr>
+                        </table>
                     </div>
                 </article>
             </div>
