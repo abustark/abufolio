@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.1`** (current head is `1.1.0` — see below)
+> - **`main` → `1.1.2`** (current head is `1.1.1` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.1 - haptic tap feedback: press states + mobile vibration
+- **Date**: 2026-10-13
+- **Owner directive**: haptic feel on clicks, especially mobile.
+- **Changes**:
+  - Visual press states (`scale` 0.94–0.96) on nav links, icon buttons, segment pills, dialog close, command rows; `transform` added to their transition lists (instant under reduced-motion via the existing kill-block).
+  - `tapHaptic` in `main.js`: `navigator.vibrate` gated on coarse pointers (10ms taps, double-tap pattern on primary CTAs) via one delegated click listener covering buttons, links, summaries, checks, ranges, selects.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.2`.
+  - No gates or browser checks run per owner order (build only).
 
 ### 1.1.0 - sticky section heads, numbered labels, A1 removal, A2 collapse
 - **Date**: 2026-10-13

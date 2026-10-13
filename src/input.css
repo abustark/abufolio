@@ -440,7 +440,7 @@ button {
     font-size: 0.88rem;
     font-weight: 700;
     padding: 0.55rem 0.95rem;
-    transition: color 180ms ease;
+    transition: color 180ms ease, transform 120ms ease;
     background: transparent;
 }
 
@@ -985,6 +985,27 @@ h3 {
 .primary-button:active .btn-icon-pill,
 .secondary-button:active .btn-icon-pill {
     transform: translateX(1px) scale(0.96);
+}
+
+/* Tactile press feedback — visual half of mobile haptics.
+   (Device vibration is the other half; see tapHaptic in main.js.) */
+.ghost-button:active,
+.theme-toggle:active,
+.palette-trigger:active,
+.menu-toggle:active,
+.sim-segment button:active,
+.dialog-close:active,
+.command-item:active,
+.nav-link:active {
+    transform: scale(0.94);
+}
+
+.palette-trigger:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.dialog-close:active {
+    transform: rotate(90deg) scale(0.94);
 }
 
 .filter-chip.active {
@@ -2156,7 +2177,7 @@ dialog.command-dialog::backdrop {
     font-size: 0.94rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background 150ms ease, color 150ms ease;
+    transition: background 150ms ease, color 150ms ease, transform 120ms ease;
     border: 1px solid transparent;
 }
 
@@ -2449,7 +2470,7 @@ dialog.resume-dialog::backdrop {
     font-weight: 700;
     padding: 0.5rem 0.9rem;
     cursor: pointer;
-    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease, transform 120ms ease;
 }
 
 .sim-segment button:hover {

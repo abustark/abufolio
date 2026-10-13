@@ -126,6 +126,24 @@ document.addEventListener('DOMContentLoaded', () => {
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const smoothScrollBehavior = () => (prefersReducedMotion() ? 'auto' : 'smooth');
 
+    // Haptic taps — device vibration on touch screens (the physical half of
+    // the CSS :active press feedback). Desktop pointers never vibrate.
+    const canVibrate = () =>
+        'vibrate' in navigator && window.matchMedia('(pointer: coarse)').matches;
+    const tapHaptic = (pattern = 10) => {
+        try {
+            if (canVibrate()) navigator.vibrate(pattern);
+        } catch {
+            /* vibration unsupported — CSS press feedback still applies */
+        }
+    };
+
+    document.addEventListener('click', (event) => {
+        const target = event.target.closest('button, a, summary, input[type="checkbox"], input[type="range"], select');
+        if (!target) return;
+        tapHaptic(target.classList.contains('primary-button') ? [12, 30, 12] : 10);
+    });
+
     // -------------------------------------------------------------
     // 1. Toast Notifications
     // -------------------------------------------------------------
