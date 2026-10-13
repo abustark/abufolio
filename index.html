@@ -241,6 +241,7 @@
         <!-- Section 01: Role Fit & Focus -->
         <section class="section about-section" id="about" aria-labelledby="about-title">
             <div class="section-head">
+                <p class="section-index">01 / role fit</p>
                 <h2 id="about-title">Role Fit &amp; Focus</h2>
                 <p class="section-lead">
                     Targeting <strong>Data &amp; Analytics Engineering</strong>, <strong>Data Analysis</strong>, and <strong>Database / SQL Development</strong> roles. Combining rigorous enterprise data validation and SQL/Python scripting at Amazon with predictive modeling and full-stack AI application development.
@@ -301,7 +302,7 @@
         <!-- Section 02: Featured Projects -->
         <section class="section work-section" id="work" aria-labelledby="work-title">
             <div class="section-head">
-                <p class="section-index">01 / projects</p>
+                <p class="section-index">02 / projects</p>
                 <h2 id="work-title">Featured Projects</h2>
                 <p class="section-lead">
                     Live production builds and machine learning applications covering predictive analytics, full-stack AI integrations, and serverless backend services.
@@ -500,8 +501,12 @@
                             </a>
                             <button type="button" data-open-project="house-price" aria-label="Open case notes: House Price Prediction">Case notes</button>
                         </div>
-                        <div class="estimator" id="price-estimator">
-                            <p class="simulator-title">Instant estimator <span class="simulator-note">Simplified model</span></p>
+                        <details class="estimator" id="price-estimator">
+                            <summary class="estimator-summary">
+                                <span class="simulator-title">Instant estimator <span class="simulator-note">Simplified model</span></span>
+                                <span class="estimator-mini" id="est-price-mini">—</span>
+                            </summary>
+                            <div class="estimator-body">
                             <div class="sim-field">
                                 <label for="est-sqft">Area <output id="est-sqft-val" for="est-sqft">1,200 sq ft</output></label>
                                 <input type="range" id="est-sqft" min="500" max="5000" step="50" value="1200">
@@ -536,7 +541,8 @@
                             </div>
                             <p class="estimator-output" aria-live="polite"><span id="est-price">—</span> <span class="estimator-ci" id="est-ci"></span></p>
                             <p class="simulator-foot">Simplified in-browser estimate (±4.2%). The full Random Forest model runs in the <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/" target="_blank" rel="noopener noreferrer">Streamlit app</a>.</p>
-                        </div>
+                            </div>
+                        </details>
                     </div>
                 </article>
 
@@ -635,6 +641,7 @@
         <!-- Section 03: Technical Capabilities -->
         <section class="section skills-section" id="skills" aria-labelledby="skills-title">
             <div class="section-head">
+                <p class="section-index">03 / skills</p>
                 <h2 id="skills-title">Technical Capabilities</h2>
                 <p class="section-lead">
                     Core technical competencies across enterprise data analysis, database systems, predictive machine learning, and applied AI development.
@@ -749,36 +756,6 @@
                         <span>Throughput Escalation</span>
                         <span>+16% Team Efficiency</span>
                     </div>
-                    <div class="simulator" id="dq-simulator">
-                        <p class="simulator-title">Validation simulator <span class="simulator-note">Illustrative</span></p>
-                        <div class="sim-field">
-                            <label for="dq-volume">Dataset batch <output id="dq-volume-val" for="dq-volume">100k records</output></label>
-                            <input type="range" id="dq-volume" min="10000" max="500000" step="10000" value="100000">
-                        </div>
-                        <div class="sim-field">
-                            <span class="sim-label" id="dq-task-label">Annotation task</span>
-                            <div class="sim-segment" role="group" aria-labelledby="dq-task-label">
-                                <button type="button" data-dq-task="multiclass" aria-pressed="true">Multi-class</button>
-                                <button type="button" data-dq-task="bbox" aria-pressed="false">Bounding boxes</button>
-                                <button type="button" data-dq-task="crossmodal" aria-pressed="false">Cross-modal</button>
-                            </div>
-                        </div>
-                        <div class="sim-field">
-                            <label class="sim-check" for="dq-strict"><input type="checkbox" id="dq-strict" checked> Strict enterprise SLA</label>
-                        </div>
-                        <dl class="sim-metrics">
-                            <div><dt>Precision</dt><dd id="dq-precision">—</dd></div>
-                            <div><dt>Recall</dt><dd id="dq-recall">—</dd></div>
-                            <div><dt>F1-score</dt><dd id="dq-f1">—</dd></div>
-                            <div><dt>Throughput</dt><dd id="dq-tput">—</dd></div>
-                        </dl>
-                        <table class="sim-matrix">
-                            <caption>Confusion matrix · per 10k sampled</caption>
-                            <tr><td></td><th scope="col">Predicted +</th><th scope="col">Predicted −</th></tr>
-                            <tr><th scope="row">Actual +</th><td id="dq-tp">—</td><td id="dq-fn">—</td></tr>
-                            <tr><th scope="row">Actual −</th><td id="dq-fp">—</td><td id="dq-tn">—</td></tr>
-                        </table>
-                    </div>
                 </article>
             </div>
         </section>
@@ -786,6 +763,7 @@
         <!-- Section 04: Experience & Education -->
         <section class="section experience-section" id="experience" aria-labelledby="experience-title">
             <div class="section-head">
+                <p class="section-index">04 / experience</p>
                 <h2 id="experience-title">Experience &amp; Education</h2>
                 <p class="section-lead">
                     Enterprise data quality evaluation at Amazon and Master's degree in Computer Applications.
@@ -826,9 +804,9 @@
         <section class="section contact-section" id="contact" aria-labelledby="contact-title">
             <div class="contact-card spotlight-card reveal">
                 <div>
-                    <p class="section-index">02 / contact</p>
+                    <p class="section-index">05 / contact</p>
                     <h2 id="contact-title">Get In Touch</h2>
-                    <p>
+                    <p class="section-lead">
                         Open to <strong>Data &amp; Analytics Engineer</strong>, <strong>Data Analyst</strong>, <strong>Database / SQL Developer</strong>, and <strong>Applied AI</strong> roles — prioritizing Remote and Hybrid opportunities (Madurai, Coimbatore, Chennai). Feel free to connect directly via email or LinkedIn.
                     </p>
                     <div class="contact-links">

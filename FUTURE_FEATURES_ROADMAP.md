@@ -6,7 +6,7 @@ This roadmap documents the specifications for planned interactive Data, Machine 
 
 ## 1. Interactive Amazon Data Quality & Validation Simulator
 
-> Status 2026-10-13: shipped — embedded in the Skills → Enterprise Rigor card: batch slider (10k–500k), annotation-task segmented control, strict-SLA toggle, live Precision/Recall/F1/Throughput + illustrative confusion matrix per 10k sampled.
+> Status 2026-10-13: REMOVED per owner directive (too technical for general visitors). Shipped briefly embedded in the Skills → Enterprise Rigor card, then removed with its JS (`renderDQ`) and CSS (`.sim-metrics`, `.sim-matrix`, `.sim-check`).
 
 ### Overview
 As an **ML Data Associate II at Amazon**, one of Basith's primary achievements is validating large-scale multi-modal datasets with **98%+ accuracy** and driving a **+16% team workflow efficiency** improvement. This widget lets recruiters and hiring managers interact with real-world validation metrics directly on the page.
@@ -28,7 +28,7 @@ As an **ML Data Associate II at Amazon**, one of Basith's primary achievements i
 
 ## 2. In-Portfolio House Price ML Estimator Widget
 
-> Status 2026-10-13: shipped — embedded in the House Price project card: sqft slider (500–5,000), BHK pills, tier + amenities selects, instant ₹ Lakh estimate ±4.2% (simplified model; full Random Forest linked in-card).
+> Status 2026-10-13: shipped — embedded in the House Price project card: sqft slider (500–5,000), BHK pills, tier + amenities selects, instant ₹ Lakh estimate ±4.2% (simplified model; full Random Forest linked in-card). Collapsed by default behind a native disclosure with live mini-price (owner directive: too technical to show open).
 
 ### Overview
 Currently, the House Price Prediction project links out to an external Streamlit application. Embedding an instant interactive calculation widget directly inside the project card or case notes modal allows visitors to test the Random Forest regression model without leaving the site.
@@ -67,7 +67,7 @@ Instead of forcing visitors to open a separate tab for the PDF or rely on extern
 
 ## 4. Enhanced Spotlight Command Palette Shortcuts
 
-> Status 2026-10-13: all four shortcuts shipped — `/amazon`, `/skills`, `/resume` (quick-look modal), `/model` (in-card estimator; auto-resets the project filter).
+> Status 2026-10-13: all four shortcuts shipped — `/amazon`, `/skills`, `/resume` (quick-look modal), `/model` (auto-opens the collapsed estimator + resets the project filter).
 
 ### Overview
 Extend the Ctrl + K / Cmd + K Command Palette with direct action queries:

@@ -153,7 +153,7 @@
 }
 
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
     scroll-behavior: smooth;
     scrollbar-color: var(--accent) var(--bg);
     scrollbar-width: thin;
@@ -163,7 +163,7 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     margin: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
     background:
         radial-gradient(circle at 10% 8%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 34rem),
         radial-gradient(circle at 90% 14%, color-mix(in srgb, var(--accent-cool) 20%, transparent), transparent 30rem),
@@ -1284,8 +1284,16 @@ pre {
    About Section
 ------------------------------------------------------------- */
 .section-head {
+    position: sticky;
+    top: calc(5.4rem + env(safe-area-inset-top, 0px));
+    z-index: 60;
     max-width: 780px;
-    margin-bottom: 2.75rem;
+    margin: 0 -1rem 2.75rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .section-index,
@@ -2425,22 +2433,6 @@ dialog.resume-dialog::backdrop {
     cursor: pointer;
 }
 
-.sim-check {
-    display: flex !important;
-    align-items: center;
-    gap: 0.6rem;
-    cursor: pointer;
-    font-weight: 600 !important;
-    color: var(--muted) !important;
-}
-
-.sim-check input[type="checkbox"] {
-    width: 1.05rem;
-    height: 1.05rem;
-    accent-color: var(--accent);
-    cursor: pointer;
-}
-
 .sim-segment {
     display: flex;
     flex-wrap: wrap;
@@ -2490,77 +2482,6 @@ dialog.resume-dialog::backdrop {
     margin-bottom: 1rem;
 }
 
-.sim-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.6rem;
-    margin: 1.1rem 0 0;
-    padding: 0;
-}
-
-.sim-metrics > div {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--surface-strong) 70%, transparent);
-    padding: 0.6rem 0.4rem;
-    text-align: center;
-}
-
-.sim-metrics dt {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.25rem;
-}
-
-.sim-metrics dd {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1rem;
-    font-variant-numeric: tabular-nums;
-    color: var(--text);
-}
-
-.sim-matrix {
-    width: 100%;
-    margin-top: 0.85rem;
-    border-collapse: collapse;
-    font-size: 0.82rem;
-    font-variant-numeric: tabular-nums;
-}
-
-.sim-matrix caption {
-    margin-bottom: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: left;
-}
-
-.sim-matrix th,
-.sim-matrix td {
-    border: 1px solid var(--line);
-    padding: 0.4rem 0.3rem;
-    text-align: center;
-}
-
-.sim-matrix th {
-    color: var(--muted);
-    font-weight: 700;
-    background: color-mix(in srgb, var(--surface-strong) 60%, transparent);
-}
-
-.sim-matrix td {
-    color: var(--text);
-    font-weight: 700;
-}
-
 .estimator-output {
     margin: 1.1rem 0 0.4rem;
     font-family: var(--font-display);
@@ -2588,6 +2509,62 @@ dialog.resume-dialog::backdrop {
 .simulator-foot a {
     color: var(--accent);
     font-weight: 700;
+}
+
+/* Collapsed estimator (native disclosure, motion-safe) */
+.estimator-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+}
+
+.estimator-summary::-webkit-details-marker {
+    display: none;
+}
+
+.estimator-summary::after {
+    content: "+";
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 200ms ease;
+}
+
+details.estimator[open] .estimator-summary::after {
+    transform: rotate(45deg);
+}
+
+.estimator-summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.estimator-summary .simulator-title {
+    margin: 0;
+}
+
+.estimator-mini {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.15rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.estimator-body {
+    margin-top: 1.1rem;
 }
 
 /* -------------------------------------------------------------
@@ -3181,12 +3158,14 @@ dialog.resume-dialog::backdrop {
         gap: 0.75rem;
     }
 
-    .sim-2col {
-        grid-template-columns: 1fr;
+    .section-head {
+        top: calc(4.4rem + env(safe-area-inset-top, 0px));
+        margin-bottom: 2rem;
+        padding: 0.55rem 0.8rem;
     }
 
-    .sim-metrics {
-        grid-template-columns: repeat(2, 1fr);
+    .sim-2col {
+        grid-template-columns: 1fr;
     }
 
     .timeline-item time {

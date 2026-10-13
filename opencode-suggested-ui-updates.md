@@ -30,3 +30,10 @@ Status legend: ☐ not started · ☐ approved · ☑ done (all 12 shipped 2026-
 ---
 
 Approved subset and completion status get updated here as work lands.
+
+## Follow-up UI work (shipped 2026-10-13, v1.1.0)
+
+- ☑ **Sticky section heads** — About/Work/Skills/Experience headers pin below the pill nav (frosted bar, compact on mobile); `overflow-x: clip` keeps Chromium sticky working.
+- ☑ **Numbered section labels restored** — `01 / role fit` … `05 / contact` on all five sections; Contact intro standardized on `section-lead`.
+- ☑ **A1 simulator removed** — validation widget deleted from Skills (too technical); roadmap item 1 closed.
+- ☑ **A2 estimator collapsed** — native `<details>` closed by default with live mini-price; `/model` shortcut auto-opens it.

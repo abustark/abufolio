@@ -754,8 +754,13 @@ document.addEventListener('DOMContentLoaded', () => {
         closeCommandPalette();
 
         if (item.type === 'nav' && item.target) {
-            // The estimator lives inside a filterable card — reveal it first.
-            if (item.target === '#price-estimator') applyProjectFilter('all');
+            // The estimator lives inside a filterable card and a collapsed
+            // disclosure — reveal and open it first.
+            if (item.target === '#price-estimator') {
+                applyProjectFilter('all');
+                const disclosure = document.getElementById('price-estimator');
+                if (disclosure && 'open' in disclosure) disclosure.open = true;
+            }
             const el = document.querySelector(item.target);
             el?.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
         } else if (item.type === 'palette' && item.palette) {
@@ -869,63 +874,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const formatInt = (n) => Math.round(n).toLocaleString('en-IN');
 
-    // --- A1: Amazon validation simulator (illustrative curves) ---
-    const dqVolume = document.getElementById('dq-volume');
-    const dqVolumeVal = document.getElementById('dq-volume-val');
-    const dqStrict = document.getElementById('dq-strict');
-    const DQ_TASKS = {
-        multiclass: { dp: 0.004, dr: 0.006, tput: 1 },
-        bbox: { dp: 0.009, dr: 0.013, tput: 0.62 },
-        crossmodal: { dp: 0.014, dr: 0.019, tput: 0.45 }
-    };
-    let dqTask = 'multiclass';
-
-    const renderDQ = () => {
-        if (!dqVolume) return;
-        const task = DQ_TASKS[dqTask];
-        const strict = dqStrict?.checked !== false;
-        const precision = 0.987 - task.dp + (strict ? 0.003 : 0);
-        const recall = 0.981 - task.dr + (strict ? 0.003 : 0);
-        const f1 = (2 * precision * recall) / (precision + recall);
-        const tput = 4200 * task.tput * (strict ? 0.82 : 1);
-
-        const setText = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = value;
-        };
-        setText('dq-precision', `${(precision * 100).toFixed(1)}%`);
-        setText('dq-recall', `${(recall * 100).toFixed(1)}%`);
-        setText('dq-f1', `${(f1 * 100).toFixed(1)}%`);
-        setText('dq-tput', `${formatInt(tput)}/hr`);
-        if (dqVolumeVal) {
-            const n = Number(dqVolume.value);
-            dqVolumeVal.textContent = `${formatInt(n)} records`;
-        }
-
-        // Confusion matrix per 10k sampled, 8% defect prevalence.
-        const actualPos = 800;
-        const tp = recall * actualPos;
-        const fn = actualPos - tp;
-        const fp = tp / precision - tp;
-        const tn = 9200 - fp;
-        setText('dq-tp', formatInt(tp));
-        setText('dq-fn', formatInt(fn));
-        setText('dq-fp', formatInt(fp));
-        setText('dq-tn', formatInt(tn));
-    };
-
-    dqVolume?.addEventListener('input', renderDQ);
-    dqStrict?.addEventListener('change', renderDQ);
-    document.querySelectorAll('[data-dq-task]').forEach((button) => {
-        button.addEventListener('click', () => {
-            dqTask = button.dataset.dqTask;
-            document.querySelectorAll('[data-dq-task]').forEach((b) =>
-                b.setAttribute('aria-pressed', String(b === button)));
-            renderDQ();
-        });
-    });
-    renderDQ();
-
     // --- A2: house price estimator (simplified in-browser model) ---
     const estSqft = document.getElementById('est-sqft');
     const estSqftVal = document.getElementById('est-sqft-val');
@@ -945,8 +893,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (estSqftVal) estSqftVal.textContent = `${formatInt(sqft)} sq ft`;
         const priceEl = document.getElementById('est-price');
         const ciEl = document.getElementById('est-ci');
+        const miniEl = document.getElementById('est-price-mini');
         if (priceEl) priceEl.textContent = `₹${lakh.toFixed(1)} L`;
         if (ciEl) ciEl.textContent = '±4.2%';
+        if (miniEl) miniEl.textContent = `₹${lakh.toFixed(1)} L`;
     };
 
     estSqft?.addEventListener('input', renderEst);
