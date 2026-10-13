@@ -92,7 +92,11 @@ const COMMAND_ACTIONS = [
     { type: 'project', title: 'Linkly — URL Shortener', subtitle: 'Serverless Vercel & MongoDB Atlas', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
     { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
     { type: 'project', title: 'N-Gelo — Digital Marketplace', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app', badge: 'Live App' },
-    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' }
+    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' },
+
+    // Shortcut queries (/amazon, /skills)
+    { type: 'nav', title: '/amazon — Amazon Experience', subtitle: 'ML Data Associate II, validation highlights', target: '#experience', badge: 'Shortcut', keywords: '/amazon amazon' },
+    { type: 'nav', title: '/skills — Technical Skills', subtitle: 'Python, Scikit-learn, SQL, Power BI', target: '#skills', badge: 'Shortcut', keywords: '/skills skills' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -114,6 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectDialog = document.getElementById('project-dialog');
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
+
+    // Shared reduced-motion flag (mirrors the CSS media query).
+    const prefersReducedMotion = () =>
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const smoothScrollBehavior = () => (prefersReducedMotion() ? 'auto' : 'smooth');
 
     // -------------------------------------------------------------
     // 1. Toast Notifications
@@ -360,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             event.preventDefault();
             closeMobileMenu();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
 
             if (anchor.classList.contains('nav-link')) {
                 navLinks.forEach((link) => link.classList.toggle('active', link === anchor));
@@ -437,7 +446,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('.reveal').forEach((item) => {
+        // Stagger siblings so rows cascade instead of mounting at once.
+        const siblings = Array.from(item.parentElement?.querySelectorAll(':scope > .reveal') || []);
+        const cascade = Math.min(Math.max(siblings.indexOf(item), 0), 6) * 60;
+        item.style.transitionDelay = `${cascade}ms`;
         revealObserver.observe(item);
+    });
+
+    // -------------------------------------------------------------
+    // 7b. Animated Stat Counters (run once, motion-safe)
+    // -------------------------------------------------------------
+    const animateCounter = (el) => {
+        const raw = (el.textContent || '').trim();
+        const match = raw.match(/^([\d.]+)(.*)$/);
+        if (!match) return;
+        const target = parseFloat(match[1]);
+        const suffix = match[2] || '';
+        if (prefersReducedMotion()) {
+            el.textContent = `${target}${suffix}`;
+            return;
+        }
+        const duration = 1200;
+        const start = performance.now();
+        const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = `${Math.round(target * eased)}${suffix}`;
+            if (progress < 1) window.requestAnimationFrame(tick);
+        };
+        window.requestAnimationFrame(tick);
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('dt').forEach((dt) => {
+                if (dt.dataset.counted) return;
+                dt.dataset.counted = 'true';
+                animateCounter(dt);
+            });
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.signal-grid').forEach((grid) => {
+        counterObserver.observe(grid);
     });
 
     // -------------------------------------------------------------
@@ -631,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (item.type === 'nav' && item.target) {
             const el = document.querySelector(item.target);
-            el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            el?.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
         } else if (item.type === 'palette' && item.palette) {
             setPalette(item.palette, true);
         } else if (item.type === 'project' && item.target) {
@@ -693,7 +746,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const filtered = COMMAND_ACTIONS.filter((item) =>
             item.title.toLowerCase().includes(query) ||
             item.subtitle.toLowerCase().includes(query) ||
-            item.badge.toLowerCase().includes(query)
+            item.badge.toLowerCase().includes(query) ||
+            (item.keywords || '').toLowerCase().includes(query)
         );
         renderCommandResults(filtered);
     });

@@ -61,6 +61,8 @@ Instead of forcing visitors to open a separate tab for the PDF or rely on extern
 
 ## 4. Enhanced Spotlight Command Palette Shortcuts
 
+> Status 2026-10-13: `/amazon` and `/skills` shipped (keyword-matched shortcuts). `/model` and `/resume` are parked until the House Price Estimator (item 2) and Resume Modal (item 3) exist.
+
 ### Overview
 Extend the Ctrl + K / Cmd + K Command Palette with direct action queries:
 - /amazon -> Instantly jump to Amazon enterprise experience and validation highlights.
