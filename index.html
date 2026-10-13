@@ -149,7 +149,7 @@
                             </span>
                         </a>
                         <a class="secondary-button" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank"
-                            rel="noopener noreferrer">
+                            rel="noopener noreferrer" data-open-resume aria-label="Preview resume (quick look)">
                             <span>Resume</span>
                             <span class="btn-icon-pill" aria-hidden="true">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -821,7 +821,7 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 <span>GitHub</span>
             </a>
-            <a class="footer-link" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open resume PDF">
+            <a class="footer-link" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank" rel="noopener noreferrer" data-open-resume aria-label="Preview resume (quick look)">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 <span>Resume</span>
             </a>
@@ -880,6 +880,54 @@
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </span>
             </a>
+        </div>
+    </dialog>
+
+    <!-- Resume Quick-Look Modal -->
+    <dialog class="resume-dialog" id="resume-dialog" aria-modal="true" aria-labelledby="resume-title">
+        <div class="dialog-header">
+            <div>
+                <p class="project-label">Resume · Quick look</p>
+                <h2 id="resume-title">Basith AbuSyed</h2>
+                <p class="resume-role">Data &amp; Analytics Engineer</p>
+            </div>
+            <button class="dialog-close" type="button" data-close-resume aria-label="Close resume preview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <p class="resume-contact">
+            <a href="mailto:bas.abu0802@gmail.com">bas.abu0802@gmail.com</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/bas-abu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/abustark" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <span>Madurai, India · Remote &amp; Hybrid</span>
+        </p>
+        <p class="resume-summary">Data &amp; Analytics Engineer with 3 years of enterprise experience at Amazon validating large-scale ML datasets with 98%+ accuracy — SQL &amp; Python validation scripting, predictive modeling, and deployed AI applications.</p>
+        <div class="dialog-grid resume-grid">
+            <div>
+                <h4>Experience</h4>
+                <p><strong>ML Data Associate II · Amazon</strong> (Aug 2023 — Present, Chennai): 98%+ data accuracy across multimodal datasets; productivity up to 240% of goals; SQL/Python validation tooling; UI/UX work driving +16% team efficiency.</p>
+            </div>
+            <div>
+                <h4>Education</h4>
+                <p><strong>MCA</strong>, The American College (2021 — 2023): DBMS, Machine Learning, Cloud, OOD.<br><strong>BCA</strong>, Thiagarajar College (2018 — 2021): CS foundations, RDBMS, DSA, Web Dev.</p>
+            </div>
+        </div>
+        <div class="tag-row resume-tags" aria-label="Core skills">
+            <span>SQL</span><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>Power BI</span><span>PostgreSQL</span><span>MongoDB</span><span>Streamlit</span>
+        </div>
+        <div class="resume-actions">
+            <a class="primary-button" href="assets/Basith_AbuSyed_Resume.pdf" download="Basith_AbuSyed_Resume.pdf">
+                <span>Download PDF</span>
+                <span class="btn-icon-pill" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </span>
+            </a>
+            <button class="secondary-button" type="button" data-copy-resume>
+                <span>Copy plaintext</span>
+            </button>
         </div>
     </dialog>
 

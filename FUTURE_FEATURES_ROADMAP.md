@@ -46,6 +46,8 @@ Currently, the House Price Prediction project links out to an external Streamlit
 
 ## 3. Embedded Resume Quick-Look Modal
 
+> Status 2026-10-13: shipped — `<dialog id="resume-dialog">` with summary, experience, education, skills, Download PDF + Copy plaintext; opened from hero/footer resume buttons and the palette `open-resume` action.
+
 ### Overview
 Instead of forcing visitors to open a separate tab for the PDF or rely on external PDF viewers, provide an integrated, glassmorphism modal for instant reading with 1-click download.
 
@@ -61,7 +63,7 @@ Instead of forcing visitors to open a separate tab for the PDF or rely on extern
 
 ## 4. Enhanced Spotlight Command Palette Shortcuts
 
-> Status 2026-10-13: `/amazon` and `/skills` shipped (keyword-matched shortcuts). `/model` and `/resume` are parked until the House Price Estimator (item 2) and Resume Modal (item 3) exist.
+> Status 2026-10-13: `/amazon`, `/skills` and `/resume` (opens the quick-look modal) shipped. `/model` is parked until the House Price Estimator (item 2) exists.
 
 ### Overview
 Extend the Ctrl + K / Cmd + K Command Palette with direct action queries:

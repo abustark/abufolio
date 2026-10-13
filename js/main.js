@@ -83,7 +83,7 @@ const COMMAND_ACTIONS = [
     // Actions
     { type: 'action', title: 'Copy Email Address', subtitle: 'Copy bas.abu0802@gmail.com', action: 'copy-email', badge: 'Action' },
     { type: 'action', title: 'Toggle Dark / Light Theme', subtitle: 'Switch color theme', action: 'toggle-theme', badge: 'Action' },
-    { type: 'action', title: 'Open Resume (PDF)', subtitle: 'View resume in new tab', action: 'open-resume', badge: 'Action' },
+    { type: 'action', title: 'Open Resume (PDF)', subtitle: 'Quick look, download or copy plaintext', action: 'open-resume', badge: 'Action', keywords: '/resume resume cv' },
     { type: 'action', title: 'Copy Portfolio Link', subtitle: 'Share this website link', action: 'copy-link', badge: 'Action' },
 
     // Projects
@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const commandResults = document.getElementById('command-results');
     const cmdKeycap = document.getElementById('cmd-keycap');
     const projectDialog = document.getElementById('project-dialog');
+    const resumeDialog = document.getElementById('resume-dialog');
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
 
@@ -624,6 +625,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
+    // 11b. Resume Quick-Look Modal (<dialog>)
+    // -------------------------------------------------------------
+    const RESUME_PLAINTEXT = [
+        'Basith AbuSyed — Data & Analytics Engineer',
+        'bas.abu0802@gmail.com · linkedin.com/in/bas-abu · github.com/abustark · Madurai, India (Remote & Hybrid)',
+        '',
+        'SUMMARY',
+        'Data & Analytics Engineer with 3 years of enterprise experience at Amazon validating large-scale ML datasets with 98%+ accuracy. SQL & Python validation scripting, predictive modeling, and deployed AI applications.',
+        '',
+        'EXPERIENCE',
+        'ML Data Associate II, Amazon — Chennai (Aug 2023 to Present). 98%+ data accuracy across multimodal datasets; productivity up to 240% of goals; SQL/Python validation tooling; UI/UX work driving +16% team efficiency.',
+        '',
+        'EDUCATION',
+        'MCA, The American College, Madurai (2021-2023). BCA, Thiagarajar College, Madurai (2018-2021).',
+        '',
+        'SKILLS',
+        'SQL, Python, Pandas, Scikit-learn, Power BI, PostgreSQL, MySQL, MongoDB Atlas, Streamlit, Node.js'
+    ].join('\n');
+
+    let lastResumeFocus = null;
+
+    const openResumeDialog = () => {
+        if (!resumeDialog) return;
+        lastResumeFocus = document.activeElement;
+        resumeDialog.showModal();
+        body.classList.add('modal-open');
+    };
+
+    const closeResumeDialog = () => {
+        if (!resumeDialog) return;
+        resumeDialog.close();
+        body.classList.remove('modal-open');
+        if (lastResumeFocus && typeof lastResumeFocus.focus === 'function') {
+            lastResumeFocus.focus();
+        }
+    };
+
+    document.querySelectorAll('[data-open-resume]').forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            closeMobileMenu();
+            openResumeDialog();
+        });
+    });
+
+    document.querySelector('[data-close-resume]')?.addEventListener('click', closeResumeDialog);
+
+    resumeDialog?.addEventListener('click', (event) => {
+        const rect = resumeDialog.getBoundingClientRect();
+        const clickedOutside = event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom;
+        if (clickedOutside) closeResumeDialog();
+    });
+
+    document.querySelector('[data-copy-resume]')?.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(RESUME_PLAINTEXT);
+            showToast('Resume summary copied to clipboard');
+        } catch (error) {
+            showToast('Copy failed — download the PDF instead');
+        }
+    });
+
+    // -------------------------------------------------------------
     // 12. Spotlight Command Palette (Ctrl+K / Cmd+K)
     // -------------------------------------------------------------
     const isMac = navigator.platform.toUpperCase().includes('MAC');
@@ -695,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (item.action === 'toggle-theme') {
             toggleTheme();
         } else if (item.action === 'open-resume') {
-            window.open('assets/Basith_AbuSyed_Resume.pdf', '_blank');
+            openResumeDialog();
         } else if (item.action === 'copy-link') {
             navigator.clipboard.writeText(window.location.href.split('#')[0]);
             showToast('Portfolio link copied');
@@ -787,6 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeMobileMenu();
             if (commandMenu?.open) closeCommandPalette();
             if (projectDialog?.open) closeProjectDialog();
+            if (resumeDialog?.open) closeResumeDialog();
         }
     });
 
