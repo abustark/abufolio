@@ -6,13 +6,23 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.4`** (current head is `1.1.3` — see below)
+> - **`main` → `1.1.5`** (current head is `1.1.4` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.4 - sticky title unit, section-change haptics, scroll-reactive separators
+- **Date**: 2026-10-13
+- **Owner directive**: stick the section title with the number bar (no gap); haptic on every section transition; small dynamic-color line at the middle/end of sections.
+- **Changes**:
+  - `.section-sticky` wrapper (label + h2) pins as one full-bleed frosted unit, zero gap; lead scrolls away; 01–04 only, contact card too short (unchanged).
+  - Scroll-spy fires `tapHaptic([15, 40, 15])` on active-section change (scroll-driven, initial fire skipped; coarse-pointer gated).
+  - `.section-end` separators at the end of all 5 sections: accent gradient fill + glow track visibility via `--fill` observer; static full line under reduced-motion.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.5`.
+  - No gates or browser checks run per owner order (build only).
 
 ### 1.1.3 - full-bleed sticky number tiles that pin for the whole section
 - **Date**: 2026-10-13

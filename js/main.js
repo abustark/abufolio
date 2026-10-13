@@ -430,6 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
     updateScrollState();
 
+    let lastActiveSectionId = null;
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
@@ -438,6 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
             });
             updateNavIndicator();
+            // Haptic tick on every section transition (scroll-driven only —
+            // skip the initial observation fire).
+            if (lastActiveSectionId !== null && lastActiveSectionId !== id) {
+                tapHaptic([15, 40, 15]);
+            }
+            lastActiveSectionId = id;
         });
     }, {
         rootMargin: '-30% 0px -50% 0px',
@@ -446,6 +453,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('main section[id]').forEach((section) => {
         sectionObserver.observe(section);
+    });
+
+    // Scroll-reactive section-end separators: fill + glow track visibility.
+    const endFillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const bar = entry.target.firstElementChild;
+            if (!bar) return;
+            const fill = prefersReducedMotion()
+                ? 100
+                : Math.round(15 + entry.intersectionRatio * 85);
+            bar.style.setProperty('--fill', `${fill}%`);
+        });
+    }, {
+        threshold: Array.from({ length: 11 }, (_, i) => i / 10)
+    });
+
+    document.querySelectorAll('.section-end').forEach((el) => {
+        endFillObserver.observe(el);
     });
 
     // Initial positioning

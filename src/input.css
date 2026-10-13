@@ -1309,27 +1309,52 @@ pre {
     margin-bottom: 2.75rem;
 }
 
-/* Full-bleed sticky number tile: direct child of .section so it pins for
-   the entire section, not just while the head is on screen. Breaks out of
-   the centered 1120px column to span the viewport edge-to-edge. */
-.section > .section-index {
+/* Sticky title unit: number tile + h2 pin together as one full-bleed block
+   for the entire section; the lead scrolls away normally. Direct child of
+   .section so sticky holds for the full section height. */
+.section-sticky {
     position: sticky;
     top: calc(5.4rem + env(safe-area-inset-top, 0px));
     z-index: 60;
-    display: block;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     margin-bottom: 1.75rem;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
     background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+}
+
+.section-sticky .section-index {
+    margin: 0;
+    border-top: 1px solid var(--line);
     padding: 0.65rem max(1rem, calc((100vw - var(--max-width)) / 2));
+}
+
+.section-sticky h2 {
+    margin: 0;
+    padding: 0.7rem max(1rem, calc((100vw - var(--max-width)) / 2)) 0.9rem;
+}
+
+/* Scroll-reactive end-of-section separator: a small centered line whose
+   accent fill + glow track how far into view it is (--fill, set by JS). */
+.section-end {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-end span {
+    --fill: 15%;
+    display: block;
+    width: min(180px, 50vw);
+    height: 2px;
+    border-radius: 999px;
+    background:
+        linear-gradient(90deg, var(--accent), var(--accent-cool)) 0 0 / var(--fill) 100% no-repeat,
+        color-mix(in srgb, var(--line-strong) 65%, transparent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .section-index,
@@ -3208,10 +3233,17 @@ details.estimator[open] .estimator-summary::after {
         padding: 0;
     }
 
-    .section > .section-index {
+    .section-sticky {
         top: calc(4.4rem + env(safe-area-inset-top, 0px));
         margin-bottom: 1.4rem;
+    }
+
+    .section-sticky .section-index {
         padding: 0.55rem 1rem;
+    }
+
+    .section-sticky h2 {
+        padding: 0.6rem 1rem 0.75rem;
     }
 
     .sim-2col {

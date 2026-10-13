@@ -40,3 +40,6 @@ Approved subset and completion status get updated here as work lands.
 - ☑ **Haptic taps (v1.1.1)** — `:active` press states on all icon/segment/dialog/command/nav controls + `navigator.vibrate` on coarse pointers (10ms, double-tap on primary CTAs).
 - ☑ **Sticky number tiles (v1.1.2)** — only the `01–05` label bar sticks (full-width box, frosted); h2 + lead scroll normally.
 - ☑ **Mobile left-cut fixes (v1.1.2)** — removed exact-viewport sticky head; metric pill + status pill wrap; emails break anywhere.
+- ☑ **Sticky title unit (v1.1.4)** — label + h2 pin as one flush full-bleed unit; lead scrolls away.
+- ☑ **Section-change haptics (v1.1.4)** — triple-tap buzz on scroll-spy section transitions.
+- ☑ **Scroll-reactive separators (v1.1.4)** — accent line at each section end fills/glows with visibility.
