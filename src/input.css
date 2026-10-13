@@ -1305,16 +1305,26 @@ pre {
    About Section
 ------------------------------------------------------------- */
 .section-head {
+    max-width: 780px;
+    margin-bottom: 2.75rem;
+}
+
+/* Sticky number tile: the small label pins as a full-width box while its
+   section scrolls; the h2 + lead scroll away normally. Scoped so card
+   labels (about/skills) never stick. */
+.section-head > .section-index,
+.contact-card .section-index {
     position: sticky;
     top: calc(5.4rem + env(safe-area-inset-top, 0px));
     z-index: 60;
-    max-width: 780px;
-    margin: 0 -1rem 2.75rem;
-    padding: 0.7rem 1rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--line);
     border-radius: var(--radius-md);
     background: color-mix(in srgb, var(--bg) 82%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    padding: 0.6rem 1rem;
 }
 
 .section-index,
@@ -1542,6 +1552,7 @@ pre {
 a.about-email {
     margin-top: 0;
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 a.about-email:hover {
@@ -1833,6 +1844,12 @@ a.about-email:hover {
     font-weight: 700;
     margin-bottom: 1rem;
     align-self: flex-start;
+    max-width: 100%;
+}
+
+.skills-metric-pill > span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .skills-metric-pill .status-dot {
@@ -2361,6 +2378,7 @@ dialog.resume-dialog::backdrop {
 .resume-contact a {
     color: var(--accent);
     font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
 .resume-summary {
@@ -3062,7 +3080,8 @@ details.estimator[open] .estimator-summary::after {
         padding: 0.55rem 0.75rem;
         font-size: 0.76rem;
         gap: 0.45rem;
-        white-space: nowrap;
+        white-space: normal;
+        text-align: center;
         justify-content: center;
     }
 
@@ -3180,9 +3199,16 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-head {
-        top: calc(4.4rem + env(safe-area-inset-top, 0px));
+        top: auto;
         margin-bottom: 2rem;
-        padding: 0.55rem 0.8rem;
+        padding: 0;
+    }
+
+    .section-head > .section-index,
+    .contact-card .section-index {
+        top: calc(4.4rem + env(safe-area-inset-top, 0px));
+        margin-bottom: 1.25rem;
+        padding: 0.5rem 0.8rem;
     }
 
     .sim-2col {
@@ -3381,7 +3407,8 @@ details.estimator[open] .estimator-summary::after {
         padding: 0.5rem 0.65rem;
         font-size: 0.72rem;
         gap: 0.4rem;
-        white-space: nowrap;
+        white-space: normal;
+        text-align: center;
         justify-content: center;
     }
 

@@ -38,3 +38,5 @@ Approved subset and completion status get updated here as work lands.
 - ☑ **A1 simulator removed** — validation widget deleted from Skills (too technical); roadmap item 1 closed.
 - ☑ **A2 estimator collapsed** — native `<details>` closed by default with live mini-price; `/model` shortcut auto-opens it.
 - ☑ **Haptic taps (v1.1.1)** — `:active` press states on all icon/segment/dialog/command/nav controls + `navigator.vibrate` on coarse pointers (10ms, double-tap on primary CTAs).
+- ☑ **Sticky number tiles (v1.1.2)** — only the `01–05` label bar sticks (full-width box, frosted); h2 + lead scroll normally.
+- ☑ **Mobile left-cut fixes (v1.1.2)** — removed exact-viewport sticky head; metric pill + status pill wrap; emails break anywhere.

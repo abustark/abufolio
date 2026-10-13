@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.2`** (current head is `1.1.1` — see below)
+> - **`main` → `1.1.3`** (current head is `1.1.2` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.2 - sticky number tiles only + mobile left-cut fixes
+- **Date**: 2026-10-13
+- **Owner directive**: only the number tile (`01 / role fit` etc.) stays sticky — headings and descriptions scroll away; while stuck it sits in a full-width box. Mobile left edge cuts titles/descriptions — find and fix.
+- **Changes**:
+  - Sticky moved from `.section-head` to the label itself (scoped `.section-head > .section-index` + contact label, so card labels never stick): always-box bar (border, blur, full container width), compact mobile variant; `.section-head` back to static.
+  - Mobile cut fixes: removed the exact-viewport-width sticky head with negative margins (sub-pixel pannable overflow); `.skills-metric-pill` text wraps (e.g. the 44-char accuracy pill overflowed ~66px at 320px); `.status-pill` wraps on mobile; `overflow-wrap: anywhere` on about/resume email links.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.3`.
+  - No gates or browser checks run per owner order (build only).
 
 ### 1.1.1 - haptic tap feedback: press states + mobile vibration
 - **Date**: 2026-10-13
