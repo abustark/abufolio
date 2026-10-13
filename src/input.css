@@ -2364,6 +2364,7 @@ dialog.resume-dialog::backdrop {
     border-radius: var(--radius-md);
     background: color-mix(in srgb, var(--bg) 45%, transparent);
     padding: 1.15rem 1.2rem;
+    scroll-margin-top: 6.5rem;
 }
 
 .simulator-title {
