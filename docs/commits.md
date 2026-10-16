@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.6`** (current head is `1.1.5` — see below)
+> - **`main` → `1.1.7`** (current head is `1.1.6` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.6 - verification follow-ups: per-breakpoint sticky tuck, tighter hero band gaps
+- **Date**: 2026-10-16
+- **Context**: The deferred Playwright C-pass (over local http, real fonts) on 1.1.5 exposed: the sticky strip still existed at 481–960px because the real header is 71.6/78.8px there (not the assumed 81px), and the band→photo gap measured 100–108px.
+- **Changes**:
+  - `.section-sticky` `top` retuned to measured header heights — ≤640 → 4.4rem (from 5rem), new ≤960 override 4.9rem; strips eliminated at 390/480/620/768 while >960 stayed tucked; `elementFromPoint` probes now hit the sticky unit everywhere tested.
+  - `.hero-panel` top margin: ≤640 3rem → 1.75rem, ≤480 2.5rem → 1.5rem — band→photo gap 108/100 → ~88/84px; the profile photo still starts below the fold on 360/390/430, preserving the scroll-reveal behavior.
+  - C-pass verified: 0 console errors over http; light-mode contrast ≥4.5 on all four palettes; 44px touch targets; filter edge-fade + chip snap; terminal word-wrap intact; tech strip above the 900px desktop fold; dark mode intact; no horizontal overflow from 360–1440.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.7`.
 
 ### 1.1.5 - mobile hero signal band, sticky tuck, light-mode contrast, 44px targets
 - **Date**: 2026-10-16

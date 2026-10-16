@@ -2866,6 +2866,10 @@ details.estimator[open] .estimator-summary::after {
         display: inline-flex;
     }
 
+    .section-sticky {
+        top: calc(4.9rem + env(safe-area-inset-top, 0px));
+    }
+
     .project-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -3094,7 +3098,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-panel {
-        margin-top: 3rem;
+        margin-top: 1.75rem;
     }
 
     .profile-card {
@@ -3238,7 +3242,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(5rem + env(safe-area-inset-top, 0px));
+        top: calc(4.4rem + env(safe-area-inset-top, 0px));
         margin-bottom: 1.4rem;
     }
 
@@ -3440,7 +3444,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-panel {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
     }
 
     .profile-card {
