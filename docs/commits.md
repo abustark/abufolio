@@ -6,13 +6,25 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.5`** (current head is `1.1.4` — see below)
+> - **`main` → `1.1.6`** (current head is `1.1.5` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.5 - mobile hero signal band, sticky tuck, light-mode contrast, 44px targets
+- **Date**: 2026-10-16
+- **Owner directive**: keep the mobile hero photo as a scroll reveal but fill the dead void with a designed, taller stats band; ship the core audit fixes plus the four selected polish items; verification pass deferred until after push.
+- **Changes**:
+  - Mobile hero (≤640 + ≤480): `.signal-grid` is now a taller "signal band" — hairline top rule, more padding (2.5rem/2rem), stat tiles ≥7rem with vertically centered content, larger numerals (≤640 clamp 1.75–2.15rem, ≤480 1.8rem), roomier eyebrow/lede rhythm; `.hero-panel` top margin tightened (3rem/2.5rem) so the profile photo stays just below the fold and still reveals on scroll.
+  - `.section-sticky` mobile `top` retuned to the frosted header (5rem at ≤640, new 4.1rem override at ≤480) — removes the 12px strip where scrolling content flashed above the stuck title.
+  - Header icon buttons (palette/theme/menu) raised to 44px touch targets on both mobile breakpoints.
+  - Light-mode palettes: accent ramps darkened to clear 4.5:1 text contrast (emerald `#047857`/`#0f766e`, blue `#0369a1`/`#075985`, amber `#b45309`/`#be123c`; violet already passed) — glows and hairlines follow.
+  - Polish: mobile filter bar gets edge-fade mask + chip scroll-snap; tech strip top margin 3.5rem → 1.75rem (ticker clears the 900px desktop fold); terminal card wraps on word boundaries (`overflow-wrap`); command palette placeholder shortened so it no longer clips under the close button; removed a dead duplicate `.hero` rule.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.6`.
+  - No gates or browser checks run per owner order (build only); Playwright verification pass scheduled after push.
 
 ### 1.1.4 - sticky title unit, section-change haptics, scroll-reactive separators
 - **Date**: 2026-10-13
