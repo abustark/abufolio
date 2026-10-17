@@ -2924,8 +2924,8 @@ details.estimator[open] .estimator-summary::after {
     .palette-trigger {
         width: auto;
         min-width: unset;
-        height: 2.75rem;
-        min-height: 44px;
+        height: 2.35rem;
+        min-height: 38px;
         padding: 0 0.55rem;
         border-radius: 999px;
         display: inline-flex;
@@ -2961,10 +2961,10 @@ details.estimator[open] .estimator-summary::after {
 
     .theme-toggle,
     .menu-toggle {
-        width: 2.75rem;
-        height: 2.75rem;
-        min-height: 44px;
-        min-width: 44px;
+        width: 2.35rem;
+        height: 2.35rem;
+        min-height: 38px;
+        min-width: 38px;
         padding: 0;
         border-radius: 50%;
         display: inline-flex;
@@ -3242,7 +3242,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(4.4rem + env(safe-area-inset-top, 0px));
+        top: calc(4.05rem + env(safe-area-inset-top, 0px));
         margin-bottom: 1.4rem;
     }
 
@@ -3336,8 +3336,8 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .palette-trigger {
-        height: 2.75rem;
-        min-height: 44px;
+        height: 2.25rem;
+        min-height: 36px;
         padding: 0 0.5rem;
         gap: 0.28rem;
         border-radius: 999px;
@@ -3361,10 +3361,10 @@ details.estimator[open] .estimator-summary::after {
 
     .theme-toggle,
     .menu-toggle {
-        width: 2.75rem;
-        height: 2.75rem;
-        min-width: 44px;
-        min-height: 44px;
+        width: 2.25rem;
+        height: 2.25rem;
+        min-width: 36px;
+        min-height: 36px;
         padding: 0;
         border-radius: 50%;
     }
@@ -3377,7 +3377,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(4.1rem + env(safe-area-inset-top, 0px));
+        top: calc(3.6rem + env(safe-area-inset-top, 0px));
     }
 
     .hero {

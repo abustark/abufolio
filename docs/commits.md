@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.7`** (current head is `1.1.6` — see below)
+> - **`main` → `1.1.8`** (current head is `1.1.7` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.1.7 - mobile header controls reverted to pre-1.1.5 sizes, sticky re-tucked
+- **Date**: 2026-10-17
+- **Owner directive**: the phone header bar looked bulky after the 44px touch-target change — full revert of the header controls to the old, smaller sizes (accepting smaller tap areas).
+- **Changes**:
+  - Header icon controls back to pre-1.1.5 sizes — ≤640: palette trigger 44 → 38px (`2.35rem`), theme + menu toggles 44×44 → 38×38; ≤480: palette trigger 44 → 36px (`2.25rem`), toggles 44×44 → 36×36. Desktop/tablet (>640) untouched; filter chips stay 44px.
+  - `.section-sticky` re-tucked to the now-shorter header (58.1px at ≤480, 65.6px at ≤640): ≤640 `4.4rem → 4.05rem`, ≤480 `4.1rem → 3.6rem`; strips eliminated again at 390/480/620, 768/1024 unchanged.
+  - C-pass re-run on rebuild: 31/32 (the single "fail" is the known artifact — `scroll-snap-type: x proximity` serializes to `x`; built CSS carries `x proximity`), 0 console errors over http, sticky probe hits the unit at all five widths, hero metrics unchanged from 1.1.6, light/dark contrast intact.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.1.8`.
 
 ### 1.1.6 - verification follow-ups: per-breakpoint sticky tuck, tighter hero band gaps
 - **Date**: 2026-10-16
