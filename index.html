@@ -56,12 +56,43 @@
     <link rel="preconnect" href="https://formspree.io" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
     <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/geist-sans-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="pics/abu.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="pics/abu-400.webp 400w, pics/abu.webp 800w" imagesizes="(max-width: 640px) 320px, 400px">
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var theme = 'dark';
+
+            try {
+                var savedTheme = localStorage.getItem('portfolio-theme');
+                if (savedTheme === 'light' || savedTheme === 'dark') {
+                    theme = savedTheme;
+                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    theme = 'light';
+                }
+            } catch (e) {}
+
+            root.classList.add('js');
+            root.classList.toggle('light-mode', theme === 'light');
+            root.classList.toggle('dark-mode', theme === 'dark');
+
+            try {
+                var savedPalette = localStorage.getItem('portfolio-palette');
+                if (savedPalette) {
+                    root.setAttribute('data-palette', savedPalette);
+                }
+            } catch (e) {}
+
+            var themeColor = document.querySelector('meta[name="theme-color"]');
+            if (themeColor) {
+                themeColor.setAttribute('content', theme === 'light' ? '#f8fafc' : '#090e14');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="dark-mode">
+<body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="mobile-nav-scrim" id="mobile-scrim" aria-hidden="true"></div>
 
@@ -92,7 +123,7 @@
                 </button>
 
                 <!-- Interactive Color Palette Switcher (Instant Cycle) -->
-                <button class="palette-trigger" type="button" id="palette-trigger" title="Switch Color Palette (Emerald / Violet / Blue / Amber)" aria-label="Switch Color Palette">
+                <button class="palette-trigger" type="button" id="palette-trigger" title="Cyber Emerald palette — click for Electric Violet" aria-label="Color palette: Cyber Emerald. Switch to Electric Violet">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
                         <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
@@ -106,7 +137,7 @@
                     </span>
                 </button>
 
-                <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Toggle dark and light theme" aria-pressed="false">
+                <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to light theme" title="Switch to light theme">
                     <span class="theme-toggle-track" aria-hidden="true">
                         <span class="theme-toggle-dot"></span>
                     </span>
@@ -149,10 +180,10 @@
                             </span>
                         </a>
                         <a class="secondary-button" href="assets/Basith_AbuSyed_Resume.pdf" target="_blank"
-                            rel="noopener noreferrer" data-open-resume aria-label="Preview resume (quick look)">
+                            rel="noopener noreferrer" data-open-resume aria-label="Preview resume">
                             <span>Resume</span>
                             <span class="btn-icon-pill" aria-hidden="true">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                             </span>
                         </a>
                         <button class="secondary-button" type="button" data-copy-email>
@@ -822,10 +853,10 @@
                         Open to <strong>Data &amp; Analytics Engineer</strong>, <strong>Data Analyst</strong>, <strong>Database / SQL Developer</strong>, and <strong>Applied AI</strong> roles — prioritizing Remote and Hybrid opportunities (Madurai, Coimbatore, Chennai). Feel free to connect directly via email or LinkedIn.
                     </p>
                     <div class="contact-links">
-                        <button class="secondary-button" type="button" data-copy-email>
+                        <a class="secondary-button" href="mailto:bas.abu0802@gmail.com">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                             <span>bas.abu0802@gmail.com</span>
-                        </button>
+                        </a>
                         <a href="https://www.linkedin.com/in/bas-abu/" target="_blank" rel="noopener noreferrer">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                             <span>LinkedIn</span>

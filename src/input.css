@@ -9,7 +9,16 @@
     font-family: "Space Grotesk";
     font-style: normal;
     font-display: swap;
-    font-weight: 400 700;
+    font-weight: 400;
+    src: url("../assets/fonts/space-grotesk-latin-400-normal.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
     src: url("../assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -18,16 +27,41 @@
     font-family: "Geist Sans";
     font-style: normal;
     font-display: swap;
-    font-weight: 400 900;
-    src: url("../assets/fonts/geist-sans-latin-500-normal.woff2") format("woff2");
+    font-weight: 400;
+    src: url("../assets/fonts/geist-sans-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url("../assets/fonts/geist-sans-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url("../assets/fonts/geist-sans-latin-700-normal.woff2") format("woff2");
 }
 
 @font-face {
     font-family: "Geist Mono";
     font-style: normal;
     font-display: swap;
-    font-weight: 400 700;
-    src: url("../assets/fonts/geist-mono-latin-500-normal.woff2") format("woff2");
+    font-weight: 400;
+    src: url("../assets/fonts/geist-mono-latin-400-normal.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url("../assets/fonts/geist-mono-latin-700-normal.woff2") format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -463,7 +497,7 @@ button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.5rem;
+    min-height: 2.75rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: color-mix(in srgb, var(--surface) 75%, transparent);
@@ -507,7 +541,8 @@ button {
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    min-height: 2.5rem;
+    height: 2.75rem;
+    min-height: 2.75rem;
     padding: 0 0.75rem;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -666,9 +701,9 @@ button {
 
 .theme-toggle {
     position: relative;
-    width: 3.8rem;
-    height: 2.35rem;
-    min-height: 2.35rem;
+    width: 4rem;
+    height: 2.75rem;
+    min-height: 2.75rem;
     padding: 0;
     overflow: hidden;
 }
@@ -696,7 +731,7 @@ button {
 }
 
 .light-mode .theme-toggle-dot {
-    transform: translateY(-50%) translateX(1.58rem);
+    transform: translateY(-50%) translateX(1.78rem);
 }
 
 .theme-icon-moon,
@@ -706,7 +741,7 @@ button {
 
 .menu-toggle {
     display: none;
-    width: 2.6rem;
+    width: 2.75rem;
     flex-direction: column;
     gap: 0.3rem;
 }
@@ -757,19 +792,19 @@ main > section[id] {
     scroll-margin-top: calc(5.8rem + env(safe-area-inset-top, 0px));
 }
 
-.hero {
+.section.hero {
     min-height: 85vh;
     min-height: 85dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: calc(7.5rem + env(safe-area-inset-top, 0px));
-    padding-bottom: 3.5rem;
+    padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3rem;
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
     gap: clamp(2.5rem, 5vw, 4.5rem);
     align-items: center;
 }
@@ -806,6 +841,7 @@ h2,
 h3 {
     color: var(--text);
     font-family: var(--font-display);
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.04;
 }
@@ -813,8 +849,8 @@ h3 {
 h1 {
     max-width: 780px;
     margin-bottom: 1.35rem;
-    font-size: clamp(2.8rem, 6.5vw, 5.6rem);
-    line-height: 1.08;
+    font-size: clamp(2.6rem, 5.2vw, 4rem);
+    line-height: 1.05;
 }
 
 /* Prominent, readable Section Headings */
@@ -840,22 +876,23 @@ h3 {
 
 .hero-lede {
     max-width: 660px;
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.9rem;
 }
 
 .role-rotator-slot {
-    display: inline-block;
-    min-width: 17.5ch;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin-top: 0.08em;
     text-align: left;
-    vertical-align: bottom;
 }
 
 #dynamic-role {
     position: relative;
-    display: inline-block;
+    display: inline;
     color: var(--accent);
     text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 40%, transparent);
-    white-space: nowrap;
+    white-space: normal;
 }
 
 #dynamic-role::after {
@@ -1023,7 +1060,7 @@ h3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     max-width: 700px;
-    margin: 2.5rem 0 0;
+    margin: 2rem 0 0;
 }
 
 .signal-grid div {
@@ -1314,7 +1351,7 @@ pre {
    .section so sticky holds for the full section height. */
 .section-sticky {
     position: sticky;
-    top: calc(5.4rem + env(safe-area-inset-top, 0px));
+    top: calc(6rem + env(safe-area-inset-top, 0px));
     z-index: 60;
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -1333,6 +1370,7 @@ pre {
 }
 
 .section-sticky h2 {
+    max-width: none;
     margin: 0;
     padding: 0.7rem max(1rem, calc((100vw - var(--max-width)) / 2)) 0.9rem;
 }
@@ -1706,11 +1744,10 @@ a.about-email:hover {
     color: var(--accent);
     margin: 0;
     min-height: 1.3rem;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .project-content h3 {
@@ -1723,7 +1760,7 @@ a.about-email:hover {
     margin: 0;
 }
 
-.project-content p {
+.project-content p:not(.project-label) {
     color: var(--muted);
     font-size: 0.94rem;
     line-height: 1.6;
@@ -2697,13 +2734,21 @@ details.estimator[open] .estimator-summary::after {
 /* -------------------------------------------------------------
    Scroll Reveal Animation
 ------------------------------------------------------------- */
+/* Content is visible by default so the page still works without JS.
+   The inline head script adds `.js` before first paint, which enables
+   the reveal animation for JS-enabled visitors. */
 .reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.js .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 500ms ease, transform 500ms ease;
 }
 
-.reveal.visible {
+.js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -2759,11 +2804,11 @@ details.estimator[open] .estimator-summary::after {
         grid-template-columns: 1fr;
     }
 
-    .hero {
+    .section.hero {
         display: block;
         min-height: auto;
         padding-top: calc(6rem + env(safe-area-inset-top, 0px));
-        padding-bottom: 3.5rem;
+        padding-bottom: 3rem;
     }
 
     .hero-copy {
@@ -2867,7 +2912,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(4.9rem + env(safe-area-inset-top, 0px));
+        top: calc(5.25rem + env(safe-area-inset-top, 0px));
     }
 
     .project-grid {
@@ -2924,9 +2969,9 @@ details.estimator[open] .estimator-summary::after {
     .palette-trigger {
         width: auto;
         min-width: unset;
-        height: 2.35rem;
-        min-height: 38px;
-        padding: 0 0.55rem;
+        height: 2.75rem;
+        min-height: 44px;
+        padding: 0 0.6rem;
         border-radius: 999px;
         display: inline-flex;
         align-items: center;
@@ -2961,10 +3006,10 @@ details.estimator[open] .estimator-summary::after {
 
     .theme-toggle,
     .menu-toggle {
-        width: 2.35rem;
-        height: 2.35rem;
-        min-height: 38px;
-        min-width: 38px;
+        width: 2.75rem;
+        height: 2.75rem;
+        min-height: 44px;
+        min-width: 44px;
         padding: 0;
         border-radius: 50%;
         display: inline-flex;
@@ -3012,11 +3057,11 @@ details.estimator[open] .estimator-summary::after {
         scroll-margin-top: calc(5.2rem + env(safe-area-inset-top, 0px));
     }
 
-    .hero {
+    .section.hero {
         display: block;
         min-height: auto;
-        padding-top: calc(5.8rem + env(safe-area-inset-top, 0px));
-        padding-bottom: 3.5rem;
+        padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+        padding-bottom: 2.5rem;
     }
 
     .hero-copy {
@@ -3024,21 +3069,20 @@ details.estimator[open] .estimator-summary::after {
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 0.85rem;
-        min-height: calc(100svh - 7.5rem);
-        min-height: calc(100dvh - 7.5rem);
+        min-height: auto;
         min-width: 0;
     }
 
     .eyebrow {
         display: inline-flex;
         align-items: center;
-        margin-bottom: 2.75rem;
+        margin-bottom: 1.5rem;
     }
 
     h1 {
-        font-size: clamp(1.85rem, 8.2vw, 2.5rem);
-        letter-spacing: -0.025em;
-        line-height: 1.18;
+        font-size: clamp(2rem, 8.6vw, 2.6rem);
+        letter-spacing: -0.03em;
+        line-height: 1.12;
     }
 
     .role-rotator-slot {
@@ -3068,7 +3112,7 @@ details.estimator[open] .estimator-summary::after {
         gap: 0.5rem;
         padding: 0;
         margin-top: auto;
-        padding-top: 2.5rem;
+        padding-top: 1.5rem;
         border-top: 1px solid var(--line);
     }
 
@@ -3077,8 +3121,8 @@ details.estimator[open] .estimator-summary::after {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 7rem;
-        padding: 1.5rem 0.6rem;
+        min-height: 5.5rem;
+        padding: 1.25rem 0.6rem;
         text-align: center;
     }
 
@@ -3098,12 +3142,18 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-panel {
-        margin-top: 1.75rem;
+        margin-top: 1.5rem;
     }
 
     .profile-card {
-        max-width: 320px;
+        max-width: 300px;
         margin: 0 auto;
+    }
+
+    /* The terminal card duplicates the hero stats and wraps awkwardly at
+       phone widths, so keep the portrait clean on small screens. */
+    .terminal-card {
+        display: none;
     }
 
     .status-pill {
@@ -3212,7 +3262,7 @@ details.estimator[open] .estimator-summary::after {
         line-height: 1.3;
     }
 
-    .project-content p {
+    .project-content p:not(.project-label) {
         font-size: 0.88rem;
         line-height: 1.55;
         -webkit-line-clamp: 3;
@@ -3242,7 +3292,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(4.05rem + env(safe-area-inset-top, 0px));
+        top: calc(4.55rem + env(safe-area-inset-top, 0px));
         margin-bottom: 1.4rem;
     }
 
@@ -3336,9 +3386,9 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .palette-trigger {
-        height: 2.25rem;
-        min-height: 36px;
-        padding: 0 0.5rem;
+        height: 2.75rem;
+        min-height: 44px;
+        padding: 0 0.55rem;
         gap: 0.28rem;
         border-radius: 999px;
     }
@@ -3361,10 +3411,10 @@ details.estimator[open] .estimator-summary::after {
 
     .theme-toggle,
     .menu-toggle {
-        width: 2.25rem;
-        height: 2.25rem;
-        min-width: 36px;
-        min-height: 36px;
+        width: 2.75rem;
+        height: 2.75rem;
+        min-width: 44px;
+        min-height: 44px;
         padding: 0;
         border-radius: 50%;
     }
@@ -3377,28 +3427,27 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .section-sticky {
-        top: calc(3.6rem + env(safe-area-inset-top, 0px));
+        top: calc(4.2rem + env(safe-area-inset-top, 0px));
     }
 
-    .hero {
-        padding-top: calc(5.2rem + env(safe-area-inset-top, 0px));
+    .section.hero {
+        padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
         padding-bottom: 2.5rem;
     }
 
     .hero-copy {
         padding-top: 0.85rem;
-        min-height: calc(100svh - 6.8rem);
-        min-height: calc(100dvh - 6.8rem);
+        min-height: auto;
         min-width: 0;
     }
 
     .eyebrow {
-        margin-bottom: 2.4rem;
+        margin-bottom: 1.5rem;
     }
 
     h1 {
-        font-size: clamp(1.6rem, 7.5vw, 2.15rem);
-        line-height: 1.2;
+        font-size: clamp(2rem, 8.8vw, 2.5rem);
+        line-height: 1.12;
     }
 
     .role-rotator-slot {
@@ -3416,7 +3465,7 @@ details.estimator[open] .estimator-summary::after {
     .signal-grid {
         gap: 0.35rem;
         margin-top: auto;
-        padding-top: 2rem;
+        padding-top: 1.5rem;
     }
 
     .signal-grid div {
@@ -3424,8 +3473,8 @@ details.estimator[open] .estimator-summary::after {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 7rem;
-        padding: 1.25rem 0.5rem;
+        min-height: 5.5rem;
+        padding: 1rem 0.5rem;
     }
 
     .signal-grid dt {
@@ -3482,7 +3531,7 @@ details.estimator[open] .estimator-summary::after {
         font-size: 1.12rem;
     }
 
-    .project-content p {
+    .project-content p:not(.project-label) {
         font-size: 0.85rem;
     }
 
@@ -3512,5 +3561,13 @@ details.estimator[open] .estimator-summary::after {
     dialog.command-dialog {
         width: calc(100% - 1rem);
         padding: 1.25rem 1rem;
+    }
+}
+
+/* At 320px the brand name collides with the action cluster. The logo mark
+   still carries the brand and the home link keeps its full aria-label. */
+@media (max-width: 340px) {
+    .brand > span:last-child {
+        display: none;
     }
 }

@@ -222,6 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('portfolio-palette', activePal.id);
         } catch {}
 
+        const nextPal = PALETTES[(currentPaletteIndex + 1) % PALETTES.length];
+        paletteTrigger?.setAttribute('aria-label', `Color palette: ${activePal.name}. Switch to ${nextPal.name}`);
+        paletteTrigger?.setAttribute('title', `${activePal.name} palette — click for ${nextPal.name}`);
+
         updateDynamicCursor();
 
         if (notify) {
@@ -302,7 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
         root.classList.toggle('light-mode', light);
         root.classList.toggle('dark-mode', !light);
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', light ? '#f8fafc' : '#090e14');
-        themeToggle?.setAttribute('aria-pressed', String(light));
+        const themeAction = light ? 'Switch to dark theme' : 'Switch to light theme';
+        themeToggle?.setAttribute('aria-label', themeAction);
+        themeToggle?.setAttribute('title', themeAction);
         updateDynamicCursor();
     };
 
