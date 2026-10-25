@@ -550,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
     const projectCards = Array.from(document.querySelectorAll('.project-card[data-category]'));
+    const projectGroups = Array.from(document.querySelectorAll('[data-project-group]'));
 
     const applyProjectFilter = (filter) => {
         filterButtons.forEach((item) => {
@@ -562,6 +563,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const categories = card.dataset.category?.split(' ') || [];
             const match = filter === 'all' || categories.includes(filter);
             card.classList.toggle('is-hidden', !match);
+        });
+
+        // A group with no matching card collapses, so the featured grid and
+        // the "More projects" list never leave an empty shell behind.
+        projectGroups.forEach((group) => {
+            const hasVisible = group.querySelector('.project-card:not(.is-hidden)');
+            group.classList.toggle('is-empty', !hasVisible);
         });
     };
 

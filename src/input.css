@@ -1316,6 +1316,15 @@ h3 {
     }
 }
 
+/* At three-up widths the browser bar is too tight for dots + URL + badge;
+   the mockup reads better with just the traffic lights and live status.
+   Below 961px the cards go full-width again, so the URL fits. */
+@media (min-width: 961px) and (max-width: 1200px) {
+    .project-grid .browser-url-pill {
+        display: none;
+    }
+}
+
 pre {
     margin: 0;
     overflow-x: auto;
@@ -1579,8 +1588,8 @@ pre {
 ------------------------------------------------------------- */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem;
     transition: opacity 200ms ease;
     align-items: stretch;
 }
@@ -1871,6 +1880,169 @@ a.about-email:hover {
 }
 
 .project-card.is-hidden {
+    display: none;
+}
+
+/* -------------------------------------------------------------
+   Work — Secondary Projects (compact rows)
+   The three strongest builds stay as full cards above; the rest
+   become a tighter list so the section reads in two passes.
+------------------------------------------------------------- */
+.project-more {
+    margin-top: 3rem;
+}
+
+.project-more-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.project-more-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.project-rows {
+    display: grid;
+    gap: 1rem;
+}
+
+.project-row {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+    height: auto;
+    padding: 1.25rem;
+}
+
+.project-row-thumb {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface-strong);
+}
+
+.project-row-thumb picture,
+.project-row-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 350ms ease;
+}
+
+.project-row:hover .project-row-thumb img {
+    transform: scale(1.03);
+}
+
+.project-row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.project-row-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+}
+
+/* Keeps the badge right-aligned even when it wraps under a long label. */
+.project-row-meta .live-badge {
+    margin-left: auto;
+}
+
+.project-row-body h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.project-row-desc {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-row .tag-row {
+    min-height: 0;
+    gap: 0.4rem;
+}
+
+.project-row .tag-row span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+}
+
+.project-row .project-actions {
+    margin-top: 0.25rem;
+    padding-top: 0;
+    border-top: 0;
+    gap: 0.6rem;
+}
+
+.project-row .project-actions a,
+.project-row .project-actions button {
+    min-height: 2.75rem;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem 0.45rem 1rem;
+}
+
+/* Monogram tile reused at thumbnail scale (CoverCraft, no screenshot) */
+.project-row-thumb .covercraft-tile {
+    height: 100%;
+    aspect-ratio: auto;
+    gap: 0.15rem;
+    padding: 0.5rem;
+    border-bottom: 0;
+}
+
+.project-row-thumb .covercraft-mono {
+    font-size: 1.5rem;
+}
+
+.project-row-thumb .covercraft-word {
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+}
+
+.project-row-thumb .covercraft-lock {
+    display: none;
+}
+
+/* The monogram tile inherits --ink (white in light mode), which vanishes on
+   the pale tile at thumbnail size. */
+.light-mode .project-row-thumb .covercraft-mono,
+.light-mode .project-row-thumb .covercraft-word {
+    color: var(--text);
+}
+
+/* A filter with no matches in a group collapses that group entirely. */
+.project-grid.is-empty,
+.project-more.is-empty {
     display: none;
 }
 
@@ -2998,6 +3170,11 @@ details.estimator[open] .estimator-summary::after {
         gap: 2rem;
     }
 
+    .project-row {
+        grid-template-columns: 12rem minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
     .timeline-item {
         grid-template-columns: 12rem minmax(0, 1fr);
     }
@@ -3346,6 +3523,25 @@ details.estimator[open] .estimator-summary::after {
         -webkit-line-clamp: 3;
     }
 
+    .project-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .project-row-thumb {
+        aspect-ratio: 2 / 1;
+    }
+
+    .project-row-body h3 {
+        font-size: 1.05rem;
+    }
+
+    .project-more {
+        margin-top: 2.25rem;
+    }
+
     .skills-card {
         padding: 1.5rem 1.25rem;
     }
@@ -3622,6 +3818,13 @@ details.estimator[open] .estimator-summary::after {
     .project-actions > * {
         flex: 1 1 100%;
         width: 100%;
+    }
+
+    /* Compact rows keep their actions inline — stacked full-width buttons
+       would undo the point of the tighter list. */
+    .project-row .project-actions > * {
+        flex: 0 1 auto;
+        width: auto;
     }
 
     .contact-links {
