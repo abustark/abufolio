@@ -505,46 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // 7b. Animated Stat Counters (run once, motion-safe)
-    // -------------------------------------------------------------
-    const animateCounter = (el) => {
-        const raw = (el.textContent || '').trim();
-        const match = raw.match(/^([\d.]+)(.*)$/);
-        if (!match) return;
-        const target = parseFloat(match[1]);
-        const suffix = match[2] || '';
-        if (prefersReducedMotion()) {
-            el.textContent = `${target}${suffix}`;
-            return;
-        }
-        const duration = 1200;
-        const start = performance.now();
-        const tick = (now) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = `${Math.round(target * eased)}${suffix}`;
-            if (progress < 1) window.requestAnimationFrame(tick);
-        };
-        window.requestAnimationFrame(tick);
-    };
-
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll('dt').forEach((dt) => {
-                if (dt.dataset.counted) return;
-                dt.dataset.counted = 'true';
-                animateCounter(dt);
-            });
-            observer.unobserve(entry.target);
-        });
-    }, { threshold: 0.4 });
-
-    document.querySelectorAll('.signal-grid').forEach((grid) => {
-        counterObserver.observe(grid);
-    });
-
-    // -------------------------------------------------------------
     // 8. Interactive Animated Sparkline Chart
     // -------------------------------------------------------------
     const sparkLine = document.getElementById('spark-line');
@@ -685,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'bas.abu0802@gmail.com · linkedin.com/in/bas-abu · github.com/abustark · Madurai, India (Remote & Hybrid)',
         '',
         'SUMMARY',
-        'Data & Analytics Engineer with 3 years of enterprise experience at Amazon validating large-scale ML datasets with 98%+ accuracy. SQL & Python validation scripting, predictive modeling, and deployed AI applications.',
+        'Data & Analytics Engineer with 3+ years of enterprise experience at Amazon validating large-scale ML datasets with 98%+ accuracy. SQL & Python validation scripting, predictive modeling, and deployed AI applications.',
         '',
         'EXPERIENCE',
         'ML Data Associate II, Amazon — Chennai (Aug 2023 to Present). 98%+ data accuracy across multimodal datasets; productivity up to 240% of goals; SQL/Python validation tooling; UI/UX work driving +16% team efficiency.',

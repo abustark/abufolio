@@ -712,26 +712,48 @@ button {
     position: absolute;
     inset: 0.22rem;
     border-radius: inherit;
-    background:
-        radial-gradient(circle at 22% 50%, var(--accent) 0 0.28rem, transparent 0.32rem),
-        radial-gradient(circle at 78% 50%, var(--accent-cool) 0 0.28rem, transparent 0.32rem);
+    background: color-mix(in srgb, var(--text) 10%, transparent);
 }
 
 .theme-toggle-dot {
     position: absolute;
     top: 50%;
     left: 0.24rem;
+    display: grid;
+    place-items: center;
     width: 1.68rem;
     height: 1.68rem;
     border-radius: 50%;
     background: var(--text);
+    color: var(--ink);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
     transform: translateY(-50%);
-    transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.theme-toggle-dot svg {
+    width: 0.92rem;
+    height: 0.92rem;
+    display: block;
+}
+
+.theme-toggle-dot .theme-dot-sun {
+    display: none;
+}
+
+.light-mode .theme-toggle-dot .theme-dot-moon {
+    display: none;
+}
+
+.light-mode .theme-toggle-dot .theme-dot-sun {
+    display: block;
+}
+
+/* Travel = button width − track insets (0.22rem × 2) − borders (1px × 2)
+   − thumb (1.68rem) − padding (0.24rem × 2). Derived rather than hardcoded
+   so the thumb stays symmetric inside the track and never crosses it. */
 .light-mode .theme-toggle-dot {
-    transform: translateY(-50%) translateX(1.78rem);
+    transform: translateY(-50%) translateX(calc(4rem - 0.44rem - 2px - 1.68rem - 0.48rem));
 }
 
 .theme-icon-moon,
@@ -1098,6 +1120,45 @@ h3 {
     letter-spacing: -0.01em;
 }
 
+/* Stat band entrance. The final values are always in the HTML, so no
+   inaccurate intermediate figure (e.g. 92%+ for 98%+) is ever shown. */
+@keyframes signal-rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.signal-grid dt,
+.signal-grid dd {
+    animation: signal-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.signal-grid dd {
+    animation-delay: 70ms;
+}
+
+.signal-grid div:nth-child(2) dt {
+    animation-delay: 80ms;
+}
+
+.signal-grid div:nth-child(2) dd {
+    animation-delay: 150ms;
+}
+
+.signal-grid div:nth-child(3) dt {
+    animation-delay: 160ms;
+}
+
+.signal-grid div:nth-child(3) dd {
+    animation-delay: 230ms;
+}
+
 .profile-card {
     position: relative;
 }
@@ -1241,9 +1302,18 @@ h3 {
 }
 
 .terminal-card pre {
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
+    white-space: pre;
+    overflow-x: auto;
+    overflow-wrap: normal;
     font-size: 0.78rem;
+    scrollbar-width: thin;
+}
+
+/* Keep the code block on one line per statement in the narrower hero column. */
+@media (max-width: 1200px) {
+    .terminal-card pre {
+        font-size: 0.74rem;
+    }
 }
 
 pre {
@@ -2085,6 +2155,13 @@ textarea:focus {
     outline: none;
 }
 
+/* Light-mode fields need a stronger edge than the 12% line token. */
+.light-mode input:not([type="range"]),
+.light-mode textarea,
+.light-mode select {
+    border-color: color-mix(in srgb, var(--text) 24%, transparent);
+}
+
 textarea {
     resize: vertical;
 }
@@ -2773,6 +2850,7 @@ details.estimator[open] .estimator-summary::after {
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
