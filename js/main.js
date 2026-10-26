@@ -546,6 +546,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
+    //  "More projects" disclosure (phones only)
+    // -------------------------------------------------------------
+    const moreDetails = document.querySelector('.project-more');
+    const narrowQuery = window.matchMedia('(max-width: 640px)');
+
+    // Desktop keeps the list expanded; phones start collapsed so the Work
+    // section reads as three featured projects plus a single control.
+    const syncMoreDisclosure = () => {
+        if (!moreDetails) return;
+        moreDetails.open = !narrowQuery.matches;
+    };
+
+    if (moreDetails) {
+        syncMoreDisclosure();
+
+        if (narrowQuery.addEventListener) {
+            narrowQuery.addEventListener('change', syncMoreDisclosure);
+        } else if (narrowQuery.addListener) {
+            narrowQuery.addListener(syncMoreDisclosure);
+        }
+
+        // Cards inside a closed <details> have no layout box, so the reveal
+        // observer never fires for them. Mark them visible when it opens.
+        moreDetails.addEventListener('toggle', () => {
+            if (!moreDetails.open) return;
+            moreDetails.querySelectorAll('.reveal').forEach((item) => {
+                item.classList.add('visible');
+            });
+        });
+    }
+
+    // -------------------------------------------------------------
     // 10. Fluid Project Filter with Animation
     // -------------------------------------------------------------
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
@@ -571,6 +603,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasVisible = group.querySelector('.project-card:not(.is-hidden)');
             group.classList.toggle('is-empty', !hasVisible);
         });
+
+        // A match can live inside the collapsed list, so open it instead of
+        // leaving the result hidden behind the control.
+        if (
+            moreDetails &&
+            narrowQuery.matches &&
+            filter !== 'all' &&
+            !moreDetails.classList.contains('is-empty')
+        ) {
+            moreDetails.open = true;
+        }
     };
 
     filterButtons.forEach((button) => {

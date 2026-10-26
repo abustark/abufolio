@@ -1889,6 +1889,9 @@ a.about-email:hover {
     margin-top: 3rem;
 }
 
+/* "More projects" is a <details> disclosure. On desktop it renders as the
+   plain divider it always was: the summary is inert and the count/chevron
+   stay hidden. Phones turn the same row into the control. */
 .project-more-title {
     display: flex;
     align-items: center;
@@ -1900,13 +1903,26 @@ a.about-email:hover {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    list-style: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+.project-more-title::-webkit-details-marker {
+    display: none;
 }
 
 .project-more-title::after {
     content: "";
+    order: 1;
     flex: 1;
     height: 1px;
     background: var(--line);
+}
+
+.project-more-count,
+.project-more-chevron {
+    display: none;
 }
 
 .project-rows {
@@ -3537,6 +3553,39 @@ details.estimator[open] .estimator-summary::after {
 
     .project-more {
         margin-top: 2.25rem;
+    }
+
+    /* The divider becomes the disclosure control at phone widths. */
+    .project-more-title {
+        pointer-events: auto;
+        cursor: pointer;
+        min-height: 2.75rem;
+        margin-bottom: 1rem;
+        padding: 0.35rem 0;
+    }
+
+    .project-more-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.4rem;
+        height: 1.4rem;
+        padding: 0 0.4rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+    }
+
+    .project-more-chevron {
+        display: block;
+        flex: none;
+        order: 2;
+        transition: transform 220ms ease;
+    }
+
+    .project-more[open] .project-more-chevron {
+        transform: rotate(180deg);
     }
 
     .skills-card {
