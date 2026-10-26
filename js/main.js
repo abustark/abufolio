@@ -48,12 +48,12 @@ const projectDetails = {
         link: 'https://ecom-seven-sand.vercel.app'
     },
     covercraft: {
-        label: 'AI Document Generator · React & TypeScript',
+        label: 'Applied AI · Nov 2025 - Oct 2026',
         title: 'CoverCraft — AI Cover Letter Builder',
-        description: 'An AI-powered cover letter builder engineered with React, TypeScript, and OpenRouter AI. Bridges applicant resume bullet points with target job descriptions or posting URLs to produce custom, high-converting cover letters.',
+        description: 'Pairs a resume (PDF/DOCX, parsed in the browser) with a pasted or fetched job posting and drafts a tailored cover letter. Two Vercel functions keep the OpenRouter key server-side and pull postings past browser CORS; a 4-mode × 4-tone router maps 16 generation paths to different models at a pinned temperature, and finished letters export as PDF or DOCX.',
         focus: 'Architected Vercel serverless proxy functions to secure API keys, implemented server-side URL scrapers to bypass CORS restrictions on job boards, and integrated Google OAuth 2.0 authentication.',
-        tags: ['React', 'TypeScript', 'OpenRouter AI', 'Vercel Serverless', 'Google OAuth'],
-        link: 'https://github.com/abustark/cover_letter_gen'
+        tags: ['React 19', 'TypeScript', 'Vercel Functions', 'OpenRouter', 'Google OAuth'],
+        link: 'https://coverltr.vercel.app/'
     }
 };
 
@@ -92,7 +92,7 @@ const COMMAND_ACTIONS = [
     { type: 'project', title: 'Linkly — URL Shortener', subtitle: 'Serverless Vercel & MongoDB Atlas', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
     { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
     { type: 'project', title: 'N-Gelo — Digital Marketplace', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app', badge: 'Live App' },
-    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' },
+    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'Applied AI Letter Generator (React 19)', target: 'https://coverltr.vercel.app/', badge: 'Live App' },
 
     // Shortcut queries (/amazon, /skills)
     { type: 'nav', title: '/amazon — Amazon Experience', subtitle: 'ML Data Associate II, validation highlights', target: '#experience', badge: 'Shortcut', keywords: '/amazon amazon' },
