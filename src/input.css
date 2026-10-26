@@ -3316,15 +3316,13 @@ details.estimator[open] .estimator-summary::after {
         padding-bottom: 2.5rem;
     }
 
-    /* The copy wrapper steps out of the layout on phones so the portrait can
-       sit between the pitch and the CTAs. Its top padding moves to the grid. */
-    .hero-grid {
-        row-gap: 0;
-        padding-top: 0.85rem;
-    }
-
     .hero-copy {
-        display: contents;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 0.85rem;
+        min-height: auto;
+        min-width: 0;
     }
 
     .eyebrow {
@@ -3365,10 +3363,9 @@ details.estimator[open] .estimator-summary::after {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 0.5rem;
         padding: 0;
-        margin-top: 2rem;
+        margin-top: auto;
         padding-top: 1.5rem;
         border-top: 1px solid var(--line);
-        order: 3;
     }
 
     .signal-grid div {
@@ -3397,8 +3394,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-panel {
-        order: 1;
-        margin-top: 0;
+        margin-top: 1.5rem;
     }
 
     .profile-card {
@@ -3593,16 +3589,8 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-actions {
-        order: 2;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.85rem;
+        flex-direction: column;
         width: 100%;
-        margin-top: 1.75rem;
-    }
-
-    .hero-actions > .primary-button {
-        grid-column: 1 / -1;
     }
 
     .hero-actions > * {
@@ -3743,6 +3731,7 @@ details.estimator[open] .estimator-summary::after {
 
     .signal-grid {
         gap: 0.35rem;
+        margin-top: auto;
         padding-top: 1.5rem;
     }
 
@@ -3771,7 +3760,7 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .hero-panel {
-        margin-top: 0;
+        margin-top: 1.5rem;
     }
 
     .profile-card {
@@ -3854,17 +3843,5 @@ details.estimator[open] .estimator-summary::after {
 @media (max-width: 340px) {
     .brand > span:last-child {
         display: none;
-    }
-}
-
-/* Two-up hero buttons get too narrow for "Copy email" below this width,
-   so stack them until there is room for the side-by-side pair. */
-@media (max-width: 359px) {
-    .hero-actions {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-actions > .primary-button {
-        grid-column: auto;
     }
 }
