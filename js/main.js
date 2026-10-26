@@ -555,7 +555,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // section reads as three featured projects plus a single control.
     const syncMoreDisclosure = () => {
         if (!moreDetails) return;
-        moreDetails.open = !narrowQuery.matches;
+        const isNarrow = narrowQuery.matches;
+        moreDetails.open = !isNarrow;
+
+        // The divider is inert above the phone breakpoint, so keep it out of
+        // the tab order as well - pointer-events alone only stops the mouse.
+        const summary = moreDetails.querySelector('.project-more-title');
+        if (summary) summary.tabIndex = isNarrow ? 0 : -1;
     };
 
     if (moreDetails) {
