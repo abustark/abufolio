@@ -6,13 +6,25 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.3`** (current head is `1.3.2` — see below)
+> - **`main` → `1.3.4`** (current head is `1.3.3` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.3 - Apply abufolio-liquid-glass patch formula to section sticky headers
+- **Date**: 2026-10-29
+- **Changes**:
+  - Integrated the exact Liquid Glass formula from `abufolio-liquid-glass.patch` directly into `.section-sticky` ([src/input.css](file:///d:/abufolio/src/input.css)):
+    - Increased optical blur to `26px` with `175%` saturation (`backdrop-filter: blur(26px) saturate(175%)`).
+    - Diagonal glass sheen gradient: `linear-gradient(115deg, rgba(255, 255, 255, 0.11), transparent 42%)` layered over `color-mix(in srgb, var(--surface) 76%, transparent)`.
+    - Double specular highlight: `inset 0 1px 0 rgba(255, 255, 255, 0.16)` and under-lip `inset 0 -1px 0 rgba(255, 255, 255, 0.035)`.
+    - Spatial depth shadow: `0 12px 34px rgba(0, 0, 0, 0.2)`.
+    - Full light-mode frosted glass support with `rgba(255, 255, 255, 0.72)` sheen and `rgba(15, 23, 42, 0.09)` depth.
+  - Recompiled production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.4`.
 
 ### 1.3.2 - Update browser tab favicon to bold black A on crisp white badge
 - **Date**: 2026-10-29
