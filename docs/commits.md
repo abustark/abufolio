@@ -6,13 +6,27 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.1`** (current head is `1.3.0` — see below)
+> - **`main` → `1.3.2`** (current head is `1.3.1` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.1 - Fix mobile filter pills vertical clipping and apply Apple glass blur to section headers
+- **Date**: 2026-10-29
+- **Changes**:
+  - **Fixed Mobile Filter Pills Vertical Clipping**:
+    - Identified root cause in `.filter-bar`: `overflow-x: auto` forces `overflow-y` to compute to `auto`/`hidden` per CSS specification, while `.filter-bar` had `padding-top: 0` and minimal `padding-bottom: 0.4rem`. The chips sat flush against the top overflow boundary (`y = 0`), clipping the 1px border and capsule curves at both top and bottom edges, while `translateY(-2px)` on touch pushed chips into negative space.
+    - Added generous vertical track padding (`padding: 0.65rem 0.5rem 0.85rem 0.5rem;`), `align-items: center;`, normalized chip line-height (`line-height: 1.25;`), and removed hover translation on mobile touch screens (`transform: none`). Filter capsules now retain 100% round curvature and complete borders/shadows with ample clearance.
+  - **Applied Apple iOS Liquid Glass Blur to Section Sticky Headers**:
+    - Upgraded `.section-sticky` (`01 / role fit`, `02 / projects`, `03 / skills`, `04 / experience`): applied `backdrop-filter: blur(20px) saturate(190%)`, translucent obsidian glass gradient (`rgba(255, 255, 255, 0.05)` to `0.01`), specular top hairline (`border-top: 1px solid rgba(255, 255, 255, 0.08)`), physical depth shadow (`inset 0 1px 0 rgba(255, 255, 255, 0.12)`, `0 8px 24px -4px rgba(0, 0, 0, 0.35)`), and light mode frosted glass support.
+    - Removed duplicate `border-top` on `.section-index` so the glass bar renders as a single seamless luminous lens.
+  - **Apple Glass Filter Chips**:
+    - Upgraded `.filter-chip` to match the liquid glass tactile aesthetic with top specular highlights and bottom refraction in both dark and light modes.
+  - Recompiled production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.2`.
 
 ### 1.3.0 - Fix mobile description clipping and restore rounded pill aesthetics
 - **Date**: 2026-10-29
