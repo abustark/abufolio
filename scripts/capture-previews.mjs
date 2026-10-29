@@ -27,8 +27,8 @@ const HEIGHT = 560;
 //   house-price  — old Streamlit retired; re-add here when its new site URL arrives
 //   covercraft   — project is private (GitHub only), card uses the static preview + case notes modal
 const PROJECTS = [
-    { slug: 'abot', url: 'https://abot-eta.vercel.app/' },
-    { slug: 'price-trail', url: 'https://price-trail-ruddy.vercel.app/' },
+    { slug: 'abot', url: 'https://abot-ai.vercel.app/' },
+    { slug: 'price-trail', url: 'https://pricetrailed.vercel.app/' },
     { slug: 'linkly', url: 'https://linkly-link.vercel.app/' },
     { slug: 'ngelo', url: 'https://ecom-seven-sand.vercel.app' },
 ];

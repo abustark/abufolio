@@ -6,13 +6,26 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.1.8`** (current head is `1.1.7` — see below)
+> - **`main` → `1.2.8`** (current head is `1.2.7` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.2.7 - Update project summaries from source info sheets, update ABot and PriceTrailed links
+- **Date**: 2026-10-29
+- **Changes**:
+  - Aligned all 6 project cards, case notes dialogs, and command palette entries with their source-of-truth `PROJECT-INFO.md` files in `d:/projects/`.
+  - Updated ABot: live link to `https://abot-ai.vercel.app/`, zero-framework vanilla ES modules architecture, 31 models across 4 providers, SSE streaming, Express/Vercel serverless proxy, Firebase Auth & Firestore chat storage.
+  - Updated PriceTrailed (formerly PriceTrail): renamed to PriceTrailed, live link to `https://pricetrailed.vercel.app/`, Next.js 15 App Router & React 19, multi-store scraping for Amazon India/Flipkart/Myntra/AJIO with SSRF guards, in-app target alerts, interactive SVG chart, and Auth.js Google sign-in with guest migration.
+  - Updated Linkly: dual Express/Vercel serverless runtimes on MongoDB Atlas, atomic 302 click tracking, single-query $facet 30-day analytics, rotating HMAC visitor tracking, and OpenAPI 3.1 REST API with SHA-256 keys.
+  - Updated House Price Prediction: final-year MCA thesis on 13,320 Bengaluru listings, 8-feature preprocessing in `src/encoding.py`, Linear/Ridge baselines vs Random Forest (R² = 0.787), dual Streamlit & FastAPI REST serving with Docker and 7 pytest tests.
+  - Updated N-GELO: dual-stack developer marketplace from unified spec (Vue 3 + Pinia + shadcn-vue and Next.js 16 + React 19 + Zustand), 14 dev products, coupon cart, mock checkout with order generation, and triple dashboards.
+  - Updated CoverCraft: React 19 + Vite + Tailwind v4 + TypeScript, Vercel serverless functions isolating OpenRouter keys and scraping job postings past CORS, lazy-loaded PDF/DOCX resume parsing with Gemma 4 formatting, 16 mode/tone paths, and one-click PDF/DOCX export.
+  - Updated `scripts/capture-previews.mjs` URLs for ABot and PriceTrailed; rebuilt Tailwind CSS bundle (`css/styles.css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.2.8`.
 
 ### 1.1.7 - mobile header controls reverted to pre-1.1.5 sizes, sticky re-tucked
 - **Date**: 2026-10-17
