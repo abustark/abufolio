@@ -6,13 +6,24 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.0`** (current head is `1.2.10` — see below)
+> - **`main` → `1.3.1`** (current head is `1.3.0` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.0 - Fix mobile description clipping and restore rounded pill aesthetics
+- **Date**: 2026-10-29
+- **Changes**:
+  - Eliminated the mobile text clipping bug where project descriptions bled or were covered by the skills tag row:
+    - Removed `-webkit-line-clamp: 3` and artificial desktop `min-height: 4.8rem` on `.project-content p:not(.project-label)`.
+    - Removed `-webkit-line-clamp: 2` on secondary `.project-row-desc`.
+    - Added dedicated vertical margins (`margin: 0 0 0.85rem 0`) and flexible container heights so the entire description is 100% visible across all screen sizes with comfortable breathing room above the tags.
+  - Restored the organic rounded pill shape (`border-radius: 999px`) across all project cards (`.tag-row span`, `.project-row .tag-row span`), skills cards (`.tool-group span`), and modals (`.resume-tags span`), eliminating the flat harsh rectangular boxes.
+  - Recompiled production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.1`.
 
 ### 1.2.10 - Apply gstack-vetted radius hierarchy to project and skill badges
 - **Date**: 2026-10-29
