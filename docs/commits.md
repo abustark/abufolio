@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.2`** (current head is `1.3.1` — see below)
+> - **`main` → `1.3.3`** (current head is `1.3.2` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.2 - Update browser tab favicon to bold black A on crisp white badge
+- **Date**: 2026-10-29
+- **Changes**:
+  - Replaced the dark teal vector favicon with a high-contrast, bold typographic "A" browser tab icon.
+  - White background squircle (`#ffffff`, `rx="22"`) providing maximum pop and visibility across dark and light browser tab bars.
+  - Bold black glyph (`#000000`, `font-weight: 900`, grotesque geometry with wide stance and clean optical centering).
+  - Updated inline SVG data URI in `index.html` and added physical `favicon.svg` asset at root.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.3`.
 
 ### 1.3.1 - Fix mobile filter pills vertical clipping and apply Apple glass blur to section headers
 - **Date**: 2026-10-29
