@@ -6,13 +6,23 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.2.10`** (current head is `1.2.9` — see below)
+> - **`main` → `1.3.0`** (current head is `1.2.10` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.2.10 - Apply gstack-vetted radius hierarchy to project and skill badges
+- **Date**: 2026-10-29
+- **Changes**:
+  - Implemented `gstack`-calibrated border-radius hierarchy to eliminate "uniform bubbly pill radius on everything" AI-slop pattern.
+  - **Project Cards (`.tag-row span`, `.project-row .tag-row span`)**: Upgraded from 999px rounded balloon capsules to 6px technical code squircles (`border-radius: 6px` / `5px`), crisp monospace typography (`var(--font-mono)`, 0.74rem, weight 500, -0.01em tracking), machined dark slate background with hairline border, and top inset highlight (`box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04)`).
+  - **Skills Section (`.skills-card .tool-group span`)**: Replaced generic 999px pills and fake button-jump hover with 8px tactile competency badges (`border-radius: 8px`), sans-serif typography, clean tonal surface, and subtle accent border illumination on hover (`border-color: color-mix(in srgb, var(--accent) 35%, var(--line))`).
+  - **Resume Dialog (`.resume-tags span`)**: Styled with matching 8px competency badges.
+  - Recompiled production minified stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` rolled over to `main → 1.3.0` (per strict `.10` rollover rule).
 
 ### 1.2.9 - Fix skills streaming ticker for desktop and make track unclickable
 - **Date**: 2026-10-29

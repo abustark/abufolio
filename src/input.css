@@ -1857,15 +1857,24 @@ a.about-email:hover {
     align-items: center;
 }
 
+/* Technical Code Squircles: disciplined radius hierarchy (6px), monospaced, machined depth */
 .tag-row span {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--surface-strong) 70%, transparent);
-    color: var(--muted);
-    font-size: 0.82rem;
-    font-weight: 700;
-    padding: 0.35rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    color: color-mix(in srgb, var(--text) 80%, var(--muted));
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 0.28rem 0.62rem;
     white-space: nowrap;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: border-color 160ms ease, color 160ms ease;
+}
+
+.project-card:hover .tag-row span {
+    border-color: color-mix(in srgb, var(--line-strong) 85%, transparent);
 }
 
 .project-actions {
@@ -2003,12 +2012,13 @@ a.about-email:hover {
 
 .project-row .tag-row {
     min-height: 0;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .project-row .tag-row span {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.6rem;
+    font-size: 0.72rem;
+    padding: 0.22rem 0.52rem;
+    border-radius: 5px;
 }
 
 .project-row .project-actions {
@@ -2196,25 +2206,27 @@ a.about-email:hover {
 .tool-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.55rem;
 }
 
+/* Tactile Competency Badges: disciplined squircle (8px), clean sans, tonal hover illumination */
 .tool-group span {
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 8px;
     background: color-mix(in srgb, var(--surface-strong) 70%, transparent);
     color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 0.45rem 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
     white-space: nowrap;
-    transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
 }
 
 .tool-group span:hover {
-    border-color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+    background: color-mix(in srgb, var(--surface-hover) 85%, transparent);
     color: var(--text);
-    transform: translateY(-2px);
 }
 
 /* -------------------------------------------------------------
@@ -2722,6 +2734,14 @@ dialog.resume-dialog::backdrop {
 
 .resume-tags {
     margin: 0 0 1.75rem;
+}
+
+.resume-tags span {
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.72rem;
 }
 
 .resume-actions {
