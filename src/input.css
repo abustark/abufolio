@@ -1342,9 +1342,14 @@ pre {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
 }
 
-/* Seamless ticker: two identical tracks sliding one full width. */
+/* Seamless ticker: two identical tracks sliding continuously.
+   Completely unclickable, never pauses on hover, GPU-accelerated. */
 .tech-strip-track {
     display: flex;
     flex: none;
@@ -1353,16 +1358,16 @@ pre {
     width: max-content;
     padding-right: 0.75rem;
     animation: tech-ticker 32s linear infinite;
-}
-
-.tech-strip:hover .tech-strip-track,
-.tech-strip:focus-within .tech-strip-track {
-    animation-play-state: paused;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 @keyframes tech-ticker {
-    to {
-        transform: translateX(-100%);
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
     }
 }
 
@@ -1372,16 +1377,12 @@ pre {
     background: color-mix(in srgb, var(--surface) 70%, transparent);
     color: var(--muted);
     font-family: var(--font-mono);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    padding: 0.55rem 1.05rem;
-    transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.tech-strip span:hover {
-    border-color: var(--accent);
-    color: var(--text);
-    transform: translateY(-2px);
+    padding: 0.45rem 0.95rem;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* -------------------------------------------------------------
@@ -3043,6 +3044,12 @@ details.estimator[open] .estimator-summary::after {
     .reveal {
         opacity: 1 !important;
         transform: none !important;
+    }
+
+    /* Keep the core technologies ticker streaming smoothly even if reduced motion is requested */
+    .tech-strip-track {
+        animation-duration: 38s !important;
+        animation-iteration-count: infinite !important;
     }
 }
 

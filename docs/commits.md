@@ -6,13 +6,23 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.2.9`** (current head is `1.2.8` — see below)
+> - **`main` → `1.2.10`** (current head is `1.2.9` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.2.9 - Fix skills streaming ticker for desktop and make track unclickable
+- **Date**: 2026-10-29
+- **Changes**:
+  - Made `.tech-strip` unclickable and non-interactive (`pointer-events: none; user-select: none; cursor: default;`) so it cannot be selected or clicked.
+  - Removed hover/focus pause triggers from `.tech-strip-track` so the marquee streams 100% of the time on desktop.
+  - Added an exemption inside `@media (prefers-reduced-motion: reduce)` for `.tech-strip-track` so that Windows OS reduced-motion settings do not freeze the stream into a static cut-off element.
+  - Applied GPU transform acceleration (`transform: translate3d(0, 0, 0)` and `will-change: transform`).
+  - Recompiled production minified stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.2.10`.
 
 ### 1.2.8 - Add live project screenshots and CoverCraft picture card thumbnail
 - **Date**: 2026-10-29
