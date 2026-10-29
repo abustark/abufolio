@@ -6,13 +6,23 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.2.8`** (current head is `1.2.7` — see below)
+> - **`main` → `1.2.9`** (current head is `1.2.8` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.2.8 - Add live project screenshots and CoverCraft picture card thumbnail
+- **Date**: 2026-10-29
+- **Changes**:
+  - Captured fresh live screenshots for ABot (`https://abot-ai.vercel.app/`), CoverCraft (`https://coverltr.vercel.app/`), Linkly (`https://linkly-link.vercel.app/`), and N-GELO (`https://ecom-seven-sand.vercel.app/`).
+  - Generated high-resolution 900×560 desktop screenshots for PriceTrailed from the official project artifacts (`d:/projects/price-trail/artifacts/final-light-desktop.png`).
+  - Added fallback `house-price.png` matching `house-price.webp`.
+  - Upgraded CoverCraft card thumbnail in `index.html` from the static `.covercraft-tile` monogram placeholder to a standard responsive `<picture>` + `<img>` thumbnail linking to the live site.
+  - Added CoverCraft to `scripts/capture-previews.mjs`.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.2.9`.
 
 ### 1.2.7 - Update project summaries from source info sheets, update ABot and PriceTrailed links
 - **Date**: 2026-10-29

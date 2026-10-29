@@ -22,15 +22,15 @@ const WIDTH = 900;
 const HEIGHT = 560;
 
 // Captured automatically (deployed + public):
-//   abot, price-trail, linkly, ngelo
+//   abot, price-trail, linkly, ngelo, covercraft
 // Deliberately omitted:
-//   house-price  — old Streamlit retired; re-add here when its new site URL arrives
-//   covercraft   — project is private (GitHub only), card uses the static preview + case notes modal
+//   house-price  — Streamlit auth/wake redirect; screenshot maintained via build-assets
 const PROJECTS = [
     { slug: 'abot', url: 'https://abot-ai.vercel.app/' },
     { slug: 'price-trail', url: 'https://pricetrailed.vercel.app/' },
     { slug: 'linkly', url: 'https://linkly-link.vercel.app/' },
     { slug: 'ngelo', url: 'https://ecom-seven-sand.vercel.app' },
+    { slug: 'covercraft', url: 'https://coverltr.vercel.app/' },
 ];
 
 const COLD_MARKERS = /asleep|sleeping|gone to sleep|wake it back|waking|cold start|starting up|starting your app|please wait|is loading|loading\.\.\.|coming back/i;
