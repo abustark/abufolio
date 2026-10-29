@@ -3446,6 +3446,14 @@ details.estimator[open] .estimator-summary::after {
         gap: 0.65rem;
     }
 
+    /* Both rows used a mask-image edge fade. On phones the first and last
+       chip sit inside that fade, so the mask reads as a black smear over the
+       label. Phones clip the row cleanly instead. */
+    .tech-strip {
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
     .filter-bar {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -3456,8 +3464,6 @@ details.estimator[open] .estimator-summary::after {
         scrollbar-width: none;
         scroll-snap-type: x proximity;
         scroll-padding-left: 14px;
-        -webkit-mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 24px), transparent);
-        mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 24px), transparent);
     }
 
     .filter-bar::-webkit-scrollbar {
