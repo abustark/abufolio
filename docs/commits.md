@@ -6,13 +6,20 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.7`** (current head is `1.3.6` — see below)
+> - **`main` → `1.3.8`** (current head is `1.3.7` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.7 - Remove remaining content-visibility from .contact-section
+- **Date**: 2026-11-06
+- **Changes**:
+  - Removed `content-visibility: auto` / `contain-intrinsic-size: auto 600px` from `.contact-section` as well (owner-approved consistency cleanup after 1.3.6). No sticky bar lives in the contact section, but the declaration served no purpose there.
+  - Verified no `content-visibility` remains in `src/input.css` and recompiled the production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.8`.
 
 ### 1.3.6 - Fix section sticky headers 03/04 appearing cut left/right on desktop
 - **Date**: 2026-11-06
