@@ -6,13 +6,27 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.4`** (current head is `1.3.3` — see below)
+> - **`main` → `1.3.5`** (current head is `1.3.4` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.4 - Add project fact sheet and README, clean repo metadata and dead links
+- **Date**: 2026-11-06
+- **Changes**:
+  - Added root [`PROJECT-INFO.md`](../PROJECT-INFO.md) — a verified fact sheet for all six featured projects (identity, exact stack versions, architecture, features, metrics, keyword tags, ready-made resume bullets, portfolio blurbs and explicit "do not claim" notes), sourced from each project's own `PROJECT-INFO.md` and live app.
+  - Added root [`README.md`](../README.md) — what the site contains, tech stack, folder structure, local setup, scripts, content-editing workflow, deployment and accessibility notes.
+  - Corrected PriceTrail project data: start label `Dec 2025` → `May 2026` (first commit 2026-05-17) and live link from the 404 `pricetrailed.vercel.app` to the working Vercel project domain `price-trail-abustarks-projects.vercel.app` in the card, case notes, command palette and screenshot script.
+  - Removed duplicate `pricetrailed` and `ecommerce` aliases from the `projectDetails` map in `js/main.js` (unreferenced dead entries).
+  - Moved `FUTURE_FEATURES_ROADMAP.md` and `opencode-suggested-ui-updates.md` into `docs/`.
+  - Fixed `package.json` metadata (description, author, keywords, homepage, `private`, `UNLICENSED`), removed the bogus `main: index.js` entry and the always-failing `test` script.
+  - Deleted unused assets: `pics/projects/ecommerce.{png,webp,svg}` and the orphan `abot.svg`, `linkly.svg`, `ngelo.svg`, `house-price.svg`; dropped `ecommerce` from `scripts/build-assets.mjs`.
+  - Regenerated the PriceTrail preview from the working URL — the scheduled screenshot workflow had captured the 404 alias.
+  - No CSS or visual changes.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.5`.
 
 ### 1.3.3 - Apply abufolio-liquid-glass patch formula to section sticky headers
 - **Date**: 2026-10-29

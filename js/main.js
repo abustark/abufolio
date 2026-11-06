@@ -8,20 +8,12 @@ const projectDetails = {
         link: 'https://abot-ai.vercel.app/'
     },
     'price-trail': {
-        label: 'Full-Stack Next.js 15 App · Dec 2025 – Present',
+        label: 'Full-Stack Next.js 15 App · May 2026 – Present',
         title: 'PriceTrailed — Ecommerce Price Tracker',
         description: 'A full-stack ecommerce price tracking platform built with Next.js 15 App Router, React 19, TypeScript, and raw MongoDB driver. Monitors product prices across Amazon India, Flipkart, Myntra, and AJIO with daily scheduled rescans and history analytics.',
         focus: 'Engineered multi-store price-scraping pipelines with JSON-LD/OG/regex parsing, SSRF-safe redirects, and proxy fallbacks. Built a hand-rolled SVG history chart with 220-point downsampling, BUY/FAIR/WAIT deal scoring, in-app target alerts, and Auth.js Google sign-in with guest-to-account watchlist migration.',
         tags: ['Next.js 15', 'React 19', 'TypeScript', 'MongoDB Atlas', 'Auth.js (Google OAuth)', 'Vercel Cron', 'SVG Charts'],
-        link: 'https://pricetrailed.vercel.app/'
-    },
-    pricetrailed: {
-        label: 'Full-Stack Next.js 15 App · Dec 2025 – Present',
-        title: 'PriceTrailed — Ecommerce Price Tracker',
-        description: 'A full-stack ecommerce price tracking platform built with Next.js 15 App Router, React 19, TypeScript, and raw MongoDB driver. Monitors product prices across Amazon India, Flipkart, Myntra, and AJIO with daily scheduled rescans and history analytics.',
-        focus: 'Engineered multi-store price-scraping pipelines with JSON-LD/OG/regex parsing, SSRF-safe redirects, and proxy fallbacks. Built a hand-rolled SVG history chart with 220-point downsampling, BUY/FAIR/WAIT deal scoring, in-app target alerts, and Auth.js Google sign-in with guest-to-account watchlist migration.',
-        tags: ['Next.js 15', 'React 19', 'TypeScript', 'MongoDB Atlas', 'Auth.js (Google OAuth)', 'Vercel Cron', 'SVG Charts'],
-        link: 'https://pricetrailed.vercel.app/'
+        link: 'https://price-trail-abustarks-projects.vercel.app/'
     },
     linkly: {
         label: 'Database & Serverless Service · Aug 2025 – Present',
@@ -40,14 +32,6 @@ const projectDetails = {
         link: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/'
     },
     ngelo: {
-        label: 'Developer Marketplace · Vue 3 & Next.js 16',
-        title: 'N-GELO — Digital Marketplace for Developers',
-        description: 'A dual-stack digital marketplace for developer UI components and templates, rebuilt from a college major project into pixel-identical Vue 3 (Pinia + shadcn-vue) and Next.js 16 (React 19 + Zustand + shadcn/ui) applications.',
-        focus: 'Engineered code-first product pages with live interactive component previews, copyable code snippets, faceted shop filtering with URL synchronization, coupon-enabled cart drawers, mock checkout with NG-XXXXXX order generation, and role-based buyer/seller/admin dashboards.',
-        tags: ['Vue 3', 'Next.js 16', 'React 19', 'Pinia & Zustand', 'shadcn UI', 'Tailwind CSS', 'Vite', 'TypeScript'],
-        link: 'https://ecom-seven-sand.vercel.app/'
-    },
-    ecommerce: {
         label: 'Developer Marketplace · Vue 3 & Next.js 16',
         title: 'N-GELO — Digital Marketplace for Developers',
         description: 'A dual-stack digital marketplace for developer UI components and templates, rebuilt from a college major project into pixel-identical Vue 3 (Pinia + shadcn-vue) and Next.js 16 (React 19 + Zustand + shadcn/ui) applications.',
@@ -96,7 +80,7 @@ const COMMAND_ACTIONS = [
 
     // Projects
     { type: 'project', title: 'ABot — Multi-Model AI Chat Hub', subtitle: '31 Models across Gemini, Groq, NIM & OpenRouter', target: 'https://abot-ai.vercel.app/', badge: 'Live App' },
-    { type: 'project', title: 'PriceTrailed — Ecommerce Price Tracker', subtitle: 'Next.js 15, React 19, MongoDB Atlas & Vercel Cron', target: 'https://pricetrailed.vercel.app/', badge: 'Live App' },
+    { type: 'project', title: 'PriceTrailed — Ecommerce Price Tracker', subtitle: 'Next.js 15, React 19, MongoDB Atlas & Vercel Cron', target: 'https://price-trail-abustarks-projects.vercel.app/', badge: 'Live App' },
     { type: 'project', title: 'Linkly — Link Management Platform', subtitle: 'Serverless Vercel, MongoDB Atlas & REST API', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
     { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
     { type: 'project', title: 'N-GELO — Developer Marketplace', subtitle: 'Dual-Stack Vue 3 & Next.js 16 Marketplace', target: 'https://ecom-seven-sand.vercel.app/', badge: 'Live App' },
