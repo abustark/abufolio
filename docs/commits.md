@@ -6,13 +6,21 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.6`** (current head is `1.3.5` — see below)
+> - **`main` → `1.3.7`** (current head is `1.3.6` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.6 - Fix section sticky headers 03/04 appearing cut left/right on desktop
+- **Date**: 2026-11-06
+- **Changes**:
+  - Removed `content-visibility: auto` / `contain-intrinsic-size: auto 600px` from `.skills-section` and `.experience-section` in `src/input.css`. That declaration is the only difference between headings 01/02 (which render the sticky bar full-width correctly) and 03/04 (where the bar was painted cut at the section edges in Chrome) and is a known Chrome trigger for mis-rendered `position: sticky` descendants.
+  - Verified all four sticky bars (01–04) measure full viewport width (`left=0`, `width=viewport`) and stick at the same offset at 1366/1440/1920; mobile 390 shows no horizontal overflow. `.contact-section` keeps `content-visibility` (no sticky bar inside, unaffected).
+  - Recompiled production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.7`.
 
 ### 1.3.5 - Rename PriceTrailed to PriceTracked and update live URL to pricetracked.vercel.app
 - **Date**: 2026-11-06

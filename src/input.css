@@ -2384,8 +2384,6 @@ a.about-email:hover {
     backface-visibility: hidden;
 }
 
-.skills-section,
-.experience-section,
 .contact-section {
     content-visibility: auto;
     contain-intrinsic-size: auto 600px;
