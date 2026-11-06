@@ -27,7 +27,7 @@ const HEIGHT = 560;
 //   house-price  — Streamlit auth/wake redirect; screenshot maintained via build-assets
 const PROJECTS = [
     { slug: 'abot', url: 'https://abot-ai.vercel.app/' },
-    { slug: 'price-trail', url: 'https://price-trail-abustarks-projects.vercel.app/' },
+    { slug: 'price-trail', url: 'https://pricetracked.vercel.app/' },
     { slug: 'linkly', url: 'https://linkly-link.vercel.app/' },
     { slug: 'ngelo', url: 'https://ecom-seven-sand.vercel.app' },
     { slug: 'covercraft', url: 'https://coverltr.vercel.app/' },

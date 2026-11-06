@@ -6,13 +6,22 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.5`** (current head is `1.3.4` — see below)
+> - **`main` → `1.3.6`** (current head is `1.3.5` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.5 - Rename PriceTrailed to PriceTracked and update live URL to pricetracked.vercel.app
+- **Date**: 2026-11-06
+- **Changes**:
+  - Renamed the portfolio project from PriceTrailed to **PriceTracked** everywhere: project card title, case-notes dialog, command palette (Projects nav subtitle + project entry), browser URL pill, live-site links, aria labels and image alt text in `index.html` and `js/main.js`.
+  - Updated the live link from `https://price-trail-abustarks-projects.vercel.app/` to `https://pricetracked.vercel.app/` (verified 200, same Vercel deployment, tab title "PriceTrail — buy at the right time") in the card, dialog, palette and `scripts/capture-previews.mjs`.
+  - Updated `PROJECT-INFO.md` to the new name/URL, noting the app tab title and `price-trail` repo name are unchanged; historical aliases `price-trail-ruddy` and `pricetrailed` remain 404.
+  - No CSS or visual changes.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.6`.
 
 ### 1.3.4 - Add project fact sheet and README, clean repo metadata and dead links
 - **Date**: 2026-11-06

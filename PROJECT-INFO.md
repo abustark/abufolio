@@ -22,17 +22,18 @@ Analytics Engineer, ML Data Associate II at Amazon.
 | # | Project | Type | Live | Source | License |
 |---|---|---|---|---|---|
 | 1 | **ABot — AI Chat Hub** | Multi-model AI chat client + serverless proxy | https://abot-ai.vercel.app/ | private `abustark/abot` | Private, all rights reserved |
-| 2 | **PriceTrail — Ecommerce Price Tracker** | Full-stack price-tracking web app | https://price-trail-abustarks-projects.vercel.app/ | https://github.com/abustark/price-trail | None declared (private) |
+| 2 | **PriceTracked — Ecommerce Price Tracker** | Full-stack price-tracking web app | https://pricetracked.vercel.app/ | https://github.com/abustark/price-trail | None declared (private) |
 | 3 | **Linkly — Link Management & Analytics** | Full-stack app + public REST API | https://linkly-link.vercel.app/ | https://github.com/abustark/linkly | MIT |
 | 4 | **House Price Prediction (Bengaluru)** | ML regression + FastAPI + Streamlit | https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/ | https://github.com/abustark/HOUSE-PRICE-PREDICTION-USING-MACHINE-LEARNING-ALGORITHMS | No code license; dataset CC0 |
 | 5 | **N-GELO — Digital Marketplace for Developers** | Dual-stack Vue 3 + Next.js 16 marketplace | https://ecom-seven-sand.vercel.app/ | https://github.com/abustark/project_bmw | MIT |
 | 6 | **CoverCraft — AI Cover Letter Builder** | Applied-AI React SPA + serverless proxy | https://coverltr.vercel.app/ | https://github.com/abustark/cover_letter_gen | None declared (private) |
 
-**Live-link note (audit, 2026-11-06):** the historical PriceTrail alias
-`https://price-trail-ruddy.vercel.app/` and the later `https://pricetrailed.vercel.app/`
-both return 404. The working production URL is the Vercel project domain
-`https://price-trail-abustarks-projects.vercel.app/`; it serves the current
-"PriceTrail — buy at the right time" build.
+**Live-link note (audit, 2026-11-06):** the historical PriceTrail aliases
+`https://price-trail-ruddy.vercel.app/` and `https://pricetrailed.vercel.app/`
+return 404. The working production URL is `https://pricetracked.vercel.app/`,
+an alias for the same Vercel deployment as
+`https://price-trail-abustarks-projects.vercel.app/`; both serve the current
+"PriceTrail — buy at the right time" build (34,215 bytes, verified 200).
 
 ---
 
@@ -141,24 +142,24 @@ live demo, not the repo.
 
 ---
 
-## 2. PriceTrail — Ecommerce Price Tracker
+## 2. PriceTracked — Ecommerce Price Tracker
 
-> The portfolio card uses the label **PriceTrailed**; the project's own repo and
-> live app call it **PriceTrail**.
+> The portfolio card uses the label **PriceTracked**; the project's repo is
+> `price-trail` and the live app tab title reads "PriceTrail — buy at the right time".
 
 ### Identity
 
 | Field | Value |
 |---|---|
-| Name | **PriceTrail — Ecommerce Price Tracker** |
+| Name | **PriceTracked — Ecommerce Price Tracker** (repo `price-trail`, app title "PriceTrail") |
 | Type | Full-stack web application (consumer price-tracking utility) |
 | Author | ABu (`abustark` on GitHub) |
-| Live site | https://price-trail-abustarks-projects.vercel.app/ |
+| Live site | https://pricetracked.vercel.app/ |
 | Source | https://github.com/abustark/price-trail |
 | License | None declared (private) |
 | Status | Production-deployed on Vercel, actively maintained (2026, 60 commits) |
 
-**One-liner (25 words):** PriceTrail is a Next.js + MongoDB price tracker for
+**One-liner (25 words):** PriceTracked is a Next.js + MongoDB price tracker for
 Amazon India, Flipkart, Myntra and AJIO with Google sign-in, guest watchlists,
 daily cron scans and SVG history charts.
 
@@ -241,7 +242,7 @@ daily cron scans and SVG history charts.
 
 ### Portfolio blurb (~30 words)
 
-PriceTrail — paste any product link to track its price over time, see
+PriceTracked — paste any product link to track its price over time, see
 highs/lows/trends with a buy verdict, set target alerts, and let daily scans keep
 history fresh. Guest mode included.
 `Next.js · React · MongoDB · Auth.js · Vercel`
@@ -709,16 +710,17 @@ runner, Playwright, ESLint, `tsc --noEmit`, Git/GitHub.
 
 - All six project descriptions, case-notes dialogs and command-palette entries
   were checked against the project sheets above.
-- **Corrected on the site:** PriceTrail start date changed from "Dec 2025" to
-  "May 2026" (first commit 2026-05-17); PriceTrail live link changed from the
-  404 `pricetrailed.vercel.app` to the working Vercel project domain.
-- **Known naming mismatch:** the portfolio card says "PriceTrailed"; the repo,
-  live app title and project sheet say "PriceTrail". The card label was left as
-  the owner set it in v1.2.7.
+- **Corrected on the site:** PriceTracked start date changed from "Dec 2025" to
+  "May 2026" (first commit 2026-05-17); live link moved from the 404
+  `pricetrailed.vercel.app` to `https://pricetracked.vercel.app/` (same Vercel
+  deployment as `price-trail-abustarks-projects.vercel.app`, verified 200).
+- **Naming:** the portfolio label is **PriceTracked**; the repo is
+  `price-trail` and the live app tab title reads "PriceTrail — buy at the right
+  time". The portfolio name was updated per owner instruction in v1.3.5.
 - **No unverified claims added.** ABot facts come from its private-repo
   `docs/PROJECT-INFO.md` and the live app; the other five come from their
   `PROJECT-INFO.md` files.
-- **Source-of-truth caveats:** PriceTrail has no email alerts, PWA or unit test
+- **Source-of-truth caveats:** PriceTracked has no email alerts, PWA or unit test
   suite; CoverCraft has no test suite, database or server-side auth; N-GELO has
   no real payments, backend DB or server auth; House Price has no XGBoost and no
   code license.
