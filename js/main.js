@@ -7,14 +7,6 @@ const projectDetails = {
         tags: ['Vanilla ES Modules', 'Node.js / Express', 'Vercel Serverless', 'SSE Streaming', 'Cloud Firestore', 'Firebase Auth', 'PWA', 'Tailwind CSS'],
         link: 'https://abot-ai.vercel.app/'
     },
-    'price-trail': {
-        label: 'Full-Stack Next.js 15 App · May 2026 – Present',
-        title: 'PriceTracked — Ecommerce Price Tracker',
-        description: 'A full-stack ecommerce price tracking platform built with Next.js 15 App Router, React 19, TypeScript, and raw MongoDB driver. Monitors product prices across Amazon India, Flipkart, Myntra, and AJIO with daily scheduled rescans and history analytics.',
-        focus: 'Engineered multi-store price-scraping pipelines with JSON-LD/OG/regex parsing, SSRF-safe redirects, and proxy fallbacks. Built a hand-rolled SVG history chart with 220-point downsampling, BUY/FAIR/WAIT deal scoring, in-app target alerts, and Auth.js Google sign-in with guest-to-account watchlist migration.',
-        tags: ['Next.js 15', 'React 19', 'TypeScript', 'MongoDB Atlas', 'Auth.js (Google OAuth)', 'Vercel Cron', 'SVG Charts'],
-        link: 'https://pricetracked.vercel.app/'
-    },
     linkly: {
         label: 'Database & Serverless Service · Aug 2025 – Present',
         title: 'Linkly — Link Management & Analytics Platform',
@@ -22,6 +14,14 @@ const projectDetails = {
         focus: 'Engineered atomic 302 click tracking with pre-aggregated daily buckets powering 30-day analytics in a single $facet aggregation query. Built a public REST API (OpenAPI 3.1) with SHA-256 hashed revocable keys, rate limiting, privacy-conscious rotating HMAC visitor tracking, and Firebase Google sign-in.',
         tags: ['Node.js / Express', 'MongoDB Atlas', 'Mongoose ODM', 'Vercel Serverless', 'REST API (OpenAPI)', 'Firebase Auth', 'PWA'],
         link: 'https://linkly-link.vercel.app/'
+    },
+    'price-trail': {
+        label: 'Full-Stack Next.js 15 App · May 2026 – Present',
+        title: 'PriceTracked — Ecommerce Price Tracker',
+        description: 'A full-stack ecommerce price tracking platform built with Next.js 15 App Router, React 19, TypeScript, and raw MongoDB driver. Monitors product prices across Amazon India, Flipkart, Myntra, and AJIO with daily scheduled rescans and history analytics.',
+        focus: 'Engineered multi-store price-scraping pipelines with JSON-LD/OG/regex parsing, SSRF-safe redirects, and proxy fallbacks. Built a hand-rolled SVG history chart with 220-point downsampling, BUY/FAIR/WAIT deal scoring, in-app target alerts, and Auth.js Google sign-in with guest-to-account watchlist migration.',
+        tags: ['Next.js 15', 'React 19', 'TypeScript', 'MongoDB Atlas', 'Auth.js (Google OAuth)', 'Vercel Cron', 'SVG Charts'],
+        link: 'https://pricetracked.vercel.app/'
     },
     'house-price': {
         label: 'Machine Learning & Data Analysis · MCA Thesis',
@@ -46,8 +46,7 @@ const projectDetails = {
         focus: 'Engineered two Vercel serverless functions to secure OpenRouter keys and fetch job descriptions server-side past browser CORS restrictions. Implemented lazy-loaded client parsing for PDF and DOCX resumes with optional AI reformatting, a 4-mode × 4-tone routing matrix across Nemotron 3 and Gemma 4 models, and instant client export to PDF and DOCX.',
         tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Vercel Functions', 'OpenRouter', 'Google OAuth', 'PDF / DOCX Export'],
         link: 'https://coverltr.vercel.app/'
-    }
-};
+    }};
 
 const EMAIL_ADDRESS = 'bas.abu0802@gmail.com';
 
@@ -61,7 +60,7 @@ const PALETTES = [
 const COMMAND_ACTIONS = [
     { type: 'nav', title: 'Home / Hero', subtitle: 'Data & Analytics Engineer Portfolio', target: '#home', badge: 'Section' },
     { type: 'nav', title: 'About / Role Fit', subtitle: 'Target roles: Data & Analytics, SQL, Applied AI', target: '#about', badge: 'Section' },
-    { type: 'nav', title: 'Projects & Work', subtitle: 'PriceTracked, House Price ML, ABot, Linkly, N-GELO, CoverCraft', target: '#work', badge: 'Section' },
+    { type: 'nav', title: 'Projects & Work', subtitle: 'ABot, Linkly, PriceTracked, House Price ML, N-GELO, CoverCraft', target: '#work', badge: 'Section' },
     { type: 'nav', title: 'Technical Skills', subtitle: 'SQL, Python, Scikit-learn, Power BI, MongoDB', target: '#skills', badge: 'Section' },
     { type: 'nav', title: 'Experience (Amazon)', subtitle: 'Amazon ML Data Associate II (Aug 2023 – Present)', target: '#experience', badge: 'Section' },
     { type: 'nav', title: 'Contact', subtitle: 'Open to Remote & Hybrid (Madurai, Coimbatore, Chennai)', target: '#contact', badge: 'Section' },
@@ -244,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // 3. Dynamic Headline Typewriter
+    // 4. Dynamic Headline Typewriter
     // -------------------------------------------------------------
     const initDynamicRole = () => {
         if (!dynamicRole) return;
@@ -289,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDynamicRole();
 
     // -------------------------------------------------------------
-    // 4. Theme Toggle & State
+    // 5. Theme Toggle & State
     // -------------------------------------------------------------
     const applyTheme = (theme) => {
         const light = theme === 'light';
@@ -329,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle?.addEventListener('click', toggleTheme);
 
     // -------------------------------------------------------------
-    // 5. Mobile Navigation Drawer & Scrim
+    // 6. Mobile Navigation Drawer & Scrim
     // -------------------------------------------------------------
     const closeMobileMenu = () => {
         navPanel?.classList.remove('open');
@@ -358,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // 6. Smooth Scroll & Active Nav Pill Sliding Indicator
+    // 7. Smooth Scroll & Active Nav Pill Sliding Indicator
     // -------------------------------------------------------------
     const navIndicator = document.getElementById('nav-indicator');
 
@@ -475,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateNavIndicator, 200);
 
     // -------------------------------------------------------------
-    // 7. Scroll Reveal Animations
+    // 8. Scroll Reveal Animations
     // -------------------------------------------------------------
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -495,21 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transitionDelay = `${cascade}ms`;
         revealObserver.observe(item);
     });
-
-    // -------------------------------------------------------------
-    // 8. Interactive Animated Sparkline Chart
-    // -------------------------------------------------------------
-    const sparkLine = document.getElementById('spark-line');
-    if (sparkLine) {
-        const sparkObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    sparkLine.style.strokeDashoffset = '0';
-                }
-            });
-        }, { threshold: 0.2 });
-        sparkObserver.observe(sparkLine);
-    }
 
     // -------------------------------------------------------------
     // 9. Clipboard Actions (Email & Links)

@@ -6,13 +6,44 @@ This document tracks every commit made on `main` following the versioning schema
 - Format: `<version> - <short sentence>`
 
 > ### 📌 Next version — **keep this line current, every commit**
-> - **`main` → `1.3.8`** (current head is `1.3.7` — see below)
+> - **`main` → `1.3.10`** (current head is `1.3.9` — see below)
 
 > **🧾 History note (why early history has no numbers):** all commits before `1.1.0` used unversioned `style:` / `feat:` / `docs:` / `chore:` subjects (see `git log`). Versioning starts at **`1.1.0`**; `package.json` stays `1.0.0` (decoupled, same as ABot). The `📌 Next version` line must be updated with each commit.
 
 ---
 
 ## Commit History
+
+### 1.3.9 - Hero CTA icon alignment, dominant primary CTA, and project ranking
+- **Date**: 2026-11-09
+- **Changes**:
+  - **Hero CTAs — all icons lead.** `View projects`, `Resume` and `Copy email` now place their icon to the left of the label, with the trailing circular icon pill removed. New `.btn-icon-lead` (bare glyph, no pill) replaces the trailing `.btn-icon-pill` in the hero so all three actions share one visual rhythm.
+  - **`View projects` is now clearly dominant** (owner-approved hierarchy change): `min-height` 3.45rem, 16px/800 type, wider padding and a stronger dual-layer accent glow, while the two secondary CTAs drop to weight 600, muted colour and roomier padding. Row gap increased to `0.75rem 1.05rem` so the buttons no longer crowd each other. Mobile keeps the existing column stack with full-width buttons.
+  - **Project ranking applied** — cards and `projectDetails` both reordered to: **1. ABot · 2. Linkly · 3. PriceTracked · 4. House Price Prediction · 5. N-GELO · 6. CoverCraft**. Section comments renumbered to match; the three top cards stay in the grid and the bottom three stay grouped under "More projects".
+  - Fixed the command-palette "Projects & Work" subtitle, which still listed the old order.
+  - **New `content` gate**: the documented ranking (best project first) is baked into `check-site.mjs` and fails the build if card order or `projectDetails` order drifts from it. Override with `PROJECT_ORDER=a,b,c` when the ranking intentionally changes.
+  - Recompiled production stylesheet (`npm run build:css`); `css/styles.css` 69.3 KB.
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.10`.
+
+### 1.3.8 - Fix live-deployment count and add static quality gates + CI
+- **Date**: 2026-11-08
+- **Changes**:
+  - **Fixed the hero stat**: "Live deployments" now reads **6**, matching the six featured projects with live URLs (all six verified HTTP 200). `README.md` and `PROJECT-INFO.md` already said six — the counter was the lone stale value.
+  - **Added `scripts/check-site.mjs`** — a dependency-free static quality gate (`npm run check`, `npm run check:links`). Six offline gates plus an optional live-link gate:
+    - `encoding` — valid UTF-8, no mojibake (double-encoded em dashes, `Â`, `Ã`).
+    - `html` — doctype/lang/charset/viewport/title/meta/canonical, duplicate ids, skipped heading levels, `<img>` alt + intrinsic size, in-page anchors, unguarded `getElementById` targets.
+    - `refs` — every local `href`/`src`/`srcset`/`url()` resolves to a real file.
+    - `css` — `css/styles.css` is byte-identical to a fresh build (no stale stylesheet committed).
+    - `content` — `projectDetails` ↔ card markup sync, required fields, and the hero deployment count vs real project links.
+    - `links` *(opt-in)* — external URLs respond; LinkedIn bot-blocks (999) and Streamlit cold starts warn instead of failing.
+  - **Fixed findings the gates surfaced**:
+    - Case-notes and resume dialogs used `<h4>` directly under an `<h2>`, skipping a heading level — changed to `<h3>` and retargeted `.dialog-grid h4` → `.dialog-grid h3` in `src/input.css` (identical rendering verified: 13.12px Geist Mono uppercase accent).
+    - Removed the dead Code §8 "Interactive Animated Sparkline Chart" block from `js/main.js` — it looked up `#spark-line`, removed from the page in v1.1.0; the guarded lookup silently no-op'd and left a hole in the section numbering. Remaining sections renumbered 4–14.
+    - Trimmed `meta description` / `og:description` from 210 to 139 characters (50–160 is the useful search-snippet window).
+  - **Added `.github/workflows/quality-gates.yml`** — static gates on every push and PR to `main`; live-link job on `main` only (external free-tier apps should not fail a PR).
+  - `README.md`: documented the new scripts and a Quality gates table.
+  - Recompiled production stylesheet (`npm run build:css`).
+  - `docs/commits.md`: `📌 Next version` advanced to `main → 1.3.9`.
 
 ### 1.3.7 - Remove remaining content-visibility from .contact-section
 - **Date**: 2026-11-06

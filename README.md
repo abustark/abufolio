@@ -114,10 +114,31 @@ npm run watch:css
 | `npm run watch:css` | Recompiles the stylesheet on change. |
 | `npm run build:assets` | Generates `abu.webp`, `abu-400.webp`, `og.png` and project WebP files. |
 | `npm run build` | Runs the CSS build and the asset build. |
+| `npm run check` | Runs the static quality gates (HTML, refs, encoding, CSS freshness, content sync). |
+| `npm run check:links` | Also verifies every live project URL responds (needs network). |
 | `npm run shots` | Captures fresh 900×560 screenshots of the live projects with Playwright. |
 
 `npm run shots` accepts project slugs, for example `npm run shots abot linkly`.
 A scheduled GitHub Actions workflow refreshes the previews every Monday.
+
+---
+
+## Quality gates
+
+`npm run check` runs `scripts/check-site.mjs` — a dependency-free static checker
+that fails the build on:
+
+| Gate | What it enforces |
+|---|---|
+| **encoding** | Both pages are valid UTF-8 with no mojibake (`â€"`, `Â·`, `Ã`). |
+| **html** | Doctype, `lang`, charset, viewport, title/meta/canonical; no duplicate ids; no skipped heading levels; `<img>` has `alt` + intrinsic size; in-page anchors resolve; unguarded `getElementById` targets exist. |
+| **refs** | Every local `href`/`src`/`srcset`/`url()` resolves to a real file. |
+| **css** | `css/styles.css` is byte-identical to a fresh build of `src/input.css` (never commit a stale stylesheet). |
+| **content** | `js/main.js` `projectDetails` and the `index.html` cards describe the same projects, every entry has its required fields, the hero "Live deployments" count matches the real number of project links, and the project ranking (best first) matches the documented order. |
+| **links** | *(with `--links` only)* every external URL responds — LinkedIn's bot block and Streamlit cold starts are reported as warnings, not failures. |
+
+CI runs these on every push and pull request to `main`
+(`.github/workflows/quality-gates.yml`); the live-link job runs only on `main`.
 
 ---
 
@@ -133,6 +154,22 @@ Project copy lives in two places and must stay in sync:
 versions, architecture, features, metrics, resume bullets, portfolio blurbs and
 the claims each project must **not** make. Update it first, then the two files
 above.
+
+Projects are displayed in a deliberate ranking, best first:
+
+| # | Project | `data-project` |
+|---|---|---|
+| 1 | ABot — Multi-Model AI Chat Hub | `abot` |
+| 2 | Linkly — Link Management & Analytics | `linkly` |
+| 3 | PriceTracked — Ecommerce Price Tracker | `price-trail` |
+| 4 | House Price Prediction (Bengaluru) | `house-price` |
+| 5 | N-GELO — Digital Marketplace | `ngelo` |
+| 6 | CoverCraft — AI Cover Letter Builder | `covercraft` |
+
+Cards 1–3 render in the grid; 4–6 sit inside the "More projects" `<details>`.
+`npm run check` fails if either the card order or the `projectDetails` order
+diverges from this ranking — change the ranking in `scripts/check-site.mjs`
+(`RANKED_ORDER`) or override it for one run with `PROJECT_ORDER=a,b,c`.
 
 ---
 

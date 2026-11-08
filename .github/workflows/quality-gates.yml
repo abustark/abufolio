@@ -1,0 +1,67 @@
+name: Quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-gates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: Static gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Rebuild the stylesheet so the staleness gate compares against a fresh
+      # compile rather than skipping when `node_modules/.bin` is cold.
+      - name: Compile CSS
+        run: npm run build:css
+
+      - name: Run quality gates
+        run: npm run check
+
+  links:
+    name: Live links
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # External sites are only worth probing once a change reaches main; a PR
+    # should not fail because a free-tier app is asleep.
+    if: github.event_name != 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile CSS
+        run: npm run build:css
+
+      - name: Verify live project URLs
+        run: npm run check:links

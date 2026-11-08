@@ -8,6 +8,8 @@
     "watch:css": "tailwindcss -i ./src/input.css -o ./css/styles.css --watch",
     "build:assets": "node scripts/build-assets.mjs",
     "build": "npm run build:css && npm run build:assets",
+    "check": "node scripts/check-site.mjs",
+    "check:links": "node scripts/check-site.mjs --links",
     "shots": "node scripts/capture-previews.mjs"
   },
   "repository": {

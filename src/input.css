@@ -974,6 +974,50 @@ h3 {
     box-shadow: 0 6px 22px var(--accent-glow);
 }
 
+/* Hero primary CTA is deliberately dominant: taller, heavier type, roomier
+   padding and a stronger glow so the eye lands on "View projects" first. */
+.hero-actions {
+    gap: 0.75rem 1.05rem;
+    align-items: center;
+}
+
+.hero-actions .primary-button {
+    min-height: 3.45rem;
+    padding: 0.8rem 1.85rem;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+    gap: 0.72rem;
+    box-shadow: 0 10px 30px var(--accent-glow), 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+.hero-actions .primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 46%, transparent), 0 3px 8px rgba(0, 0, 0, 0.24);
+}
+
+/* Secondary CTAs sit back: quieter surface, lighter weight, roomier padding so
+   they never read as cramped beside the dominant primary. */
+.hero-actions .secondary-button {
+    min-height: 3.1rem;
+    padding: 0.65rem 1.5rem;
+    font-weight: 600;
+    gap: 0.6rem;
+    color: var(--muted);
+}
+
+.hero-actions .secondary-button:hover {
+    color: var(--text);
+}
+
+.hero-actions .btn-icon-lead svg {
+    opacity: 0.95;
+}
+
+.hero-actions .secondary-button .btn-icon-lead {
+    opacity: 0.72;
+}
+
 .primary-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 40%, transparent);
@@ -1024,6 +1068,27 @@ h3 {
     margin-left: 0.35rem;
     flex-shrink: 0;
     transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), background 180ms ease;
+}
+
+/* Leading icon — bare glyph, no pill, so all hero CTAs read the same rhythm. */
+.btn-icon-lead {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0.9;
+    transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 180ms ease;
+}
+
+.primary-button:hover .btn-icon-lead,
+.secondary-button:hover .btn-icon-lead {
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+.primary-button:active .btn-icon-lead,
+.secondary-button:active .btn-icon-lead {
+    transform: scale(0.92);
 }
 
 .light-mode .btn-icon-pill {
@@ -2747,7 +2812,7 @@ dialog.project-dialog::backdrop {
     background: color-mix(in srgb, var(--bg) 40%, transparent);
 }
 
-.dialog-grid h4 {
+.dialog-grid h3 {
     margin: 0 0 0.6rem;
     color: var(--accent);
     font-family: var(--font-mono);
