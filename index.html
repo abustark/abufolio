@@ -255,7 +255,7 @@
                                     <div class="sql-line-numbers" aria-hidden="true">
                                         <span>1</span><span>2</span><span>3</span><span>4</span>
                                     </div>
-                                    <pre class="sql-syntax"><code id="sql-query-display"><span class="sql-keyword">SELECT</span> role, accuracy, productivity, impact
+                                    <pre class="sql-syntax"><code id="sql-query-display"><span class="sql-keyword">SELECT</span> role, accuracy, impact
 <span class="sql-keyword">FROM</span> amazon_enterprise_data
 <span class="sql-keyword">WHERE</span> candidate = <span class="sql-string">'Basith AbuSyed'</span>
   <span class="sql-keyword">AND</span> status = <span class="sql-string">'READY_TO_HIRE'</span>;</code></pre>
@@ -263,10 +263,8 @@
 
                                 <div class="sql-actions-bar">
                                     <button class="sql-run-button" type="button" id="sql-run-trigger" aria-label="Execute SQL query">
-                                        <span class="sql-run-pulse" aria-hidden="true"></span>
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                                         <span>Run Query</span>
-                                        <kbd class="sql-kbd">↵ Enter</kbd>
                                     </button>
                                     <span class="sql-execution-status" id="sql-status" aria-live="polite">Ready to execute</span>
                                 </div>
@@ -275,23 +273,21 @@
                                 <div class="sql-results-window" id="sql-results" aria-live="polite">
                                     <div class="sql-result-header">
                                         <span>RESULT SET (1 row · 14ms)</span>
-                                        <span class="sql-db-pill">PostgreSQL / Redshift</span>
+                                        <span class="sql-db-pill">PostgreSQL</span>
                                     </div>
                                     <div class="sql-table-wrapper">
                                         <table class="sql-table">
                                             <thead>
                                                 <tr>
                                                     <th>ROLE</th>
-                                                    <th>DATA_ACCURACY</th>
-                                                    <th>VELOCITY</th>
-                                                    <th>SYSTEM_IMPACT</th>
+                                                    <th>ACCURACY</th>
+                                                    <th>IMPACT</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><span class="sql-badge-role">ML Data Associate II</span></td>
+                                                    <td><span class="sql-badge-role">ML Data Assoc II</span></td>
                                                     <td><span class="sql-badge-accuracy">98.4%</span></td>
-                                                    <td><span class="sql-badge-velocity">240% target</span></td>
                                                     <td><span class="sql-badge-impact">+16% team speed</span></td>
                                                 </tr>
                                             </tbody>
