@@ -4262,22 +4262,40 @@ details.estimator[open] .estimator-summary::after {
 .terminal-pane {
     display: none;
     flex-direction: column;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .terminal-pane.active {
     display: flex;
 }
 
-#terminal-profile-pane pre {
-    background: rgba(0, 0, 0, 0.35);
-    padding: 0.75rem 0.85rem;
-    font-size: 0.72rem;
-    line-height: 1.5;
-    margin: 0;
+#pane-profile {
+    min-width: 0;
+    max-width: 100%;
 }
 
-.light-mode #terminal-profile-pane pre {
-    background: rgba(0, 0, 0, 0.03);
+#pane-profile .sql-code-editor {
+    min-width: 0;
+    max-width: 100%;
+}
+
+#pane-profile .sql-syntax {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#pane-profile .sql-syntax code {
+    display: block;
+    min-width: 0;
+    white-space: pre;
+}
+
+#pane-profile .sql-actions-bar {
+    border-bottom: none;
 }
 
 .sql-code-editor {

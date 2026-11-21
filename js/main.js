@@ -323,12 +323,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const sqlStatus = document.getElementById('sql-status');
     const sqlResults = document.getElementById('sql-results');
 
+    const terminalLangBadge = document.querySelector('.terminal-lang-badge');
+
     const switchTerminalTab = (tab) => {
         if (tab === 'sql') {
             tabBtnSql?.classList.add('active');
             tabBtnSql?.setAttribute('aria-selected', 'true');
             tabBtnProfile?.classList.remove('active');
             tabBtnProfile?.setAttribute('aria-selected', 'false');
+            if (terminalLangBadge) terminalLangBadge.textContent = 'SQL v2.4';
             if (paneSql) {
                 paneSql.hidden = false;
                 paneSql.classList.add('active');
@@ -342,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tabBtnProfile?.setAttribute('aria-selected', 'true');
             tabBtnSql?.classList.remove('active');
             tabBtnSql?.setAttribute('aria-selected', 'false');
+            if (terminalLangBadge) terminalLangBadge.textContent = 'JSON';
             if (paneProfile) {
                 paneProfile.hidden = false;
                 paneProfile.classList.add('active');

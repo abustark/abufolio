@@ -298,13 +298,25 @@
 
                             <!-- Profile JSON Tab Pane -->
                             <div class="terminal-pane" id="pane-profile" role="tabpanel" aria-labelledby="tab-btn-profile" hidden>
-                                <pre class="sql-code-editor" style="padding: 1rem 1.25rem;"><code>{
+                                <div class="sql-code-editor">
+                                    <div class="sql-line-numbers" aria-hidden="true">
+                                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                                    </div>
+                                    <pre class="sql-syntax"><code>{
   <span class="sql-keyword">"candidate"</span>: <span class="sql-string">"Basith AbuSyed"</span>,
-  <span class="sql-keyword">"role"</span>: <span class="sql-string">"Data &amp; Analytics Engineer"</span>,
-  <span class="sql-keyword">"experience"</span>: <span class="sql-string">"3+ years @ Amazon"</span>,
-  <span class="sql-keyword">"coreStack"</span>: [<span class="sql-string">"SQL"</span>, <span class="sql-string">"Python"</span>, <span class="sql-string">"Power BI"</span>, <span class="sql-string">"Scikit-learn"</span>],
-  <span class="sql-keyword">"deployments"</span>: <span class="sql-string">"6 live applications"</span>
+  <span class="sql-keyword">"role"</span>: <span class="sql-string">"Data &amp; Analytics"</span>,
+  <span class="sql-keyword">"experience"</span>: <span class="sql-string">"3+ yrs @ Amazon"</span>,
+  <span class="sql-keyword">"stack"</span>: [
+    <span class="sql-string">"SQL"</span>, <span class="sql-string">"Python"</span>, <span class="sql-string">"Power BI"</span>,
+    <span class="sql-string">"PostgreSQL"</span>, <span class="sql-string">"Scikit-learn"</span>
+  ],
+  <span class="sql-keyword">"status"</span>: <span class="sql-string">"READY_TO_HIRE"</span>
 }</code></pre>
+                                </div>
+                                <div class="sql-actions-bar">
+                                    <span class="sql-db-pill">JSON VALIDATED</span>
+                                    <span class="sql-execution-status">schema v1.0 · UTF-8</span>
+                                </div>
                             </div>
                         </div>
                     </div>
