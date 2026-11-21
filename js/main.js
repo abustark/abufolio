@@ -45,7 +45,7 @@ const projectDetails = {
         description: 'A full-stack AI productivity application built with React 19, Vite 6, Tailwind CSS v4, and TypeScript that drafts tailored, professional cover letters from resumes and job postings via OpenRouter free models.',
         focus: 'Engineered two Vercel serverless functions to secure OpenRouter keys and fetch job descriptions server-side past browser CORS restrictions. Implemented lazy-loaded client parsing for PDF and DOCX resumes with optional AI reformatting, a 4-mode × 4-tone routing matrix across Nemotron 3 and Gemma 4 models, and instant client export to PDF and DOCX.',
         tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Vercel Functions', 'OpenRouter', 'Google OAuth', 'PDF / DOCX Export'],
-        link: 'https://coverltr.vercel.app/'
+        link: 'https://github.com/abustark/cover_letter_gen'
     }};
 
 const EMAIL_ADDRESS = 'bas.abu0802@gmail.com';
@@ -74,16 +74,19 @@ const COMMAND_ACTIONS = [
     // Actions
     { type: 'action', title: 'Copy Email Address', subtitle: 'Copy bas.abu0802@gmail.com', action: 'copy-email', badge: 'Action' },
     { type: 'action', title: 'Toggle Dark / Light Theme', subtitle: 'Switch color theme', action: 'toggle-theme', badge: 'Action' },
+    { type: 'action', title: 'Toggle Project View (Grid / Table)', subtitle: 'Switch between rich cards and compact table (Key: V)', action: 'toggle-view', badge: 'Action', keywords: 'view grid table' },
+    { type: 'action', title: 'Toggle Tactile Sound Effects', subtitle: 'Turn micro-audio on or off (Key: S)', action: 'toggle-sound', badge: 'Action', keywords: 'sound audio haptic' },
+    { type: 'action', title: 'Keyboard Shortcuts Cheat Sheet', subtitle: 'View all keyboard navigation shortcuts (Key: ?)', action: 'open-shortcuts', badge: 'Action', keywords: 'shortcuts keys help' },
     { type: 'action', title: 'Open Resume (PDF)', subtitle: 'Quick look, download or copy plaintext', action: 'open-resume', badge: 'Action', keywords: '/resume resume cv' },
     { type: 'action', title: 'Copy Portfolio Link', subtitle: 'Share this website link', action: 'copy-link', badge: 'Action' },
 
     // Projects
+    { type: 'project', title: 'PriceTrail — Smart Price Tracker', subtitle: 'Next.js 14, MongoDB Atlas & Vercel Cron', target: 'https://price-trail-ruddy.vercel.app/', badge: 'Live App' },
     { type: 'project', title: 'ABot — Multi-Model AI Chat Hub', subtitle: '31 Models across Gemini, Groq, NIM & OpenRouter', target: 'https://abot-ai.vercel.app/', badge: 'Live App' },
-    { type: 'project', title: 'PriceTracked — Ecommerce Price Tracker', subtitle: 'Next.js 15, React 19, MongoDB Atlas & Vercel Cron', target: 'https://pricetracked.vercel.app/', badge: 'Live App' },
     { type: 'project', title: 'Linkly — Link Management Platform', subtitle: 'Serverless Vercel, MongoDB Atlas & REST API', target: 'https://linkly-link.vercel.app/', badge: 'Live Utility' },
     { type: 'project', title: 'House Price Prediction', subtitle: 'Streamlit Random Forest ML App (R² = 0.787)', target: 'https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/', badge: 'Live ML' },
-    { type: 'project', title: 'N-GELO — Developer Marketplace', subtitle: 'Dual-Stack Vue 3 & Next.js 16 Marketplace', target: 'https://ecom-seven-sand.vercel.app/', badge: 'Live App' },
-    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'Applied AI Letter Generator (React 19)', target: 'https://coverltr.vercel.app/', badge: 'Live App' },
+    { type: 'project', title: 'N-Gelo — Modern Storefront', subtitle: 'Vue.js 3 & Vite Shopping Cart', target: 'https://ecom-seven-sand.vercel.app/', badge: 'Live App' },
+    { type: 'project', title: 'CoverCraft — AI Cover Letter Builder', subtitle: 'GitHub Repository (React + TypeScript)', target: 'https://github.com/abustark/cover_letter_gen', badge: 'GitHub' },
 
     // Shortcut queries (/amazon, /skills)
     { type: 'nav', title: '/amazon — Amazon Experience', subtitle: 'ML Data Associate II, validation highlights', target: '#experience', badge: 'Shortcut', keywords: '/amazon amazon' },
@@ -134,6 +137,142 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!target) return;
         tapHaptic(target.classList.contains('primary-button') ? [12, 30, 12] : 10);
     });
+
+    // -------------------------------------------------------------
+    // Tactile Sound Synthesizer (Rauno-Style Micro-Audio via Web Audio API)
+    // -------------------------------------------------------------
+    class TactileSoundController {
+        constructor() {
+            this.ctx = null;
+            this.enabled = false;
+            try {
+                this.enabled = localStorage.getItem('portfolio-sound') === 'enabled';
+            } catch {}
+        }
+
+        init() {
+            if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                this.ctx = new AudioCtx();
+            }
+            if (this.ctx && this.ctx.state === 'suspended') {
+                this.ctx.resume();
+            }
+        }
+
+        play(type = 'click') {
+            if (!this.enabled) return;
+            try {
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(840, now);
+                    osc.frequency.exponentialRampToValueAtTime(420, now + 0.025);
+                    gain.gain.setValueAtTime(0.045, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+                    osc.start(now);
+                    osc.stop(now + 0.025);
+                } else if (type === 'pop') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(460, now);
+                    osc.frequency.exponentialRampToValueAtTime(220, now + 0.038);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
+                    osc.start(now);
+                    osc.stop(now + 0.038);
+                } else if (type === 'success') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, now); // D5
+                    osc.frequency.setValueAtTime(880, now + 0.04); // A5
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'toggle') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(360, now);
+                    osc.frequency.exponentialRampToValueAtTime(540, now + 0.03);
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
+                    osc.start(now);
+                    osc.stop(now + 0.03);
+                }
+            } catch (e) {
+                console.warn('Audio playback error', e);
+            }
+        }
+
+        toggle() {
+            this.init();
+            this.enabled = !this.enabled;
+            try {
+                localStorage.setItem('portfolio-sound', this.enabled ? 'enabled' : 'disabled');
+            } catch {}
+            this.updateUI();
+            if (this.enabled) {
+                this.play('success');
+                showToast('Tactile audio enabled');
+            } else {
+                showToast('Tactile audio muted');
+            }
+            return this.enabled;
+        }
+
+        updateUI() {
+            const btn = document.getElementById('sound-toggle');
+            if (!btn) return;
+            const iconOn = btn.querySelector('.sound-icon-on');
+            const iconOff = btn.querySelector('.sound-icon-off');
+            const dot = btn.querySelector('.sound-status-dot');
+
+            if (iconOn && iconOff) {
+                iconOn.classList.toggle('is-hidden', !this.enabled);
+                iconOff.classList.toggle('is-hidden', this.enabled);
+            }
+            if (dot) {
+                dot.classList.toggle('active', this.enabled);
+            }
+            btn.setAttribute('aria-label', this.enabled ? 'Mute tactile sound effects' : 'Enable tactile sound effects');
+            btn.setAttribute('title', this.enabled ? 'Tactile sounds: ON (Key: S)' : 'Tactile sounds: OFF (Key: S)');
+        }
+    }
+
+    const sound = new TactileSoundController();
+    sound.updateUI();
+
+    document.getElementById('sound-toggle')?.addEventListener('click', () => {
+        sound.toggle();
+    });
+
+    // -------------------------------------------------------------
+    // Living Bento Clock (Madurai / Indian Standard Time)
+    // -------------------------------------------------------------
+    const liveClockEl = document.getElementById('live-clock');
+    const updateMaduraiClock = () => {
+        if (!liveClockEl) return;
+        try {
+            const now = new Date();
+            const timeStr = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Asia/Kolkata',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+            liveClockEl.textContent = `Madurai ${timeStr} IST`;
+        } catch {
+            liveClockEl.textContent = 'Madurai, IST (UTC+5:30)';
+        }
+    };
+    updateMaduraiClock();
+    setInterval(updateMaduraiClock, 1000);
 
     // -------------------------------------------------------------
     // 1. Toast Notifications
@@ -220,6 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDynamicCursor();
 
         if (notify) {
+            sound.play('click');
             if (activePal.isDefault) {
                 showToast(`Theme: ${activePal.name} · ${activePal.desc} <span class="toast-default-badge">DEFAULT</span>`, true);
             } else {
@@ -288,6 +428,80 @@ document.addEventListener('DOMContentLoaded', () => {
     initDynamicRole();
 
     // -------------------------------------------------------------
+    // 4b. Hero SQL & Data Signal Console (Interactive Execution)
+    // -------------------------------------------------------------
+    const tabBtnSql = document.getElementById('tab-btn-sql');
+    const tabBtnProfile = document.getElementById('tab-btn-profile');
+    const paneSql = document.getElementById('pane-sql');
+    const paneProfile = document.getElementById('pane-profile');
+    const sqlRunBtn = document.getElementById('sql-run-trigger');
+    const sqlStatus = document.getElementById('sql-status');
+    const sqlResults = document.getElementById('sql-results');
+
+    const switchTerminalTab = (tab) => {
+        sound.play('click');
+        if (tab === 'sql') {
+            tabBtnSql?.classList.add('active');
+            tabBtnSql?.setAttribute('aria-selected', 'true');
+            tabBtnProfile?.classList.remove('active');
+            tabBtnProfile?.setAttribute('aria-selected', 'false');
+            if (paneSql) {
+                paneSql.hidden = false;
+                paneSql.classList.add('active');
+            }
+            if (paneProfile) {
+                paneProfile.hidden = true;
+                paneProfile.classList.remove('active');
+            }
+        } else {
+            tabBtnProfile?.classList.add('active');
+            tabBtnProfile?.setAttribute('aria-selected', 'true');
+            tabBtnSql?.classList.remove('active');
+            tabBtnSql?.setAttribute('aria-selected', 'false');
+            if (paneProfile) {
+                paneProfile.hidden = false;
+                paneProfile.classList.add('active');
+            }
+            if (paneSql) {
+                paneSql.hidden = true;
+                paneSql.classList.remove('active');
+            }
+        }
+    };
+
+    tabBtnSql?.addEventListener('click', () => switchTerminalTab('sql'));
+    tabBtnProfile?.addEventListener('click', () => switchTerminalTab('profile'));
+
+    const runMockSqlQuery = () => {
+        if (!sqlRunBtn || !sqlStatus) return;
+        sound.play('pop');
+        sqlRunBtn.setAttribute('disabled', 'true');
+        sqlRunBtn.classList.add('is-running');
+        sqlStatus.textContent = 'Executing query on replica...';
+        sqlStatus.classList.add('executing');
+
+        if (sqlResults) {
+            sqlResults.style.opacity = '0.5';
+        }
+
+        setTimeout(() => {
+            const execMs = Math.floor(Math.random() * 8 + 11);
+            if (sqlResults) {
+                sqlResults.style.opacity = '1';
+                const headerSpan = sqlResults.querySelector('.sql-result-header span');
+                if (headerSpan) headerSpan.textContent = `RESULT SET (1 row · ${execMs}ms)`;
+            }
+            sqlStatus.textContent = `✓ 1 row returned in ${execMs}ms`;
+            sqlStatus.classList.remove('executing');
+            sqlRunBtn.removeAttribute('disabled');
+            sqlRunBtn.classList.remove('is-running');
+            sound.play('success');
+        }, 320);
+    };
+
+    sqlRunBtn?.addEventListener('click', runMockSqlQuery);
+
+    // -------------------------------------------------------------
     // 5. Theme Toggle & State
     // -------------------------------------------------------------
     const applyTheme = (theme) => {
@@ -322,6 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             localStorage.setItem('portfolio-theme', nextTheme);
         } catch {}
+        sound.play('toggle');
         showToast(`Switched to ${nextTheme} mode`);
     };
 
@@ -565,6 +780,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
     const projectCards = Array.from(document.querySelectorAll('.project-card[data-category]'));
     const projectGroups = Array.from(document.querySelectorAll('[data-project-group]'));
+    const projectTableRows = Array.from(document.querySelectorAll('.project-table-row[data-category]'));
 
     const applyProjectFilter = (filter) => {
         filterButtons.forEach((item) => {
@@ -577,6 +793,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const categories = card.dataset.category?.split(' ') || [];
             const match = filter === 'all' || categories.includes(filter);
             card.classList.toggle('is-hidden', !match);
+        });
+
+        projectTableRows.forEach((row) => {
+            const categories = row.dataset.category?.split(' ') || [];
+            const match = filter === 'all' || categories.includes(filter);
+            row.classList.toggle('is-hidden', !match);
         });
 
         // A group with no matching card collapses, so the featured grid and
@@ -600,9 +822,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterButtons.forEach((button) => {
         button.addEventListener('click', () => {
+            sound.play('click');
             applyProjectFilter(button.dataset.filter || 'all');
         });
     });
+
+    // -------------------------------------------------------------
+    // 10b. Project Presentation View Mode Switcher (Grid vs. Table)
+    // -------------------------------------------------------------
+    const viewModeBtns = Array.from(document.querySelectorAll('[data-view-mode]'));
+    const projectGrid = document.getElementById('project-grid');
+    const projectTable = document.getElementById('project-table');
+
+    const setProjectView = (mode, notify = false) => {
+        const isTable = mode === 'table';
+        viewModeBtns.forEach((btn) => {
+            const active = btn.dataset.viewMode === mode;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-checked', String(active));
+        });
+
+        if (projectGrid) projectGrid.classList.toggle('is-hidden', isTable);
+        if (moreDetails) moreDetails.classList.toggle('is-hidden', isTable);
+        if (projectTable) projectTable.classList.toggle('is-hidden', !isTable);
+
+        try {
+            localStorage.setItem('portfolio-view-mode', mode);
+        } catch {}
+
+        if (notify) {
+            sound.play('pop');
+            showToast(isTable ? 'Switched to Compact Table view' : 'Switched to Grid view');
+        }
+    };
+
+    const toggleProjectView = () => {
+        const current = localStorage.getItem('portfolio-view-mode') || 'grid';
+        setProjectView(current === 'grid' ? 'table' : 'grid', true);
+    };
+
+    viewModeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            setProjectView(btn.dataset.viewMode, true);
+        });
+    });
+
+    try {
+        const savedView = localStorage.getItem('portfolio-view-mode') || 'grid';
+        setProjectView(savedView, false);
+    } catch {
+        setProjectView('grid', false);
+    }
 
     // -------------------------------------------------------------
     // 11. Project Case Notes Modal (<dialog>)
@@ -814,6 +1084,12 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast(`Copied ${EMAIL_ADDRESS} to clipboard`);
         } else if (item.action === 'toggle-theme') {
             toggleTheme();
+        } else if (item.action === 'toggle-view') {
+            toggleProjectView();
+        } else if (item.action === 'toggle-sound') {
+            sound.toggle();
+        } else if (item.action === 'open-shortcuts') {
+            openShortcutsDialog();
         } else if (item.action === 'open-resume') {
             openResumeDialog();
         } else if (item.action === 'copy-link') {
@@ -890,8 +1166,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
+    // 12b. Keyboard Shortcuts Cheat Sheet Dialog
+    // -------------------------------------------------------------
+    const shortcutsDialog = document.getElementById('shortcuts-dialog');
+    let lastShortcutsFocus = null;
+
+    const openShortcutsDialog = () => {
+        if (!shortcutsDialog) return;
+        lastShortcutsFocus = document.activeElement;
+        shortcutsDialog.showModal();
+        body.classList.add('modal-open');
+        sound.play('pop');
+    };
+
+    const closeShortcutsDialog = () => {
+        if (!shortcutsDialog) return;
+        shortcutsDialog.close();
+        body.classList.remove('modal-open');
+        if (lastShortcutsFocus && typeof lastShortcutsFocus.focus === 'function') {
+            lastShortcutsFocus.focus();
+        }
+    };
+
+    document.querySelectorAll('[data-open-shortcuts]').forEach((btn) => {
+        btn.addEventListener('click', openShortcutsDialog);
+    });
+
+    document.querySelector('[data-close-shortcuts]')?.addEventListener('click', closeShortcutsDialog);
+
+    shortcutsDialog?.addEventListener('click', (event) => {
+        const rect = shortcutsDialog.getBoundingClientRect();
+        const clickedOutside = event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom;
+        if (clickedOutside) closeShortcutsDialog();
+    });
+
+    // -------------------------------------------------------------
     // 13. Global Keyboard Shortcuts
     // -------------------------------------------------------------
+    const isTyping = () => {
+        const el = document.activeElement;
+        if (!el) return false;
+        const tag = el.tagName.toLowerCase();
+        return tag === 'input' || tag === 'textarea' || tag === 'select' || el.isContentEditable;
+    };
+
     document.addEventListener('keydown', (event) => {
         const commandPressed = isMac ? event.metaKey : event.ctrlKey;
         if (commandPressed && event.key.toLowerCase() === 'k') {
@@ -901,6 +1222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 openCommandPalette();
             }
+            return;
         }
 
         if (event.key === 'Escape') {
@@ -908,6 +1230,52 @@ document.addEventListener('DOMContentLoaded', () => {
             if (commandMenu?.open) closeCommandPalette();
             if (projectDialog?.open) closeProjectDialog();
             if (resumeDialog?.open) closeResumeDialog();
+            if (shortcutsDialog?.open) closeShortcutsDialog();
+            return;
+        }
+
+        // Single-key navigation shortcuts (ignored while typing or holding meta keys)
+        if (isTyping() || event.metaKey || event.ctrlKey || event.altKey) return;
+
+        const navigateTo = (targetId) => {
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
+        };
+
+        if (event.key === '1') {
+            navigateTo('home');
+        } else if (event.key === '2') {
+            navigateTo('about');
+        } else if (event.key === '3') {
+            navigateTo('work');
+        } else if (event.key === '4') {
+            navigateTo('skills');
+        } else if (event.key === '5') {
+            navigateTo('contact');
+        } else if (event.key === 't' || event.key === 'T') {
+            event.preventDefault();
+            const nextIndex = (currentPaletteIndex + 1) % PALETTES.length;
+            setPalette(PALETTES[nextIndex].id, true);
+        } else if (event.key === 'v' || event.key === 'V') {
+            event.preventDefault();
+            toggleProjectView();
+        } else if (event.key === 's' || event.key === 'S') {
+            event.preventDefault();
+            sound.toggle();
+        } else if (event.key === 'r' || event.key === 'R') {
+            event.preventDefault();
+            if (resumeDialog?.open) {
+                closeResumeDialog();
+            } else {
+                openResumeDialog();
+            }
+        } else if (event.key === '?') {
+            event.preventDefault();
+            if (shortcutsDialog?.open) {
+                closeShortcutsDialog();
+            } else {
+                openShortcutsDialog();
+            }
         }
     });
 

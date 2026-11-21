@@ -1497,12 +1497,14 @@ pre {
 .about-card,
 .skills-card,
 .contact-card,
-.project-card {
+.project-card,
+.terminal-card,
+.profile-card {
     position: relative;
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), var(--shadow-sm);
+    background: color-mix(in srgb, var(--surface) 84%, transparent);
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.025), var(--shadow-sm);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
@@ -1512,8 +1514,11 @@ pre {
 .light-mode .about-card,
 .light-mode .skills-card,
 .light-mode .contact-card,
-.light-mode .project-card {
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.8), var(--shadow-sm);
+.light-mode .project-card,
+.light-mode .terminal-card,
+.light-mode .profile-card {
+    border: 1px solid rgba(15, 23, 42, 0.09);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 0 0 1px rgba(15, 23, 42, 0.03), var(--shadow-sm);
 }
 
 .light-mode .tag-row span,
@@ -1529,9 +1534,10 @@ pre {
 
 .spotlight-card:hover,
 .project-card:hover,
-.skills-card:hover {
+.skills-card:hover,
+.terminal-card:hover {
     border-color: var(--line-strong);
-    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.16), 0 14px 38px -10px var(--accent-glow), var(--shadow);
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px var(--accent-glow), 0 16px 40px -12px var(--accent-glow), var(--shadow);
 }
 
 /* -------------------------------------------------------------
@@ -1619,13 +1625,16 @@ pre {
 
 .section-index,
 .mono-label,
+.meta-tag,
+.project-label,
+.timeline time,
 .contact-card .section-index {
     margin: 0 0 0.85rem;
     color: var(--accent) !important;
     font-family: var(--font-mono);
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 
@@ -4103,4 +4112,658 @@ details.estimator[open] .estimator-summary::after {
     .brand > span:last-child {
         display: none;
     }
+}
+
+/* -------------------------------------------------------------
+   Dynamic Subtle Ambient Glow
+------------------------------------------------------------- */
+.ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
+    max-width: 1440px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.75;
+    transition: opacity 0.6s ease;
+}
+
+.ambient-glow::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 520px;
+    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 68%);
+    filter: blur(85px);
+    opacity: 0.55;
+    transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    will-change: transform;
+}
+
+.light-mode .ambient-glow::before {
+    opacity: 0.22;
+    filter: blur(100px);
+}
+
+/* -------------------------------------------------------------
+   Header Sound Toggle Button
+------------------------------------------------------------- */
+.sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sound-toggle:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: var(--surface-hover);
+    transform: translateY(-1px);
+}
+
+.sound-status-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sound-toggle.is-active .sound-status-dot {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.sound-toggle.is-active {
+    color: var(--accent);
+}
+
+/* -------------------------------------------------------------
+   Living Bento Hub (Profile Card Meta & Live Clock)
+------------------------------------------------------------- */
+.bento-live-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(9, 14, 20, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    z-index: 2;
+}
+
+.light-mode .bento-live-badge {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #0f172a;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.bento-dot-sep {
+    color: var(--muted);
+    opacity: 0.6;
+}
+
+.live-clock-text {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+/* -------------------------------------------------------------
+   Interactive "SQL & Data Signal Console" (Hero Terminal)
+------------------------------------------------------------- */
+.terminal-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.terminal-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.75rem;
+}
+
+.terminal-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.terminal-tab:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.terminal-tab.active {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.terminal-lang-badge {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding-right: 0.25rem;
+}
+
+.terminal-pane {
+    display: none;
+    flex-direction: column;
+}
+
+.terminal-pane.active {
+    display: flex;
+}
+
+.sql-code-editor {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    overflow-x: auto;
+}
+
+.light-mode .sql-code-editor {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.sql-line-numbers {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    color: var(--muted);
+    opacity: 0.45;
+    padding-right: 1rem;
+    border-right: 1px solid var(--line);
+    text-align: right;
+    font-size: 0.72rem;
+}
+
+.sql-syntax {
+    margin: 0;
+    padding-left: 0.85rem;
+    color: var(--text);
+    overflow-x: auto;
+}
+
+.sql-keyword {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.sql-string {
+    color: #38bdf8;
+}
+
+.sql-actions-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    border-bottom: 1px solid var(--line);
+}
+
+.sql-run-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+    color: #041018;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--accent-glow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sql-run-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.sql-run-button:active {
+    transform: scale(0.97);
+}
+
+.sql-run-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #041018;
+    animation: sqlPulse 1.8s infinite;
+}
+
+@keyframes sqlPulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.25); }
+}
+
+.sql-kbd {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #041018;
+}
+
+.sql-execution-status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.sql-results-window {
+    padding: 0.75rem 1rem 0.9rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .sql-results-window {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.sql-result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.sql-db-pill {
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.sql-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sql-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+}
+
+.sql-table th {
+    text-align: left;
+    padding: 0.35rem 0.5rem;
+    color: var(--muted);
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.sql-table td {
+    padding: 0.5rem;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.sql-badge-role {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.sql-badge-accuracy {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.sql-badge-velocity {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.sql-badge-impact {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------
+   Work Section Toolbar & Project View Switcher
+------------------------------------------------------------- */
+.work-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.view-mode-switcher {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    border: 1px solid var(--line);
+    gap: 0.2rem;
+}
+
+.view-mode-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: calc(var(--radius-md) - 2px);
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.view-mode-btn:hover {
+    color: var(--text);
+}
+
+.view-mode-btn.active {
+    background: var(--surface-hover);
+    color: var(--accent);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--line-strong);
+}
+
+.light-mode .view-mode-btn.active {
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* -------------------------------------------------------------
+   Compact Table View for Projects
+------------------------------------------------------------- */
+.project-table-container {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--surface) 84%, transparent);
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.025), var(--shadow-sm);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+}
+
+.light-mode .project-table-container {
+    border-color: rgba(15, 23, 42, 0.09);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), var(--shadow-sm);
+}
+
+.project-table-header {
+    display: grid;
+    grid-template-columns: 80px 1.8fr 1.5fr 190px;
+    padding: 0.85rem 1.5rem;
+    background: color-mix(in srgb, var(--surface) 95%, transparent);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.project-table-row {
+    display: grid;
+    grid-template-columns: 80px 1.8fr 1.5fr 190px;
+    align-items: center;
+    padding: 1.15rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-table-row:last-child {
+    border-bottom: none;
+}
+
+.project-table-row:hover {
+    background-color: var(--surface-hover);
+}
+
+.project-table-row.is-hidden {
+    display: none !important;
+}
+
+.col-year {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.col-title h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.col-title p {
+    margin: 0.2rem 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.col-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.col-stack span {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.light-mode .col-stack span {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+}
+
+.col-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.col-actions a,
+.col-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.col-actions a {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.col-actions a:hover {
+    background: var(--accent);
+    color: #041018;
+}
+
+.col-actions button {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--line);
+}
+
+.col-actions button:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Mobile responsive collapse for project table */
+@media (max-width: 860px) {
+    .project-table-header {
+        display: none;
+    }
+
+    .project-table-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1.25rem 1rem;
+    }
+
+    .col-actions {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.35rem;
+    }
+}
+
+/* -------------------------------------------------------------
+   Keyboard Shortcuts Dialog
+------------------------------------------------------------- */
+dialog.shortcuts-dialog {
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--bg-soft) 95%, transparent);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    color: var(--text);
+    padding: 1.75rem 2rem;
+    max-width: 540px;
+    width: calc(100% - 2rem);
+    margin: auto;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 520px) {
+    .shortcuts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.shortcut-item kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.55rem;
+    padding: 0 0.4rem;
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    border: 1px solid var(--line);
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.4);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.shortcut-item span {
+    color: var(--text);
+    font-weight: 500;
 }
