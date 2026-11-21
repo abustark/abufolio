@@ -543,11 +543,47 @@ document.addEventListener('DOMContentLoaded', () => {
         header?.classList.toggle('is-scrolled', window.scrollY > 20);
     };
 
+    // -------------------------------------------------------------
+    // Experience Timeline Wave Animation (Bottom-to-Top Once On Scroll)
+    // -------------------------------------------------------------
+    const timelineContainer = document.querySelector('.timeline-container');
+    const timelineSpine = document.querySelector('.timeline-spine');
+    let lastScrollPos = window.scrollY || document.documentElement.scrollTop;
+    let timelineWaveFired = false;
+
+    const checkTimelineWave = () => {
+        if (!timelineContainer || !timelineSpine) return;
+        if (prefersReducedMotion()) return;
+
+        const currentScrollPos = window.scrollY || document.documentElement.scrollTop;
+        const scrollingUp = currentScrollPos < lastScrollPos;
+        const rect = timelineContainer.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+
+        // Timeline is in or entering the viewport
+        const inViewport = rect.top < vh * 0.85 && rect.bottom > vh * 0.15;
+
+        if (scrollingUp && inViewport && !timelineWaveFired) {
+            timelineWaveFired = true;
+            timelineSpine.classList.remove('wave-active');
+            void timelineSpine.offsetWidth; // Force reflow
+            timelineSpine.classList.add('wave-active');
+        } else if (rect.bottom < 0) {
+            // User scrolled below the timeline (e.g. Contact section or footer)
+            // Reset so scrolling back UP from the bottom will fire the wave once again
+            timelineWaveFired = false;
+            timelineSpine.classList.remove('wave-active');
+        }
+
+        lastScrollPos = currentScrollPos <= 0 ? 0 : currentScrollPos;
+    };
+
     let scrollTicking = false;
     const onScroll = () => {
         if (!scrollTicking) {
             window.requestAnimationFrame(() => {
                 updateScrollState();
+                checkTimelineWave();
                 scrollTicking = false;
             });
             scrollTicking = true;

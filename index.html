@@ -914,14 +914,14 @@
             <div class="timeline-container">
                 <div class="timeline-spine" aria-hidden="true">
                     <svg class="timeline-spine-svg" viewBox="0 0 24 500" preserveAspectRatio="none" fill="none">
-                        <!-- Background track rail -->
-                        <path class="timeline-rail" d="M12,12 Q4,90 20,170 T12,320 Q4,400 20,460 L12,490" stroke="var(--line)" stroke-width="2" stroke-linecap="round" />
-                        <!-- Dynamic glowing wiggle energy pulse path moving from education up to job -->
-                        <path class="timeline-wave" d="M12,12 Q4,90 20,170 T12,320 Q4,400 20,460 L12,490" stroke="url(#timeline-grad)" stroke-width="3" stroke-linecap="round" />
+                        <!-- Background track rail from bottom education to top job -->
+                        <path class="timeline-rail" d="M12,488 Q4,410 12,350 T12,250 Q4,160 12,100 T12,12" stroke="var(--line)" stroke-width="2" stroke-linecap="round" />
+                        <!-- Dynamic glowing wiggle energy wave moving from bottom education up to top job -->
+                        <path class="timeline-wave" pathLength="500" d="M12,488 Q4,410 12,350 T12,250 Q4,160 12,100 T12,12" stroke="url(#timeline-grad)" stroke-width="3" stroke-linecap="round" />
                         <defs>
                             <linearGradient id="timeline-grad" x1="0%" y1="100%" x2="0%" y2="0%">
                                 <stop offset="0%" stop-color="var(--accent-cool)" stop-opacity="0.3" />
-                                <stop offset="50%" stop-color="var(--accent)" stop-opacity="0.85" />
+                                <stop offset="60%" stop-color="var(--accent)" stop-opacity="0.9" />
                                 <stop offset="100%" stop-color="var(--accent-strong)" stop-opacity="1" />
                             </linearGradient>
                         </defs>
@@ -931,7 +931,6 @@
                     <li class="timeline-item reveal" data-milestone="job">
                         <div class="timeline-node">
                             <span class="timeline-dot current"></span>
-                            <span class="timeline-pulse-ring" aria-hidden="true"></span>
                         </div>
                         <time><span class="status-dot"></span> Aug 2023 — Present</time>
                         <div class="timeline-body">

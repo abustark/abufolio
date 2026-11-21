@@ -2498,18 +2498,31 @@ a.about-email:hover {
 }
 
 .timeline-wave {
-    stroke-dasharray: 24 84;
-    stroke-dashoffset: 0;
-    animation: timelineWaveFlow 4s linear infinite;
-    filter: drop-shadow(0 0 6px var(--accent-glow));
+    stroke-dasharray: 130 500;
+    stroke-dashoffset: 130;
+    opacity: 0;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+    pointer-events: none;
 }
 
-@keyframes timelineWaveFlow {
-    from {
-        stroke-dashoffset: 216;
+.timeline-spine.wave-active .timeline-wave {
+    animation: timelineWaveRise 2.4s cubic-bezier(0.25, 1, 0.45, 1) 1 forwards;
+}
+
+@keyframes timelineWaveRise {
+    0% {
+        stroke-dashoffset: 130;
+        opacity: 0;
     }
-    to {
-        stroke-dashoffset: 0;
+    12% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: -500;
+        opacity: 0;
     }
 }
 
@@ -2553,38 +2566,19 @@ a.about-email:hover {
 }
 
 .timeline-dot {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.75rem;
+    height: 0.75rem;
     border-radius: 50%;
     background: var(--surface);
     border: 2px solid var(--accent);
-    box-shadow: 0 0 8px var(--accent-glow);
+    box-shadow: 0 0 6px var(--accent-glow);
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .timeline-dot.current {
     background: var(--accent);
-    box-shadow: 0 0 14px var(--accent-glow);
-}
-
-.timeline-pulse-ring {
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 1.5px solid var(--accent);
-    animation: timelineRingPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    pointer-events: none;
-}
-
-@keyframes timelineRingPing {
-    0% {
-        transform: scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.9);
-        opacity: 0;
-    }
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .timeline-item time {
