@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // 4. Dynamic Headline Typewriter
+    // 4. Dynamic Headline Typewriter (Persists Active Role Across Refreshes)
     // -------------------------------------------------------------
     const initDynamicRole = () => {
         if (!dynamicRole) return;
@@ -306,8 +306,20 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(Boolean);
         if (!roles.length) return;
 
+        const STORAGE_KEY = 'abufolio_hero_role_index';
         let roleIndex = 0;
-        let letterIndex = roles[0].length;
+        try {
+            const saved = sessionStorage.getItem(STORAGE_KEY);
+            if (saved !== null) {
+                const parsed = parseInt(saved, 10);
+                if (!isNaN(parsed) && parsed >= 0 && parsed < roles.length) {
+                    roleIndex = parsed;
+                }
+            }
+        } catch {}
+
+        dynamicRole.textContent = roles[roleIndex];
+        let letterIndex = roles[roleIndex].length;
         let deleting = true;
 
         const tick = () => {
@@ -320,11 +332,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (letterIndex <= 0) {
                     deleting = false;
                     roleIndex = (roleIndex + 1) % roles.length;
+                    try {
+                        sessionStorage.setItem(STORAGE_KEY, String(roleIndex));
+                    } catch {}
                 }
             } else {
                 letterIndex += 1;
                 if (letterIndex >= roles[roleIndex].length) {
                     deleting = true;
+                    try {
+                        sessionStorage.setItem(STORAGE_KEY, String(roleIndex));
+                    } catch {}
                     window.setTimeout(tick, 1600);
                     return;
                 }
