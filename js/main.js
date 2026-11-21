@@ -138,27 +138,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // Living Bento Clock (Madurai / Indian Standard Time)
+    // Living Bento Clock (Indian Standard Time + Foreign Visitor Support)
     // -------------------------------------------------------------
     const liveClockEl = document.getElementById('live-clock');
-    const updateMaduraiClock = () => {
+    const updateLiveClock = () => {
         if (!liveClockEl) return;
         try {
             const now = new Date();
-            const timeStr = new Intl.DateTimeFormat('en-GB', {
+            const istTime = new Intl.DateTimeFormat('en-GB', {
                 timeZone: 'Asia/Kolkata',
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
                 hour12: false
             }).format(now);
-            liveClockEl.textContent = `Madurai ${timeStr} IST`;
+
+            // Detect visitor's local timezone
+            let userTz = '';
+            try {
+                userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            } catch {}
+
+            const isIndia = !userTz || userTz === 'Asia/Kolkata' || userTz === 'Asia/Calcutta';
+            if (isIndia) {
+                liveClockEl.textContent = `${istTime} IST`;
+            } else {
+                // Show both visitor's local time and IST
+                const localTime = new Intl.DateTimeFormat('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                }).format(now);
+
+                let localAbbr = '';
+                try {
+                    const parts = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).formatToParts(now);
+                    const tzPart = parts.find(p => p.type === 'timeZoneName');
+                    if (tzPart) localAbbr = tzPart.value;
+                } catch {}
+
+                liveClockEl.textContent = `${istTime} IST · ${localTime}${localAbbr ? ' ' + localAbbr : ''}`;
+            }
         } catch {
-            liveClockEl.textContent = 'Madurai, IST (UTC+5:30)';
+            liveClockEl.textContent = 'IST (UTC+5:30)';
         }
     };
-    updateMaduraiClock();
-    setInterval(updateMaduraiClock, 1000);
+    updateLiveClock();
+    setInterval(updateLiveClock, 1000);
 
     // -------------------------------------------------------------
     // 1. Toast Notifications
