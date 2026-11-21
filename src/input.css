@@ -1625,16 +1625,13 @@ pre {
 
 .section-index,
 .mono-label,
-.meta-tag,
-.project-label,
-.timeline time,
 .contact-card .section-index {
     margin: 0 0 0.85rem;
     color: var(--accent) !important;
     font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
 }
 
@@ -4153,52 +4150,6 @@ details.estimator[open] .estimator-summary::after {
 }
 
 /* -------------------------------------------------------------
-   Header Sound Toggle Button
-------------------------------------------------------------- */
-.sound-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 2.35rem;
-    height: 2.35rem;
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--surface) 80%, transparent);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sound-toggle:hover {
-    color: var(--text);
-    border-color: var(--line-strong);
-    background: var(--surface-hover);
-    transform: translateY(-1px);
-}
-
-.sound-status-dot {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.sound-toggle.is-active .sound-status-dot {
-    opacity: 1;
-    box-shadow: 0 0 8px var(--accent);
-}
-
-.sound-toggle.is-active {
-    color: var(--accent);
-}
-
-/* -------------------------------------------------------------
    Living Bento Hub (Profile Card Meta & Live Clock)
 ------------------------------------------------------------- */
 .bento-live-badge {
@@ -4546,166 +4497,177 @@ details.estimator[open] .estimator-summary::after {
 }
 
 /* -------------------------------------------------------------
-   Compact Table View for Projects
+   Work Section: Smooth Transition Grid ↔ List View
 ------------------------------------------------------------- */
-.project-table-container {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
-    background: color-mix(in srgb, var(--surface) 84%, transparent);
-    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.025), var(--shadow-sm);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    overflow: hidden;
-    margin-bottom: 2.5rem;
+.project-card,
+.project-row,
+.preview-browser-frame,
+.project-row-thumb,
+.project-content,
+.project-row-body,
+.project-content h3,
+.project-row-body h3,
+.project-content p,
+.project-row-desc,
+.tag-row,
+.tag-row span,
+.project-actions {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.light-mode .project-table-container {
-    border-color: rgba(15, 23, 42, 0.09);
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), var(--shadow-sm);
-}
-
-.project-table-header {
+/* --- GRID VIEW (Default) --- */
+.work-section:not(.is-list-view) .project-rows {
     display: grid;
-    grid-template-columns: 80px 1.8fr 1.5fr 190px;
-    padding: 0.85rem 1.5rem;
-    background: color-mix(in srgb, var(--surface) 95%, transparent);
-    border-bottom: 1px solid var(--line);
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--muted);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
 }
 
-.project-table-row {
-    display: grid;
-    grid-template-columns: 80px 1.8fr 1.5fr 190px;
-    align-items: center;
-    padding: 1.15rem 1.5rem;
-    border-bottom: 1px solid var(--line);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.project-table-row:last-child {
-    border-bottom: none;
-}
-
-.project-table-row:hover {
-    background-color: var(--surface-hover);
-}
-
-.project-table-row.is-hidden {
-    display: none !important;
-}
-
-.col-year {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--accent);
-}
-
-.col-title h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-}
-
-.col-title p {
-    margin: 0.2rem 0 0;
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.45;
-}
-
-.col-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-}
-
-.col-stack span {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-}
-
-.light-mode .col-stack span {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.06);
-    color: #475569;
-}
-
-.col-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: flex-end;
-}
-
-.col-actions a,
-.col-actions button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.35rem 0.65rem;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.col-actions a {
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-}
-
-.col-actions a:hover {
-    background: var(--accent);
-    color: #041018;
-}
-
-.col-actions button {
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--line);
-}
-
-.col-actions button:hover {
-    color: var(--text);
-    border-color: var(--line-strong);
-    background: rgba(255, 255, 255, 0.04);
-}
-
-/* Mobile responsive collapse for project table */
-@media (max-width: 860px) {
-    .project-table-header {
-        display: none;
+@media (max-width: 1024px) {
+    .work-section:not(.is-list-view) .project-rows {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
 
-    .project-table-row {
+@media (max-width: 640px) {
+    .work-section:not(.is-list-view) .project-rows {
+        grid-template-columns: 1fr;
+    }
+}
+
+.work-section:not(.is-list-view) .project-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.work-section:not(.is-list-view) .project-row-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.work-section:not(.is-list-view) .project-row-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.work-section:not(.is-list-view) .project-row-body h3 {
+    min-height: 2.8rem;
+}
+
+.work-section:not(.is-list-view) .project-row-desc {
+    flex: 1;
+    margin-bottom: 0.85rem;
+}
+
+.work-section:not(.is-list-view) .project-row .project-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+}
+
+/* --- LIST VIEW (.is-list-view) --- */
+/* Featured Cards (#project-grid) transform into horizontal rows */
+.work-section.is-list-view .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.work-section.is-list-view .project-grid .project-card {
+    grid-column: span 12 !important;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
+    min-height: auto;
+}
+
+.work-section.is-list-view .preview-browser-frame {
+    border-right: 1px solid var(--line);
+    border-bottom: none;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    height: 100%;
+}
+
+.work-section.is-list-view .preview-browser-frame .shot {
+    height: calc(100% - 2.5rem);
+}
+
+.work-section.is-list-view .preview-browser-frame .shot a,
+.work-section.is-list-view .preview-browser-frame .shot picture,
+.work-section.is-list-view .preview-browser-frame .shot img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.work-section.is-list-view .project-content {
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.work-section.is-list-view .project-content h3 {
+    min-height: 0;
+    margin-bottom: 0.35rem;
+}
+
+.work-section.is-list-view .project-content p:not(.project-label) {
+    margin-bottom: 0.65rem;
+}
+
+.work-section.is-list-view .project-content .tag-row {
+    margin-bottom: 0.65rem;
+}
+
+.work-section.is-list-view .project-content .project-actions {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Secondary projects (.project-more) in List view: sleek horizontal rows */
+.work-section.is-list-view .project-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.work-section.is-list-view .project-row {
+    display: grid;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+}
+
+.work-section.is-list-view .project-row-body h3 {
+    min-height: 0;
+}
+
+/* Responsive collapse for List View on small screens */
+@media (max-width: 860px) {
+    .work-section.is-list-view .project-grid .project-card {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1.25rem 1rem;
+    }
+    
+    .work-section.is-list-view .preview-browser-frame {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        height: auto;
     }
 
-    .col-actions {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 0.35rem;
+    .work-section.is-list-view .project-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 }
 

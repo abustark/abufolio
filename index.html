@@ -138,13 +138,6 @@
                     </span>
                 </button>
 
-                <!-- Tactile Audio Sound Toggle (Micro-interactions) -->
-                <button class="sound-toggle" type="button" id="sound-toggle" title="Toggle tactile UI sounds (Key: S)" aria-label="Enable tactile sound effects">
-                    <svg class="sound-icon-on is-hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                    <svg class="sound-icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                    <span class="sound-status-dot" aria-hidden="true"></span>
-                </button>
-
                 <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to light theme" title="Switch to light theme">
                     <span class="theme-toggle-track" aria-hidden="true">
                         <span class="theme-toggle-dot">
@@ -436,15 +429,15 @@
                     <button class="filter-chip" type="button" data-filter="data" aria-pressed="false">Data &amp; ML</button>
                 </div>
 
-                <!-- Grid vs Table View Mode Switcher -->
+                <!-- Grid vs List View Mode Switcher -->
                 <div class="view-mode-switcher" role="radiogroup" aria-label="Project view mode">
                     <button class="view-mode-btn active" type="button" data-view-mode="grid" aria-checked="true" title="Grid View (Cards)">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
                         <span>Grid</span>
                     </button>
-                    <button class="view-mode-btn" type="button" data-view-mode="table" aria-checked="false" title="Compact Table View (Key: V)">
+                    <button class="view-mode-btn" type="button" data-view-mode="list" aria-checked="false" title="List View (Key: V)">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                        <span>Table</span>
+                        <span>List</span>
                     </button>
                 </div>
             </div>
@@ -748,142 +741,6 @@
                     </article>
                 </div>
             </details>
-
-            <!-- Compact Table View (Switched via Grid / Table toggle) -->
-            <div class="project-table-container is-hidden" id="project-table" aria-label="Projects table view">
-                <div class="project-table-header">
-                    <span class="col-year">YEAR</span>
-                    <span class="col-title">PROJECT &amp; ARCHITECTURE</span>
-                    <span class="col-stack">TECH STACK</span>
-                    <span class="col-actions">ACTIONS</span>
-                </div>
-                <div class="project-table-rows" role="list">
-                    <!-- 1. PriceTrail -->
-                    <div class="project-table-row" data-category="ai db web" data-project="price-trail">
-                        <span class="col-year">2026</span>
-                        <div class="col-title">
-                            <h3>PriceTrail — Smart Amazon Price Tracker</h3>
-                            <p>Automated periodic price scraping via Cheerio, Vercel Cron, Google OAuth, and instant Nodemailer drop alerts.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>Next.js 14</span>
-                            <span>MongoDB Atlas</span>
-                            <span>Cheerio</span>
-                            <span>Vercel Cron</span>
-                            <span>Google OAuth</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://price-trail-ruddy.vercel.app/" target="_blank" rel="noopener noreferrer">Live ↗</a>
-                            <a href="https://github.com/abustark/price-trail" target="_blank" rel="noopener noreferrer">Repo ↗</a>
-                            <button type="button" data-open-project="price-trail">Notes</button>
-                        </div>
-                    </div>
-
-                    <!-- 2. ABot -->
-                    <div class="project-table-row" data-category="ai web" data-project="abot">
-                        <span class="col-year">2025</span>
-                        <div class="col-title">
-                            <h3>ABot — Multi-Provider AI Chat Assistant</h3>
-                            <p>Node/Express proxy routing requests across 4 AI providers with Firestore guest-to-user history migration.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>Node.js</span>
-                            <span>Express.js</span>
-                            <span>Firestore</span>
-                            <span>Firebase Auth</span>
-                            <span>CI/CD</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://abot-ai.vercel.app/" target="_blank" rel="noopener noreferrer">Live ↗</a>
-                            <button type="button" data-open-project="abot">Notes</button>
-                        </div>
-                    </div>
-
-                    <!-- 3. Linkly -->
-                    <div class="project-table-row" data-category="db web" data-project="linkly">
-                        <span class="col-year">2025</span>
-                        <div class="col-title">
-                            <h3>Linkly — Serverless URL Shortener</h3>
-                            <p>Cached serverless connection pooling on MongoDB Atlas with REST endpoints and dynamic redirection.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>MongoDB Atlas</span>
-                            <span>Mongoose</span>
-                            <span>Vercel Functions</span>
-                            <span>Node.js</span>
-                            <span>Firebase Auth</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://linkly-link.vercel.app/" target="_blank" rel="noopener noreferrer">Live ↗</a>
-                            <a href="https://github.com/abustark/linkly" target="_blank" rel="noopener noreferrer">Repo ↗</a>
-                            <button type="button" data-open-project="linkly">Notes</button>
-                        </div>
-                    </div>
-
-                    <!-- 4. House Price Prediction -->
-                    <div class="project-table-row" data-category="data" data-project="house-price">
-                        <span class="col-year">2023</span>
-                        <div class="col-title">
-                            <h3>House Price Prediction — ML &amp; Analytics (Bengaluru)</h3>
-                            <p>13,320 Kaggle listings, Linear/Ridge (R²=0.644) vs Random Forest (R²=0.787), 4-page Streamlit app, FastAPI &amp; Docker.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>Python</span>
-                            <span>Scikit-learn</span>
-                            <span>Pandas</span>
-                            <span>FastAPI</span>
-                            <span>Streamlit</span>
-                            <span>Docker</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://house-price-prediction-using-machine-learning-algorithms-9qccn.streamlit.app/" target="_blank" rel="noopener noreferrer">Live ↗</a>
-                            <a href="https://github.com/abustark/HOUSE-PRICE-PREDICTION-USING-MACHINE-LEARNING-ALGORITHMS" target="_blank" rel="noopener noreferrer">Repo ↗</a>
-                            <button type="button" data-open-project="house-price">Notes</button>
-                        </div>
-                    </div>
-
-                    <!-- 5. N-Gelo Storefront -->
-                    <div class="project-table-row" data-category="db web" data-project="ngelo">
-                        <span class="col-year">2023</span>
-                        <div class="col-title">
-                            <h3>N-Gelo — Modern E-Commerce Storefront</h3>
-                            <p>Reactive shopping cart experience engineered with Vue.js 3, Vite, and modular component architecture.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>Vue.js 3</span>
-                            <span>Vite</span>
-                            <span>JavaScript</span>
-                            <span>CSS3</span>
-                            <span>State Management</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://ecom-seven-sand.vercel.app" target="_blank" rel="noopener noreferrer">Live ↗</a>
-                            <a href="https://github.com/abustark/project_bmw" target="_blank" rel="noopener noreferrer">Repo ↗</a>
-                            <button type="button" data-open-project="ngelo">Notes</button>
-                        </div>
-                    </div>
-
-                    <!-- 6. CoverCraft -->
-                    <div class="project-table-row" data-category="ai web" data-project="covercraft">
-                        <span class="col-year">2024</span>
-                        <div class="col-title">
-                            <h3>CoverCraft — AI Cover Letter Builder</h3>
-                            <p>AI document generation aligning applicant resumes with job descriptions via OpenRouter and serverless proxy.</p>
-                        </div>
-                        <div class="col-stack">
-                            <span>React</span>
-                            <span>TypeScript</span>
-                            <span>OpenRouter AI</span>
-                            <span>Vercel Serverless</span>
-                            <span>Google OAuth</span>
-                        </div>
-                        <div class="col-actions">
-                            <a href="https://github.com/abustark/cover_letter_gen" target="_blank" rel="noopener noreferrer">Repo ↗</a>
-                            <button type="button" data-open-project="covercraft">Notes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="section-end" aria-hidden="true"><span></span></div>
         </section>
 
@@ -1250,8 +1107,7 @@
             <div class="shortcut-item"><kbd>4</kbd><span>Skills &amp; Capabilities</span></div>
             <div class="shortcut-item"><kbd>5</kbd><span>Contact Section</span></div>
             <div class="shortcut-item"><kbd>T</kbd><span>Cycle Color Palette</span></div>
-            <div class="shortcut-item"><kbd>V</kbd><span>Toggle Grid / Table View</span></div>
-            <div class="shortcut-item"><kbd>S</kbd><span>Toggle Tactile Sound</span></div>
+            <div class="shortcut-item"><kbd>V</kbd><span>Toggle Grid / List View</span></div>
             <div class="shortcut-item"><kbd>R</kbd><span>Resume Quick-Look</span></div>
             <div class="shortcut-item"><kbd>Ctrl K</kbd><span>Spotlight Command Menu</span></div>
             <div class="shortcut-item"><kbd>?</kbd><span>Show / Hide Shortcuts</span></div>

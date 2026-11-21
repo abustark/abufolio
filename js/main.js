@@ -74,8 +74,7 @@ const COMMAND_ACTIONS = [
     // Actions
     { type: 'action', title: 'Copy Email Address', subtitle: 'Copy bas.abu0802@gmail.com', action: 'copy-email', badge: 'Action' },
     { type: 'action', title: 'Toggle Dark / Light Theme', subtitle: 'Switch color theme', action: 'toggle-theme', badge: 'Action' },
-    { type: 'action', title: 'Toggle Project View (Grid / Table)', subtitle: 'Switch between rich cards and compact table (Key: V)', action: 'toggle-view', badge: 'Action', keywords: 'view grid table' },
-    { type: 'action', title: 'Toggle Tactile Sound Effects', subtitle: 'Turn micro-audio on or off (Key: S)', action: 'toggle-sound', badge: 'Action', keywords: 'sound audio haptic' },
+    { type: 'action', title: 'Toggle Project View (Grid / List)', subtitle: 'Switch between visual grid and row list (Key: V)', action: 'toggle-view', badge: 'Action', keywords: 'view grid list' },
     { type: 'action', title: 'Keyboard Shortcuts Cheat Sheet', subtitle: 'View all keyboard navigation shortcuts (Key: ?)', action: 'open-shortcuts', badge: 'Action', keywords: 'shortcuts keys help' },
     { type: 'action', title: 'Open Resume (PDF)', subtitle: 'Quick look, download or copy plaintext', action: 'open-resume', badge: 'Action', keywords: '/resume resume cv' },
     { type: 'action', title: 'Copy Portfolio Link', subtitle: 'Share this website link', action: 'copy-link', badge: 'Action' },
@@ -136,119 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = event.target.closest('button, a, summary, input[type="checkbox"], input[type="range"], select');
         if (!target) return;
         tapHaptic(target.classList.contains('primary-button') ? [12, 30, 12] : 10);
-    });
-
-    // -------------------------------------------------------------
-    // Tactile Sound Synthesizer (Rauno-Style Micro-Audio via Web Audio API)
-    // -------------------------------------------------------------
-    class TactileSoundController {
-        constructor() {
-            this.ctx = null;
-            this.enabled = false;
-            try {
-                this.enabled = localStorage.getItem('portfolio-sound') === 'enabled';
-            } catch {}
-        }
-
-        init() {
-            if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                this.ctx = new AudioCtx();
-            }
-            if (this.ctx && this.ctx.state === 'suspended') {
-                this.ctx.resume();
-            }
-        }
-
-        play(type = 'click') {
-            if (!this.enabled) return;
-            try {
-                this.init();
-                if (!this.ctx) return;
-                const now = this.ctx.currentTime;
-                const osc = this.ctx.createOscillator();
-                const gain = this.ctx.createGain();
-                osc.connect(gain);
-                gain.connect(this.ctx.destination);
-
-                if (type === 'click') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(840, now);
-                    osc.frequency.exponentialRampToValueAtTime(420, now + 0.025);
-                    gain.gain.setValueAtTime(0.045, now);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
-                    osc.start(now);
-                    osc.stop(now + 0.025);
-                } else if (type === 'pop') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(460, now);
-                    osc.frequency.exponentialRampToValueAtTime(220, now + 0.038);
-                    gain.gain.setValueAtTime(0.05, now);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
-                    osc.start(now);
-                    osc.stop(now + 0.038);
-                } else if (type === 'success') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(587.33, now); // D5
-                    osc.frequency.setValueAtTime(880, now + 0.04); // A5
-                    gain.gain.setValueAtTime(0.04, now);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
-                    osc.start(now);
-                    osc.stop(now + 0.1);
-                } else if (type === 'toggle') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(360, now);
-                    osc.frequency.exponentialRampToValueAtTime(540, now + 0.03);
-                    gain.gain.setValueAtTime(0.04, now);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
-                    osc.start(now);
-                    osc.stop(now + 0.03);
-                }
-            } catch (e) {
-                console.warn('Audio playback error', e);
-            }
-        }
-
-        toggle() {
-            this.init();
-            this.enabled = !this.enabled;
-            try {
-                localStorage.setItem('portfolio-sound', this.enabled ? 'enabled' : 'disabled');
-            } catch {}
-            this.updateUI();
-            if (this.enabled) {
-                this.play('success');
-                showToast('Tactile audio enabled');
-            } else {
-                showToast('Tactile audio muted');
-            }
-            return this.enabled;
-        }
-
-        updateUI() {
-            const btn = document.getElementById('sound-toggle');
-            if (!btn) return;
-            const iconOn = btn.querySelector('.sound-icon-on');
-            const iconOff = btn.querySelector('.sound-icon-off');
-            const dot = btn.querySelector('.sound-status-dot');
-
-            if (iconOn && iconOff) {
-                iconOn.classList.toggle('is-hidden', !this.enabled);
-                iconOff.classList.toggle('is-hidden', this.enabled);
-            }
-            if (dot) {
-                dot.classList.toggle('active', this.enabled);
-            }
-            btn.setAttribute('aria-label', this.enabled ? 'Mute tactile sound effects' : 'Enable tactile sound effects');
-            btn.setAttribute('title', this.enabled ? 'Tactile sounds: ON (Key: S)' : 'Tactile sounds: OFF (Key: S)');
-        }
-    }
-
-    const sound = new TactileSoundController();
-    sound.updateUI();
-
-    document.getElementById('sound-toggle')?.addEventListener('click', () => {
-        sound.toggle();
     });
 
     // -------------------------------------------------------------
@@ -359,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDynamicCursor();
 
         if (notify) {
-            sound.play('click');
             if (activePal.isDefault) {
                 showToast(`Theme: ${activePal.name} · ${activePal.desc} <span class="toast-default-badge">DEFAULT</span>`, true);
             } else {
@@ -439,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sqlResults = document.getElementById('sql-results');
 
     const switchTerminalTab = (tab) => {
-        sound.play('click');
         if (tab === 'sql') {
             tabBtnSql?.classList.add('active');
             tabBtnSql?.setAttribute('aria-selected', 'true');
@@ -474,7 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const runMockSqlQuery = () => {
         if (!sqlRunBtn || !sqlStatus) return;
-        sound.play('pop');
         sqlRunBtn.setAttribute('disabled', 'true');
         sqlRunBtn.classList.add('is-running');
         sqlStatus.textContent = 'Executing query on replica...';
@@ -495,7 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sqlStatus.classList.remove('executing');
             sqlRunBtn.removeAttribute('disabled');
             sqlRunBtn.classList.remove('is-running');
-            sound.play('success');
         }, 320);
     };
 
@@ -536,7 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             localStorage.setItem('portfolio-theme', nextTheme);
         } catch {}
-        sound.play('toggle');
         showToast(`Switched to ${nextTheme} mode`);
     };
 
@@ -780,7 +661,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
     const projectCards = Array.from(document.querySelectorAll('.project-card[data-category]'));
     const projectGroups = Array.from(document.querySelectorAll('[data-project-group]'));
-    const projectTableRows = Array.from(document.querySelectorAll('.project-table-row[data-category]'));
 
     const applyProjectFilter = (filter) => {
         filterButtons.forEach((item) => {
@@ -793,12 +673,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const categories = card.dataset.category?.split(' ') || [];
             const match = filter === 'all' || categories.includes(filter);
             card.classList.toggle('is-hidden', !match);
-        });
-
-        projectTableRows.forEach((row) => {
-            const categories = row.dataset.category?.split(' ') || [];
-            const match = filter === 'all' || categories.includes(filter);
-            row.classList.toggle('is-hidden', !match);
         });
 
         // A group with no matching card collapses, so the featured grid and
@@ -822,43 +696,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            sound.play('click');
             applyProjectFilter(button.dataset.filter || 'all');
         });
     });
 
     // -------------------------------------------------------------
-    // 10b. Project Presentation View Mode Switcher (Grid vs. Table)
+    // 10b. Project Presentation View Mode Switcher (Grid vs. List)
     // -------------------------------------------------------------
+    const workSection = document.getElementById('work');
     const viewModeBtns = Array.from(document.querySelectorAll('[data-view-mode]'));
-    const projectGrid = document.getElementById('project-grid');
-    const projectTable = document.getElementById('project-table');
 
     const setProjectView = (mode, notify = false) => {
-        const isTable = mode === 'table';
+        const isList = mode === 'list';
         viewModeBtns.forEach((btn) => {
             const active = btn.dataset.viewMode === mode;
             btn.classList.toggle('active', active);
             btn.setAttribute('aria-checked', String(active));
         });
 
-        if (projectGrid) projectGrid.classList.toggle('is-hidden', isTable);
-        if (moreDetails) moreDetails.classList.toggle('is-hidden', isTable);
-        if (projectTable) projectTable.classList.toggle('is-hidden', !isTable);
+        if (workSection) {
+            workSection.classList.toggle('is-list-view', isList);
+        }
 
         try {
             localStorage.setItem('portfolio-view-mode', mode);
         } catch {}
 
         if (notify) {
-            sound.play('pop');
-            showToast(isTable ? 'Switched to Compact Table view' : 'Switched to Grid view');
+            showToast(isList ? 'Switched to List view' : 'Switched to Grid view');
         }
     };
 
     const toggleProjectView = () => {
         const current = localStorage.getItem('portfolio-view-mode') || 'grid';
-        setProjectView(current === 'grid' ? 'table' : 'grid', true);
+        setProjectView(current === 'grid' ? 'list' : 'grid', true);
     };
 
     viewModeBtns.forEach((btn) => {
@@ -1086,8 +957,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleTheme();
         } else if (item.action === 'toggle-view') {
             toggleProjectView();
-        } else if (item.action === 'toggle-sound') {
-            sound.toggle();
         } else if (item.action === 'open-shortcuts') {
             openShortcutsDialog();
         } else if (item.action === 'open-resume') {
@@ -1176,7 +1045,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lastShortcutsFocus = document.activeElement;
         shortcutsDialog.showModal();
         body.classList.add('modal-open');
-        sound.play('pop');
     };
 
     const closeShortcutsDialog = () => {
@@ -1259,9 +1127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.key === 'v' || event.key === 'V') {
             event.preventDefault();
             toggleProjectView();
-        } else if (event.key === 's' || event.key === 'S') {
-            event.preventDefault();
-            sound.toggle();
         } else if (event.key === 'r' || event.key === 'R') {
             event.preventDefault();
             if (resumeDialog?.open) {
