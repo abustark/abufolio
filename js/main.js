@@ -578,11 +578,20 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollPos = currentScrollPos <= 0 ? 0 : currentScrollPos;
     };
 
+    const scrollProgressEl = document.querySelector('.scroll-progress');
+    const updateScrollProgress = () => {
+        if (!scrollProgressEl) return;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? (window.scrollY / totalHeight) : 0;
+        scrollProgressEl.style.transform = `scaleX(${progress})`;
+    };
+
     let scrollTicking = false;
     const onScroll = () => {
         if (!scrollTicking) {
             window.requestAnimationFrame(() => {
                 updateScrollState();
+                updateScrollProgress();
                 checkTimelineWave();
                 scrollTicking = false;
             });

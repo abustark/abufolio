@@ -342,24 +342,25 @@ button {
     box-shadow: var(--shadow);
 }
 
-/* Scroll progress bar — pure CSS scroll-driven animation, no JS listener.
-   Hidden by default; only rendered where animation-timeline is supported. */
+/* Scroll progress bar — high-performance scroll indicator with JS + CSS support */
 .scroll-progress {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-strong), var(--accent), #ffffff);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 14px var(--accent-glow);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    pointer-events: none;
+    will-change: transform;
 }
 
 @supports (animation-timeline: scroll()) {
     .scroll-progress {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 300;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent-strong), var(--accent), var(--accent-cool));
-        transform-origin: 0 50%;
-        transform: scaleX(0);
         animation: scroll-progress-fill linear forwards;
         animation-timeline: scroll();
     }
@@ -1778,44 +1779,46 @@ pre {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 1rem;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
     border-bottom: 1px solid var(--line);
     background: color-mix(in srgb, var(--surface-strong) 95%, transparent);
     font-family: var(--font-mono);
-    font-size: 0.76rem;
-    min-height: 2.75rem;
+    font-size: 0.74rem;
+    min-height: 2.65rem;
 }
 
 .browser-dots {
     display: flex;
-    gap: 0.4rem;
+    gap: 0.35rem;
+    flex-shrink: 0;
 }
 
 .browser-dots span {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.55rem;
+    height: 0.55rem;
     border-radius: 50%;
     background: var(--line-strong);
 }
 
 .browser-url-pill {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.4rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: color-mix(in srgb, var(--bg) 60%, transparent);
-    padding: 0.25rem 0.8rem;
+    padding: 0.2rem 0.65rem;
     color: var(--muted);
-    max-width: 72%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.7rem;
+    max-width: 190px;
+    min-width: 0;
+    flex: 0 1 auto;
 }
 
 .browser-url-pill svg {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.75rem;
+    height: 0.75rem;
     stroke: var(--accent);
     flex-shrink: 0;
 }
@@ -1825,6 +1828,14 @@ pre {
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+}
+
+.preview-browser-bar .live-badge {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 0.64rem;
+    padding: 0.18rem 0.55rem;
+    white-space: nowrap;
 }
 
 .live-badge {
@@ -2114,10 +2125,26 @@ a.about-email:hover {
 .project-row {
     display: grid;
     grid-template-columns: 15rem minmax(0, 1fr);
-    align-items: center;
+    grid-template-areas:
+        "thumb body"
+        "thumb estim";
+    align-items: start;
     gap: 1.5rem;
     height: auto;
     padding: 1.25rem;
+}
+
+.project-row .project-row-thumb {
+    grid-area: thumb;
+}
+
+.project-row .project-row-body {
+    grid-area: body;
+}
+
+.project-row .estimator {
+    grid-area: estim;
+    margin-top: 0.5rem;
 }
 
 .project-row-thumb {
@@ -3807,12 +3834,37 @@ details.estimator[open] .estimator-summary::after {
 
     .hero-panel {
         margin-top: 1.5rem;
+        max-width: 100%;
+        width: 100%;
+        min-width: 0;
     }
 
-    .profile-card {
+    .profile-card,
+    .terminal-card {
         max-width: 380px;
         width: 100%;
         margin: 0 auto;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .terminal-pane {
+        max-width: 100%;
+        min-width: 0;
+        min-height: 145px;
+    }
+
+    #pane-profile, #pane-sql {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #pane-profile .sql-code-editor,
+    #pane-sql .sql-code-editor {
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        max-height: 145px;
     }
 
     .status-pill {
@@ -3846,14 +3898,17 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .work-toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
         margin-top: 1rem;
         margin-bottom: 1.5rem;
-        gap: 0.75rem;
-        align-items: center;
     }
 
     .filter-bar {
-        flex: 1 1 auto;
+        width: 100%;
+        display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -3868,6 +3923,12 @@ details.estimator[open] .estimator-summary::after {
         scroll-padding-left: 0.25rem;
         align-items: center;
         min-width: 0;
+    }
+
+    .view-mode-switcher {
+        align-self: flex-end;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
     }
 
     .filter-bar::-webkit-scrollbar {
@@ -5045,12 +5106,29 @@ details.estimator[open] .estimator-summary::after {
     }
 
     .work-section.is-list-view .project-row {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        grid-template-areas:
+            "thumb body"
+            "estim estim";
         gap: 0.85rem;
         padding: 0.85rem;
         border-radius: var(--radius-lg);
+    }
+
+    .work-section.is-list-view .project-row .project-row-thumb {
+        grid-area: thumb;
+    }
+
+    .work-section.is-list-view .project-row .project-row-body {
+        grid-area: body;
+    }
+
+    .work-section.is-list-view .project-row .estimator {
+        grid-area: estim;
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-top: 0.45rem;
     }
 
     .work-section.is-list-view .project-row-thumb {
