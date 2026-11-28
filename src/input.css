@@ -1438,12 +1438,10 @@ h3 {
     }
 }
 
-/* At three-up widths the browser bar is too tight for dots + URL + badge;
-   the mockup reads better with just the traffic lights and live status.
-   Below 961px the cards go full-width again, so the URL fits. */
+/* At three-up widths keep the URL pill compact so dots + URL + live badge all fit cleanly. */
 @media (min-width: 961px) and (max-width: 1200px) {
     .project-grid .browser-url-pill {
-        display: none;
+        max-width: 130px;
     }
 }
 
@@ -4977,8 +4975,11 @@ details.estimator[open] .estimator-summary::after {
 .work-section.is-list-view .project-row {
     display: grid;
     grid-template-columns: 16rem minmax(0, 1fr);
-    align-items: center;
-    gap: 1.5rem;
+    grid-template-areas:
+        "thumb body"
+        "thumb estim";
+    align-items: start;
+    gap: 1.25rem 1.5rem;
     padding: 1.25rem 1.5rem;
 }
 
@@ -5255,4 +5256,133 @@ dialog.shortcuts-dialog {
 .shortcut-item span {
     color: var(--text);
     font-weight: 500;
+}
+
+/* -------------------------------------------------------------
+   Precision Instrument Polish: Grain, Presets, Copy Morph, Matrix Glow
+------------------------------------------------------------- */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.024;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.light-mode body::after {
+    opacity: 0.015;
+}
+
+.skills-section,
+.experience-section,
+.contact-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 650px;
+}
+
+/* Hero SQL Console Preset Chips */
+.sql-presets {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface-strong) 75%, transparent);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.sql-presets::-webkit-scrollbar {
+    display: none;
+}
+
+.sql-preset-chip {
+    flex-shrink: 0;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.sql-preset-chip:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+}
+
+.sql-preset-chip.active {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* House Price Estimator Quick Presets */
+.est-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+}
+
+.est-preset-chip {
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 75%, transparent);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.est-preset-chip:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+}
+
+.est-preset-chip.active {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* Copy-to-Clipboard Morph & Kinetic Icon Hover */
+.secondary-button.is-copied {
+    border-color: color-mix(in srgb, var(--success) 55%, transparent);
+    color: var(--success);
+}
+
+.project-actions a svg {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-actions a:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* Skill-to-Project Matrix Glow */
+.project-card.skill-match-glow {
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent) !important;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15), 0 0 0 1px var(--accent), 0 12px 32px -8px var(--accent-glow) !important;
+}
+
+.skills-card .tool-group span,
+.project-card .tag-row span {
+    cursor: pointer;
+    transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.skills-card .tool-group span:hover,
+.project-card .tag-row span:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }

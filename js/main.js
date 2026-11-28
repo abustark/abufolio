@@ -404,8 +404,91 @@ document.addEventListener('DOMContentLoaded', () => {
     tabBtnSql?.addEventListener('click', () => switchTerminalTab('sql'));
     tabBtnProfile?.addEventListener('click', () => switchTerminalTab('profile'));
 
+    const sqlQueryDisplay = document.getElementById('sql-query-display');
+    const sqlLineNumbers = document.querySelector('#pane-sql .sql-line-numbers');
+    const sqlPresetBtns = Array.from(document.querySelectorAll('[data-sql-preset]'));
+
+    const SQL_PRESETS = {
+        role: {
+            sqlHtml: `<span class="sql-keyword">SELECT</span> role, accuracy, impact
+<span class="sql-keyword">FROM</span> amazon_enterprise_data
+<span class="sql-keyword">WHERE</span> candidate = <span class="sql-string">'Basith AbuSyed'</span>
+  <span class="sql-keyword">AND</span> status = <span class="sql-string">'READY_TO_HIRE'</span>;`,
+            lines: 4,
+            db: 'PostgreSQL',
+            columns: ['ROLE', 'ACCURACY', 'IMPACT'],
+            rows: [
+                [
+                    '<span class="sql-badge-role">ML Data Assoc II</span>',
+                    '<span class="sql-badge-accuracy">98.4%</span>',
+                    '<span class="sql-badge-impact">+16% team speed</span>'
+                ]
+            ]
+        },
+        stack: {
+            sqlHtml: `<span class="sql-keyword">SELECT</span> tool, domain, exp
+<span class="sql-keyword">FROM</span> core_capabilities
+<span class="sql-keyword">ORDER BY</span> proficiency <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">LIMIT</span> <span class="sql-string">2</span>;`,
+            lines: 4,
+            db: 'DuckDB',
+            columns: ['TOOL', 'DOMAIN', 'EXP'],
+            rows: [
+                [
+                    '<span class="sql-badge-role">SQL &amp; Python</span>',
+                    '<span class="sql-badge-accuracy">ETL / ML</span>',
+                    '<span class="sql-badge-impact">3+ yrs</span>'
+                ],
+                [
+                    '<span class="sql-badge-role">Scikit-learn</span>',
+                    '<span class="sql-badge-accuracy">R² 0.787</span>',
+                    '<span class="sql-badge-impact">Production</span>'
+                ]
+            ]
+        },
+        apps: {
+            sqlHtml: `<span class="sql-keyword">SELECT</span> app, stack, status
+<span class="sql-keyword">FROM</span> live_deployments
+<span class="sql-keyword">WHERE</span> production = <span class="sql-string">true</span>
+<span class="sql-keyword">LIMIT</span> <span class="sql-string">2</span>;`,
+            lines: 4,
+            db: 'Vercel Edge',
+            columns: ['APP', 'STACK', 'STATUS'],
+            rows: [
+                [
+                    '<span class="sql-badge-role">ABot Hub</span>',
+                    '<span class="sql-badge-accuracy">31 Models</span>',
+                    '<span class="sql-badge-impact">● Live</span>'
+                ],
+                [
+                    '<span class="sql-badge-role">PriceTracked</span>',
+                    '<span class="sql-badge-accuracy">Next.js 15</span>',
+                    '<span class="sql-badge-impact">● Live</span>'
+                ]
+            ]
+        }
+    };
+
+    let currentSqlPreset = 'role';
+
+    const renderSqlTable = (preset) => {
+        if (!sqlResults || !preset) return;
+        const dbPill = sqlResults.querySelector('.sql-db-pill');
+        if (dbPill) dbPill.textContent = preset.db;
+        const thead = sqlResults.querySelector('thead');
+        const tbody = sqlResults.querySelector('tbody');
+        if (thead) {
+            thead.innerHTML = `<tr>${preset.columns.map((c) => `<th>${c}</th>`).join('')}</tr>`;
+        }
+        if (tbody) {
+            tbody.innerHTML = preset.rows.map((r) => `<tr>${r.map((cell) => `<td>${cell}</td>`).join('')}</tr>`).join('');
+        }
+    };
+
     const runMockSqlQuery = () => {
         if (!sqlRunBtn || !sqlStatus) return;
+        const preset = SQL_PRESETS[currentSqlPreset] || SQL_PRESETS.role;
+        const rowCount = preset.rows.length;
         sqlRunBtn.setAttribute('disabled', 'true');
         sqlRunBtn.classList.add('is-running');
         sqlStatus.textContent = 'Executing query on replica...';
@@ -417,17 +500,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             const execMs = Math.floor(Math.random() * 8 + 11);
+            renderSqlTable(preset);
             if (sqlResults) {
                 sqlResults.style.opacity = '1';
                 const headerSpan = sqlResults.querySelector('.sql-result-header span');
-                if (headerSpan) headerSpan.textContent = `RESULT SET (1 row · ${execMs}ms)`;
+                if (headerSpan) headerSpan.textContent = `RESULT SET (${rowCount} ${rowCount === 1 ? 'row' : 'rows'} · ${execMs}ms)`;
             }
-            sqlStatus.textContent = `✓ 1 row returned in ${execMs}ms`;
+            sqlStatus.textContent = `✓ ${rowCount} ${rowCount === 1 ? 'row' : 'rows'} returned in ${execMs}ms`;
             sqlStatus.classList.remove('executing');
             sqlRunBtn.removeAttribute('disabled');
             sqlRunBtn.classList.remove('is-running');
-        }, 320);
+        }, 280);
     };
+
+    sqlPresetBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const key = btn.dataset.sqlPreset;
+            const preset = SQL_PRESETS[key];
+            if (!preset) return;
+            currentSqlPreset = key;
+            sqlPresetBtns.forEach((b) => {
+                const active = b === btn;
+                b.classList.toggle('active', active);
+                b.setAttribute('aria-pressed', String(active));
+            });
+            if (sqlQueryDisplay) sqlQueryDisplay.innerHTML = preset.sqlHtml;
+            if (sqlLineNumbers) {
+                sqlLineNumbers.innerHTML = Array.from({ length: preset.lines }, (_, i) => `<span>${i + 1}</span>`).join('');
+            }
+            runMockSqlQuery();
+        });
+    });
 
     sqlRunBtn?.addEventListener('click', runMockSqlQuery);
 
@@ -688,10 +791,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. Clipboard Actions (Email & Links)
     // -------------------------------------------------------------
     document.querySelectorAll('[data-copy-email]').forEach((button) => {
+        const labelSpan = button.querySelector('span:last-child');
+        const iconWrap = button.querySelector('.btn-icon-lead');
+        const originalText = labelSpan ? labelSpan.textContent : '';
+        const originalIcon = iconWrap ? iconWrap.innerHTML : '';
+        let resetTimer = null;
+
         button.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(EMAIL_ADDRESS);
                 showToast(`Copied ${EMAIL_ADDRESS} to clipboard`);
+                if (labelSpan && iconWrap) {
+                    button.classList.add('is-copied');
+                    labelSpan.textContent = 'Copied!';
+                    iconWrap.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                    if (resetTimer) clearTimeout(resetTimer);
+                    resetTimer = setTimeout(() => {
+                        button.classList.remove('is-copied');
+                        labelSpan.textContent = originalText;
+                        iconWrap.innerHTML = originalIcon;
+                    }, 1600);
+                }
             } catch {
                 showToast(`Email: ${EMAIL_ADDRESS}`);
             }
@@ -1203,6 +1323,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetEl) targetEl.scrollIntoView({ behavior: smoothScrollBehavior(), block: 'start' });
         };
 
+        // Two-key chord navigation: G followed by P/E/S/C
+        if (window._gChordTimer && ['p', 'e', 's', 'c'].includes(event.key.toLowerCase())) {
+            event.preventDefault();
+            clearTimeout(window._gChordTimer);
+            window._gChordTimer = null;
+            const map = { p: 'work', e: 'experience', s: 'skills', c: 'contact' };
+            navigateTo(map[event.key.toLowerCase()]);
+            return;
+        }
+        if (event.key.toLowerCase() === 'g') {
+            if (window._gChordTimer) clearTimeout(window._gChordTimer);
+            window._gChordTimer = setTimeout(() => { window._gChordTimer = null; }, 800);
+            return;
+        }
+
         if (event.key === '1') {
             navigateTo('home');
         } else if (event.key === '2') {
@@ -1278,7 +1413,69 @@ document.addEventListener('DOMContentLoaded', () => {
             renderEst();
         });
     });
+
+    const EST_PRESETS = {
+        whitefield: { sqft: 1150, bhk: 2, tier: 'metro', amen: 'standard' },
+        indiranagar: { sqft: 1900, bhk: 3, tier: 'metro', amen: 'luxury' },
+        koramangala: { sqft: 2800, bhk: 4, tier: 'metro', amen: 'luxury' }
+    };
+
+    document.querySelectorAll('[data-est-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const p = EST_PRESETS[btn.dataset.estPreset];
+            if (!p) return;
+            if (estSqft) estSqft.value = String(p.sqft);
+            if (estTier) estTier.value = p.tier;
+            if (estAmen) estAmen.value = p.amen;
+            estBhk = p.bhk;
+            document.querySelectorAll('[data-est-bhk]').forEach((b) =>
+                b.setAttribute('aria-pressed', String(Number(b.dataset.estBhk) === p.bhk)));
+            document.querySelectorAll('[data-est-preset]').forEach((b) =>
+                b.classList.toggle('active', b === btn));
+            renderEst();
+        });
+    });
+
     renderEst();
+
+    // -------------------------------------------------------------
+    // 13c. Hover Prefetch & Skill-to-Project Matrix Glow
+    // -------------------------------------------------------------
+    const prefetchedUrls = new Set();
+    document.querySelectorAll('a[href^="https://"]').forEach((anchor) => {
+        const prefetch = () => {
+            const url = anchor.href;
+            if (!url || prefetchedUrls.has(url) || url.includes('github.com')) return;
+            prefetchedUrls.add(url);
+            const link = document.createElement('link');
+            link.rel = 'dns-prefetch';
+            link.href = url;
+            document.head.appendChild(link);
+        };
+        anchor.addEventListener('pointerenter', prefetch, { once: true, passive: true });
+    });
+
+    const normalizeSkillKey = (text) =>
+        text.toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9]/g, '').trim();
+
+    const highlightMatchingProjects = (rawSkill) => {
+        const key = normalizeSkillKey(rawSkill);
+        if (!key) return;
+        projectCards.forEach((card) => {
+            const tags = Array.from(card.querySelectorAll('.tag-row span')).map((s) => normalizeSkillKey(s.textContent));
+            const matches = tags.some((t) => t.includes(key) || key.includes(t));
+            card.classList.toggle('skill-match-glow', matches);
+        });
+    };
+
+    const clearProjectHighlights = () => {
+        projectCards.forEach((card) => card.classList.remove('skill-match-glow'));
+    };
+
+    document.querySelectorAll('.skills-card .tool-group span, .project-card .tag-row span').forEach((pill) => {
+        pill.addEventListener('pointerenter', () => highlightMatchingProjects(pill.textContent));
+        pill.addEventListener('pointerleave', clearProjectHighlights);
+    });
 
     // -------------------------------------------------------------
     // 14. Contact Form Submission

@@ -249,6 +249,11 @@
 
                             <!-- SQL Query Pane -->
                             <div class="terminal-pane active" id="pane-sql" role="tabpanel" aria-labelledby="tab-btn-sql">
+                                <div class="sql-presets" role="group" aria-label="Preset SQL queries">
+                                    <button class="sql-preset-chip active" type="button" data-sql-preset="role" aria-pressed="true">01 · Role</button>
+                                    <button class="sql-preset-chip" type="button" data-sql-preset="stack" aria-pressed="false">02 · Stack</button>
+                                    <button class="sql-preset-chip" type="button" data-sql-preset="apps" aria-pressed="false">03 · Deployments</button>
+                                </div>
                                 <div class="sql-code-editor">
                                     <div class="sql-line-numbers" aria-hidden="true">
                                         <span>1</span><span>2</span><span>3</span><span>4</span>
@@ -658,6 +663,11 @@
                                 </div>
                             </summary>
                             <div class="estimator-body">
+                                <div class="est-presets" role="group" aria-label="Quick Bengaluru property presets">
+                                    <button class="est-preset-chip" type="button" data-est-preset="whitefield">2 BHK Whitefield</button>
+                                    <button class="est-preset-chip" type="button" data-est-preset="indiranagar">3 BHK Indiranagar</button>
+                                    <button class="est-preset-chip" type="button" data-est-preset="koramangala">4 BHK Koramangala</button>
+                                </div>
                                 <div class="sim-field">
                                     <label for="est-sqft">Area <output id="est-sqft-val" for="est-sqft">1,200 sq ft</output></label>
                                     <input type="range" id="est-sqft" min="500" max="5000" step="50" value="1200">
@@ -1162,6 +1172,8 @@
             <div class="shortcut-item"><kbd>3</kbd><span>Featured Projects</span></div>
             <div class="shortcut-item"><kbd>4</kbd><span>Skills &amp; Capabilities</span></div>
             <div class="shortcut-item"><kbd>5</kbd><span>Contact Section</span></div>
+            <div class="shortcut-item"><kbd>G</kbd><kbd>P</kbd><span>Jump to Projects</span></div>
+            <div class="shortcut-item"><kbd>G</kbd><kbd>E</kbd><span>Jump to Experience</span></div>
             <div class="shortcut-item"><kbd>T</kbd><span>Cycle Color Palette</span></div>
             <div class="shortcut-item"><kbd>V</kbd><span>Toggle Grid / List View</span></div>
             <div class="shortcut-item"><kbd>R</kbd><span>Resume Quick-Look</span></div>
